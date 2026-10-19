@@ -1,5 +1,9 @@
 const { TOOL_FORMS, CALC_SLUGS, TEXT_SLUGS } = require('./forms');
 
+function categoryOf(slug) {
+  return CALC_SLUGS.includes(slug) ? 'calc' : 'text';
+}
+
 const LOGIC_FILE = {
   'loan-calculator': 'finance',
   severance: 'finance',
@@ -36,6 +40,9 @@ function head({ lang, title, description, origin, alternates }) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}">
   <link rel="canonical" href="${escapeHtml(origin + alternates[lang])}">
@@ -122,7 +129,7 @@ function renderToolPage({ lang, tool, ui, alternates, origin }) {
   })}
 <body>
 ${header({ lang, ui, alternates: alternates.paths })}
-<main class="tool">
+<main class="tool" data-category="${categoryOf(tool.slug)}">
   <h1>${escapeHtml(tool.h1)}</h1>
   <div class="intro">${paragraphs(tool.intro)}</div>
   <form class="tool-form" id="tool-form">
@@ -160,7 +167,7 @@ function renderHome({ lang, ui, tools, alternates, origin }) {
   <span class="tool-card-desc">${escapeHtml(tool.description)}</span>
 </a>`;
   };
-  const section = (heading, slugs) => `<section class="category">
+  const section = (heading, slugs, category) => `<section class="category category-${category}" data-category="${category}">
   <h2>${escapeHtml(heading)}</h2>
   <div class="grid">${slugs.map(card).join('\n')}</div>
 </section>`;
@@ -172,8 +179,8 @@ ${header({ lang, ui, alternates: alternates.paths })}
 <main class="home">
   <h1>${escapeHtml(ui.heroTitle)}</h1>
   <p class="lead">${escapeHtml(ui.heroLead)}</p>
-  ${section(ui.categoryCalc, CALC_SLUGS)}
-  ${section(ui.categoryText, TEXT_SLUGS)}
+  ${section(ui.categoryCalc, CALC_SLUGS, 'calc')}
+  ${section(ui.categoryText, TEXT_SLUGS, 'text')}
 </main>
 ${footer(ui)}
 </body>

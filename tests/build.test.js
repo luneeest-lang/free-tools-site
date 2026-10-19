@@ -105,3 +105,25 @@ test('퇴직금 임금 총액 입력은 자동으로 콤마를 넣는다', () =>
   const severance = fs.readFileSync(path.join(ROOT, 'assets', 'tools', 'severance.js'), 'utf8');
   assert.match(severance, /bindAmount\('wages'\)/);
 });
+
+test('도구 페이지는 카테고리 속성을 가진다', () => {
+  assert.match(read('ko/loan-calculator/index.html'), /<main class="tool" data-category="calc">/);
+  assert.match(read('ko/bmi/index.html'), /<main class="tool" data-category="calc">/);
+  assert.match(read('ko/char-count/index.html'), /<main class="tool" data-category="text">/);
+});
+
+test('홈 카테고리 섹션에 카테고리 속성이 있다', () => {
+  const home = read('ko/index.html');
+  assert.match(home, /class="category category-calc" data-category="calc"/);
+  assert.match(home, /class="category category-text" data-category="text"/);
+});
+
+test('부드러운 글꼴을 Google Fonts에서 불러온다', () => {
+  assert.match(read('ko/index.html'), /fonts\.googleapis\.com\/css2\?family=Gowun/);
+});
+
+test('스타일에 카테고리별 색 변수가 있다', () => {
+  const css = fs.readFileSync(path.join(ROOT, 'assets', 'style.css'), 'utf8');
+  assert.match(css, /\[data-category="calc"\]/);
+  assert.match(css, /\[data-category="text"\]/);
+});

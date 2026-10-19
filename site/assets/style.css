@@ -11,9 +11,24 @@
   --border-warning: #fac775;
   --fill-warning: #ba7517;
   --bg-warning: #faeeda;
-  --font-voice: "Batang", "Noto Serif KR", Georgia, serif;
-  --font-sans: "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --bg-teal: #e1f5ee;
+  --fill-teal: #1d9e75;
+  --text-teal: #0f6e56;
+  --font-voice: "Gowun Batang", "Batang", Georgia, serif;
+  --font-sans: "Gowun Dodum", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --radius: 8px;
+}
+
+[data-category="calc"] {
+  --cat-bg: var(--bg-warning);
+  --cat-fill: var(--fill-warning);
+  --cat-text: var(--text-warning);
+}
+
+[data-category="text"] {
+  --cat-bg: var(--bg-teal);
+  --cat-fill: var(--fill-teal);
+  --cat-text: var(--text-teal);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,6 +45,9 @@
     --border-warning: #854f0b;
     --fill-warning: #ef9f27;
     --bg-warning: #412402;
+    --bg-teal: #04342c;
+    --fill-teal: #5dcaa5;
+    --text-teal: #9fe1cb;
   }
 }
 
@@ -46,6 +64,9 @@
   --border-warning: #854f0b;
   --fill-warning: #ef9f27;
   --bg-warning: #412402;
+  --bg-teal: #04342c;
+  --fill-teal: #5dcaa5;
+  --text-teal: #9fe1cb;
 }
 
 * {
@@ -136,6 +157,17 @@ main,
   margin-top: 0;
 }
 
+.category h2::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--cat-fill);
+  vertical-align: middle;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -148,17 +180,18 @@ main,
   gap: 4px;
   padding: 18px;
   border-radius: 12px;
-  background: var(--surface-1);
+  background: var(--cat-bg);
   color: var(--text-primary);
   text-decoration: none;
 }
 
 .tool-card:hover {
-  background: var(--bg-warning);
+  box-shadow: inset 0 0 0 1px var(--cat-fill);
 }
 
 .tool-card-title {
   font-weight: 500;
+  color: var(--cat-text);
 }
 
 .tool-card-desc {
@@ -236,7 +269,7 @@ textarea {
   display: grid;
   gap: 16px;
   align-content: start;
-  background: var(--bg-warning);
+  background: var(--cat-bg);
   border-radius: 12px;
   padding: 24px;
 }
@@ -244,7 +277,7 @@ textarea {
 .output-label {
   display: block;
   font-size: 13px;
-  color: var(--text-warning);
+  color: var(--cat-text);
 }
 
 .output output {
