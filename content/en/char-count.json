@@ -1,0 +1,24 @@
+{
+  "slug": "char-count",
+  "title": "Character Counter | With and Without Spaces, Word Count",
+  "description": "Paste your text to count characters with and without spaces, words, and lines instantly.",
+  "h1": "Character counter",
+  "intro": "Check text that has a length limit, such as a bio, a post, or a message. It shows the character count both with and without spaces.\n\nWords are counted by splitting on spaces, so the number may differ slightly from other word counters for languages without spaces.",
+  "howTo": [
+    "Paste or type your text into the box.",
+    "Read the character counts, word count, and line count.",
+    "Edit the text and check the numbers again as needed."
+  ],
+  "faq": [
+    { "q": "Are spaces counted as characters?", "a": "Both are shown. Check the count with spaces and the count without spaces." },
+    { "q": "How are emoji counted?", "a": "Counts are per code unit, so one emoji may count as two characters." },
+    { "q": "Is my text saved anywhere?", "a": "No. Everything runs in your browser only." }
+  ],
+  "labels": {
+    "inputLabel": "Your text",
+    "charsLabel": "Characters (with spaces)",
+    "charsNoSpacesLabel": "Characters (without spaces)",
+    "wordsLabel": "Words",
+    "linesLabel": "Lines"
+  }
+}

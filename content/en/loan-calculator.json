@@ -1,0 +1,29 @@
+{
+  "slug": "loan-calculator",
+  "title": "Loan Interest Calculator | Monthly Payment",
+  "description": "Enter loan amount, interest rate, and term to see your monthly payment and total interest using equal monthly payments.",
+  "h1": "Loan interest calculator",
+  "intro": "Enter the loan amount, annual interest rate, and repayment term to see your monthly payment and total interest. The calculation uses the equal-payment (amortized) method. At a 0% rate, the payment is simply the principal divided by the number of months.\n\nActual loan terms vary by lender. Treat these results as an estimate and confirm the final figures with your lender.",
+  "howTo": [
+    "Enter the loan amount.",
+    "Enter the annual interest rate as a percentage. Example: 5.0",
+    "Enter the repayment term in months. Example: 30 years is 360"
+  ],
+  "faq": [
+    { "q": "What is an equal-payment loan?", "a": "You pay the same amount each month. Early payments are mostly interest, and the principal share grows over time." },
+    { "q": "How is a 0% loan calculated?", "a": "There is no interest, so the monthly payment is the principal divided by the number of months." },
+    { "q": "Does this include early repayment fees?", "a": "No. Check your lender's terms for any early repayment fee." }
+  ],
+  "labels": {
+    "principalLabel": "Loan amount",
+    "rateLabel": "Annual interest rate",
+    "monthsLabel": "Repayment term",
+    "unitWon": "",
+    "unitPercent": "%",
+    "unitMonths": "months",
+    "paymentLabel": "Monthly payment",
+    "totalInterestLabel": "Total interest",
+    "totalPaymentLabel": "Total repayment",
+    "errorInvalid": "Enter valid numbers for amount, rate, and term."
+  }
+}

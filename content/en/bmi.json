@@ -1,0 +1,30 @@
+{
+  "slug": "bmi",
+  "title": "BMI Calculator | Body Mass Index from Height and Weight",
+  "description": "Enter your height and weight to get your BMI and weight category. Adult reference only, not a medical diagnosis.",
+  "h1": "BMI calculator",
+  "intro": "Calculate your body mass index (BMI) from height and weight. BMI is weight in kilograms divided by height in meters squared. It is a rough reference for whether weight is in a typical range for height.\n\nMuscle mass and body shape affect the result, so BMI should not be used as a medical diagnosis on its own.",
+  "howTo": [
+    "Enter your height in centimeters.",
+    "Enter your weight in kilograms.",
+    "Read your BMI and weight category."
+  ],
+  "faq": [
+    { "q": "What are the BMI categories?", "a": "Below 18.5 is underweight, 18.5 to under 25 is normal, 25 to under 30 is overweight, and 30 or above is obese." },
+    { "q": "Do the same categories apply to teenagers?", "a": "No. Teenagers are assessed with age- and sex-specific charts." },
+    { "q": "Can BMI alone show my health?", "a": "Not really. Waist size, muscle mass, and blood pressure give a fuller picture." }
+  ],
+  "labels": {
+    "heightLabel": "Height",
+    "weightLabel": "Weight",
+    "unitCm": "cm",
+    "unitKg": "kg",
+    "resultLabel": "BMI",
+    "categoryLabel": "Weight category",
+    "categoryUnderweight": "Underweight",
+    "categoryNormal": "Normal",
+    "categoryOverweight": "Overweight",
+    "categoryObese": "Obese",
+    "errorInvalid": "Enter height and weight as numbers greater than zero."
+  }
+}

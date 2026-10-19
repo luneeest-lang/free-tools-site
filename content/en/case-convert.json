@@ -1,0 +1,26 @@
+{
+  "slug": "case-convert",
+  "title": "Case Converter | Uppercase, Lowercase, Title and Sentence Case",
+  "description": "Convert English text to uppercase, lowercase, title case, or sentence case in one click.",
+  "h1": "Case converter",
+  "intro": "Change the capitalization of English titles and sentences. Title case capitalizes the first letter of each word. Sentence case capitalizes only the first letter.\n\nKorean text has no letter case, so it is left as it is.",
+  "howTo": [
+    "Paste your text into the input box.",
+    "Choose a conversion style.",
+    "Copy the result from the output box."
+  ],
+  "faq": [
+    { "q": "Does title case skip small words like 'of' or 'the'?", "a": "No. Every word gets a capital first letter. Exception rules are not applied." },
+    { "q": "Does Korean text change?", "a": "No. Only English letters are converted." },
+    { "q": "Is my text saved?", "a": "No. Conversion happens entirely in your browser." }
+  ],
+  "labels": {
+    "inputLabel": "Original text",
+    "outputLabel": "Result",
+    "modeLabel": "Conversion style",
+    "modeUpper": "All uppercase",
+    "modeLower": "All lowercase",
+    "modeTitle": "Title case",
+    "modeSentence": "Sentence case"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "slug": "dedupe-lines",
+  "title": "Remove Duplicate Lines | Keep the First Occurrence",
+  "description": "Remove repeated lines from a list and keep only the first occurrence. Case-insensitive matching is available.",
+  "h1": "Remove duplicate lines",
+  "intro": "Clean up line-based lists such as email addresses, keywords, or contacts. The first occurrence of each line is kept, and later copies are removed.\n\nWith case-insensitive matching on, lines that differ only in capitalization count as duplicates. Blank lines are not checked for duplicates.",
+  "howTo": [
+    "Paste your line-based list into the input box.",
+    "Turn on case-insensitive matching if you need it.",
+    "Check the result and the number of removed lines."
+  ],
+  "faq": [
+    { "q": "Does the original order change?", "a": "No. The first occurrence of each line keeps its position." },
+    { "q": "Are lines with different spaces duplicates?", "a": "No. Lines must match exactly, including spaces, to count as duplicates." },
+    { "q": "Is my list saved?", "a": "No. Everything runs in your browser." }
+  ],
+  "labels": {
+    "inputLabel": "Original list",
+    "outputLabel": "Result without duplicates",
+    "ignoreCaseLabel": "Ignore case",
+    "removedLabel": "Lines removed"
+  }
+}

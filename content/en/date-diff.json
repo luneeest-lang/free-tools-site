@@ -1,0 +1,26 @@
+{
+  "slug": "date-diff",
+  "title": "Date Difference Calculator | Days Between Two Dates",
+  "description": "Enter a start and end date to get the number of days and weeks between them. Leap years are included.",
+  "h1": "Date difference calculator",
+  "intro": "Find out how many days, or weeks and days, separate two dates. Useful for contract periods, countdowns, and counting vacation days.\n\nIf the end date comes before the start date, you will see a message instead of a result.",
+  "howTo": [
+    "Pick a start date.",
+    "Pick an end date.",
+    "Read the days and weeks results."
+  ],
+  "faq": [
+    { "q": "Is the start or end date included?", "a": "Neither is counted as an extra day. The result is the number of days from the start date to the end date." },
+    { "q": "Are leap years handled?", "a": "Yes. Calculations use the real calendar, including February 29." },
+    { "q": "How are weeks and days calculated?", "a": "Weeks are the total days divided by 7, and the remainder is the leftover days." }
+  ],
+  "labels": {
+    "startLabel": "Start date",
+    "endLabel": "End date",
+    "daysLabel": "Days",
+    "weeksLabel": "Weeks",
+    "resultLabel": "Result",
+    "errorEndBeforeStart": "The end date is before the start date.",
+    "errorInvalidDate": "Enter a valid date."
+  }
+}

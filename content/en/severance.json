@@ -1,0 +1,27 @@
+{
+  "slug": "severance",
+  "title": "Severance Pay Calculator | Korean Rules, Estimate",
+  "description": "Enter recent three-month wages and days worked for an estimate of Korean severance pay under the Labor Standards Act.",
+  "h1": "Severance pay calculator",
+  "intro": "Estimate severance pay from your total wages over the last three months, the number of days in that period, and your total days worked. This calculator follows Korean severance pay rules: average daily wage times 30 days, scaled by days worked over 365.\n\nBonuses, paid leave allowance, and company rules can change the actual amount. Use this as an estimate only.",
+  "howTo": [
+    "Enter your total wages for the last three months.",
+    "Enter the number of days in those three months, usually about 90.",
+    "Enter your total days worked, from your start date to your end date."
+  ],
+  "faq": [
+    { "q": "When is severance pay owed?", "a": "Under Korean law it is generally owed after at least one year of continuous service, when you leave the job." },
+    { "q": "How is the average daily wage calculated?", "a": "Total wages for the last three months divided by the number of days in that period." },
+    { "q": "Why can my actual payment differ?", "a": "Bonus treatment, tax deductions, and company rules can all change the final amount." }
+  ],
+  "labels": {
+    "wagesLabel": "Total wages, last 3 months",
+    "daysLast3Label": "Days in those 3 months",
+    "daysWorkedLabel": "Total days worked",
+    "unitWon": "KRW",
+    "unitDays": "days",
+    "resultLabel": "Estimated severance pay",
+    "dailyWageLabel": "Average daily wage",
+    "errorInvalid": "Enter all values as numbers greater than zero."
+  }
+}
