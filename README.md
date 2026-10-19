@@ -36,9 +36,9 @@ npm run build
 
 ## 배포 전 확인
 
-1. `scripts/build.js`의 `SITE_ORIGIN`을 실제 주소로 바꿉니다. 기본값 `https://example.com`은 사이트맵과 `hreflang`에 그대로 들어갑니다.
+1. `scripts/build.js`의 `SITE_ORIGIN`을 실제 주소로 바꿉니다. 현재 값은 `https://luneeest-lang.github.io`이며, 사이트맵과 `hreflang`에 들어갑니다. 커스텀 도메인을 쓰면 여기를 바꾸세요.
 2. `npm test`와 `npm run build`를 실행합니다.
-3. `site/` 폴더를 정적 호스팅에 올립니다. GitHub Pages나 Cloudflare Pages를 쓸 수 있으며, 둘 다 무료입니다.
+3. GitHub 저장소의 Settings > Pages에서 Source를 "GitHub Actions"로 설정합니다. `master` 또는 `feature/free-tools-site`에 푸시하면 `.github/workflows/pages.yml`이 테스트, 빌드, 배포를 자동으로 실행합니다.
 
 ## 참고
 

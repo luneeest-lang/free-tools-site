@@ -2,9 +2,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { renderToolPage, renderHome, renderRootIndex } = require('./lib/render');
 
-// Replace with the real production origin before deploying. It appears in
-// canonical and hreflang links, sitemap.xml, and robots.txt.
-const SITE_ORIGIN = 'https://example.com';
+// Production origin. It appears in canonical and hreflang links, sitemap.xml,
+// and robots.txt. Change it if the site moves to a custom domain.
+const SITE_ORIGIN = 'https://luneeest-lang.github.io';
 const SLUGS = [
   'loan-calculator',
   'date-diff',
