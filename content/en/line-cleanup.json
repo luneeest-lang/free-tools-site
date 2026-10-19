@@ -1,6 +1,6 @@
 {
   "slug": "line-cleanup",
-  "title": "Line Break and Space Cleanup | Trim Lines and Remove Extra Blanks",
+  "title": "Line Break and Space Cleanup | Trim Lines",
   "description": "Clean up copied text by trimming spaces at the start and end of each line and collapsing repeated blank lines.",
   "h1": "Line break and space cleanup",
   "intro": "Text copied from PDFs or web pages often has extra spaces at line ends and repeated blank lines. This tool trims spaces at the start and end of each line, reduces repeated blank lines to one, and removes blank lines at the very start and end.\n\nSpaces between words are left unchanged.",
