@@ -31,6 +31,7 @@
     ToolUI.setOutput('totalPayment', ToolUI.fmt(result.totalPayment));
   }
 
+  ToolUI.bindAmount('principal');
   form.addEventListener('input', update);
   update();
 })();

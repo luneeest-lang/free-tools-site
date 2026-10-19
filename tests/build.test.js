@@ -93,3 +93,10 @@ test('도구 페이지의 사이트 이름은 해당 언어 홈으로 연결된�
   assert.match(read('ko/bmi/index.html'), /class="site-name" href="\/ko\/"/);
   assert.match(read('en/bmi/index.html'), /class="site-name" href="\/en\/"/);
 });
+
+test('대출 원금 입력은 자동으로 콤마를 넣는다', () => {
+  const common = fs.readFileSync(path.join(ROOT, 'assets', 'common.js'), 'utf8');
+  const loan = fs.readFileSync(path.join(ROOT, 'assets', 'tools', 'loan-calculator.js'), 'utf8');
+  assert.match(common, /function groupDigits/);
+  assert.match(loan, /bindAmount\('principal'\)/);
+});

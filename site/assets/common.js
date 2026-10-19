@@ -49,5 +49,30 @@
     if (el) el.hidden = false;
   }
 
-  window.ToolUI = { label, num, isNumber, fmt, setOutput, clearOutputs, clearErrors, showError };
+  function groupDigits(raw) {
+    const cleaned = raw.replace(/[^\d.]/g, '');
+    const [whole, fraction] = cleaned.split('.');
+    const grouped = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return fraction !== undefined ? `${grouped}.${fraction}` : grouped;
+  }
+
+  function bindAmount(id) {
+    const el = document.getElementById(id);
+    el.addEventListener('input', () => {
+      el.value = groupDigits(el.value);
+    });
+  }
+
+  window.ToolUI = {
+    label,
+    num,
+    isNumber,
+    fmt,
+    groupDigits,
+    bindAmount,
+    setOutput,
+    clearOutputs,
+    clearErrors,
+    showError,
+  };
 })();
