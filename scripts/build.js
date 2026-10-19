@@ -2,6 +2,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { renderToolPage, renderHome, renderRootIndex } = require('./lib/render');
 
+// Replace with the real production origin before deploying. It appears in
+// canonical and hreflang links, sitemap.xml, and robots.txt.
 const SITE_ORIGIN = 'https://example.com';
 const SLUGS = [
   'loan-calculator',
