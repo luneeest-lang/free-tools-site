@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loan Interest Calculator | Monthly Payment</title>
+  <meta name="description" content="Enter loan amount, interest rate, and term to see your monthly payment and total interest using equal monthly payments.">
+  <link rel="canonical" href="https://example.com/en/loan-calculator/">
+    <link rel="alternate" hreflang="ko" href="https://example.com/ko/loan-calculator/">
+    <link rel="alternate" hreflang="en" href="https://example.com/en/loan-calculator/">
+    <link rel="alternate" hreflang="x-default" href="https://example.com/ko/loan-calculator/">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/en/loan-calculator/">Toolbox</a>
+  <a class="lang-switch" href="/ko/loan-calculator/" hreflang="ko" lang="ko">한국어</a>
+</header>
+<main class="tool">
+  <h1>Loan interest calculator</h1>
+  <div class="intro"><p>Enter the loan amount, annual interest rate, and repayment term to see your monthly payment and total interest. The calculation uses the equal-payment (amortized) method. At a 0% rate, the payment is simply the principal divided by the number of months.</p>
+<p>Actual loan terms vary by lender. Treat these results as an estimate and confirm the final figures with your lender.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="principal">Loan amount</label>
+  <div class="field-row">
+    <input id="principal" name="principal" type="text" inputmode="decimal">
+    <span class="unit"></span>
+  </div>
+</div>
+<div class="field">
+  <label for="rate">Annual interest rate</label>
+  <div class="field-row">
+    <input id="rate" name="rate" type="text" inputmode="decimal">
+    <span class="unit">%</span>
+  </div>
+</div>
+<div class="field">
+  <label for="months">Repayment term</label>
+  <div class="field-row">
+    <input id="months" name="months" type="text" inputmode="numeric">
+    <span class="unit">months</span>
+  </div>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">Monthly payment</span>
+  <output id="payment"></output>
+</div>
+<div class="output">
+  <span class="output-label">Total interest</span>
+  <output id="totalInterest"></output>
+</div>
+<div class="output">
+  <span class="output-label">Total repayment</span>
+  <output id="totalPayment"></output>
+</div>
+    </div>
+    <p class="error" data-error="errorInvalid" role="alert" hidden>Enter valid numbers for amount, rate, and term.</p>
+  </form>
+  <section class="howto">
+    <h2>How to use</h2>
+    <ol><li>Enter the loan amount.</li><li>Enter the annual interest rate as a percentage. Example: 5.0</li><li>Enter the repayment term in months. Example: 30 years is 360</li></ol>
+  </section>
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>What is an equal-payment loan?</summary><p>You pay the same amount each month. Early payments are mostly interest, and the principal share grows over time.</p></details>
+<details><summary>How is a 0% loan calculated?</summary><p>There is no interest, so the monthly payment is the principal divided by the number of months.</p></details>
+<details><summary>Does this include early repayment fees?</summary><p>No. Check your lender&#39;s terms for any early repayment fee.</p></details>
+  </section>
+</main>
+<footer class="site-footer">
+  <p>Values you enter never leave your device.</p>
+</footer>
+<script type="module" src="/assets/tools/loan-calculator.js"></script>
+</body>
+</html>

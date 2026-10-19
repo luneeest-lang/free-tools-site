@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case Converter | Uppercase, Lowercase, Title Case</title>
+  <meta name="description" content="Convert English text to uppercase, lowercase, title case, or sentence case in one click.">
+  <link rel="canonical" href="https://example.com/en/case-convert/">
+    <link rel="alternate" hreflang="ko" href="https://example.com/ko/case-convert/">
+    <link rel="alternate" hreflang="en" href="https://example.com/en/case-convert/">
+    <link rel="alternate" hreflang="x-default" href="https://example.com/ko/case-convert/">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/en/case-convert/">Toolbox</a>
+  <a class="lang-switch" href="/ko/case-convert/" hreflang="ko" lang="ko">한국어</a>
+</header>
+<main class="tool">
+  <h1>Case converter</h1>
+  <div class="intro"><p>Change the capitalization of English titles and sentences. Title case capitalizes the first letter of each word. Sentence case capitalizes only the first letter.</p>
+<p>Korean text has no letter case, so it is left as it is.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="text">Original text</label>
+  <textarea id="text" name="text" rows="8"></textarea>
+</div>
+<div class="field">
+  <label for="mode">Conversion style</label>
+  <select id="mode" name="mode"><option value="upper">All uppercase</option><option value="lower">All lowercase</option><option value="title">Title case</option><option value="sentence">Sentence case</option></select>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">Result</span>
+  <output id="output"></output>
+</div>
+    </div>
+    
+  </form>
+  <section class="howto">
+    <h2>How to use</h2>
+    <ol><li>Paste your text into the input box.</li><li>Choose a conversion style.</li><li>Copy the result from the output box.</li></ol>
+  </section>
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>Does title case skip small words like &#39;of&#39; or &#39;the&#39;?</summary><p>No. Every word gets a capital first letter. Exception rules are not applied.</p></details>
+<details><summary>Does Korean text change?</summary><p>No. Only English letters are converted.</p></details>
+<details><summary>Is my text saved?</summary><p>No. Conversion happens entirely in your browser.</p></details>
+  </section>
+</main>
+<footer class="site-footer">
+  <p>Values you enter never leave your device.</p>
+</footer>
+<script type="module" src="/assets/tools/case-convert.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>중복 줄 제거 | 같은 줄 한 번만 남기기</title>
+  <meta name="description" content="여러 줄 목록에서 같은 줄을 찾아 처음 나온 줄만 남깁니다. 대소문자 무시 옵션도 있습니다.">
+  <link rel="canonical" href="https://example.com/ko/dedupe-lines/">
+    <link rel="alternate" hreflang="ko" href="https://example.com/ko/dedupe-lines/">
+    <link rel="alternate" hreflang="en" href="https://example.com/en/dedupe-lines/">
+    <link rel="alternate" hreflang="x-default" href="https://example.com/ko/dedupe-lines/">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/ko/dedupe-lines/">무료 도구</a>
+  <a class="lang-switch" href="/en/dedupe-lines/" hreflang="en" lang="en">English</a>
+</header>
+<main class="tool">
+  <h1>중복 줄 제거</h1>
+  <div class="intro"><p>이메일 목록, 키워드 목록, 주소록처럼 줄 단위로 된 글에서 중복된 줄을 지웁니다. 처음 나온 줄은 그대로 두고 이후에 같은 줄이 나오면 지웁니다.</p>
+<p>대소문자 무시를 켜면 대문자와 소문자만 다른 줄도 같은 줄로 봅니다. 빈 줄은 중복 검사에서 제외합니다.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="text">원본 목록</label>
+  <textarea id="text" name="text" rows="8"></textarea>
+</div>
+<div class="field field-check">
+  <input id="ignoreCase" name="ignoreCase" type="checkbox">
+  <label for="ignoreCase">대소문자 무시</label>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">중복 제거 결과</span>
+  <output id="output"></output>
+</div>
+<div class="output">
+  <span class="output-label">제거된 줄 수</span>
+  <output id="removed"></output>
+</div>
+    </div>
+    
+  </form>
+  <section class="howto">
+    <h2>사용 방법</h2>
+    <ol><li>줄 단위로 된 목록을 입력 칸에 붙여 넣습니다.</li><li>필요하면 대소문자 무시를 켭니다.</li><li>결과 칸과 제거된 줄 수를 확인합니다.</li></ol>
+  </section>
+  <section class="faq">
+    <h2>자주 묻는 질문</h2>
+    <details><summary>원래 순서가 바뀌나요?</summary><p>바뀌지 않습니다. 처음 나온 줄의 순서를 그대로 유지합니다.</p></details>
+<details><summary>공백만 다른 줄도 같은 줄인가요?</summary><p>아닙니다. 글자와 공백이 정확히 같아야 같은 줄로 봅니다.</p></details>
+<details><summary>입력한 목록이 저장되나요?</summary><p>저장되지 않습니다. 모든 처리는 브라우저 안에서 이뤄집니다.</p></details>
+  </section>
+</main>
+<footer class="site-footer">
+  <p>입력한 값은 기기 밖으로 전송되지 않습니다.</p>
+</footer>
+<script type="module" src="/assets/tools/dedupe-lines.js"></script>
+</body>
+</html>

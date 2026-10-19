@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Remove Duplicate Lines | Keep the First Occurrence</title>
+  <meta name="description" content="Remove repeated lines from a list and keep only the first occurrence. Case-insensitive matching is available.">
+  <link rel="canonical" href="https://example.com/en/dedupe-lines/">
+    <link rel="alternate" hreflang="ko" href="https://example.com/ko/dedupe-lines/">
+    <link rel="alternate" hreflang="en" href="https://example.com/en/dedupe-lines/">
+    <link rel="alternate" hreflang="x-default" href="https://example.com/ko/dedupe-lines/">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/en/dedupe-lines/">Toolbox</a>
+  <a class="lang-switch" href="/ko/dedupe-lines/" hreflang="ko" lang="ko">한국어</a>
+</header>
+<main class="tool">
+  <h1>Remove duplicate lines</h1>
+  <div class="intro"><p>Clean up line-based lists such as email addresses, keywords, or contacts. The first occurrence of each line is kept, and later copies are removed.</p>
+<p>With case-insensitive matching on, lines that differ only in capitalization count as duplicates. Blank lines are not checked for duplicates.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="text">Original list</label>
+  <textarea id="text" name="text" rows="8"></textarea>
+</div>
+<div class="field field-check">
+  <input id="ignoreCase" name="ignoreCase" type="checkbox">
+  <label for="ignoreCase">Ignore case</label>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">Result without duplicates</span>
+  <output id="output"></output>
+</div>
+<div class="output">
+  <span class="output-label">Lines removed</span>
+  <output id="removed"></output>
+</div>
+    </div>
+    
+  </form>
+  <section class="howto">
+    <h2>How to use</h2>
+    <ol><li>Paste your line-based list into the input box.</li><li>Turn on case-insensitive matching if you need it.</li><li>Check the result and the number of removed lines.</li></ol>
+  </section>
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>Does the original order change?</summary><p>No. The first occurrence of each line keeps its position.</p></details>
+<details><summary>Are lines with different spaces duplicates?</summary><p>No. Lines must match exactly, including spaces, to count as duplicates.</p></details>
+<details><summary>Is my list saved?</summary><p>No. Everything runs in your browser.</p></details>
+  </section>
+</main>
+<footer class="site-footer">
+  <p>Values you enter never leave your device.</p>
+</footer>
+<script type="module" src="/assets/tools/dedupe-lines.js"></script>
+</body>
+</html>

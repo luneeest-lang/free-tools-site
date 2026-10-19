@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Line Break and Space Cleanup | Trim Lines</title>
+  <meta name="description" content="Clean up copied text by trimming spaces at the start and end of each line and collapsing repeated blank lines.">
+  <link rel="canonical" href="https://example.com/en/line-cleanup/">
+    <link rel="alternate" hreflang="ko" href="https://example.com/ko/line-cleanup/">
+    <link rel="alternate" hreflang="en" href="https://example.com/en/line-cleanup/">
+    <link rel="alternate" hreflang="x-default" href="https://example.com/ko/line-cleanup/">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/en/line-cleanup/">Toolbox</a>
+  <a class="lang-switch" href="/ko/line-cleanup/" hreflang="ko" lang="ko">한국어</a>
+</header>
+<main class="tool">
+  <h1>Line break and space cleanup</h1>
+  <div class="intro"><p>Text copied from PDFs or web pages often has extra spaces at line ends and repeated blank lines. This tool trims spaces at the start and end of each line, reduces repeated blank lines to one, and removes blank lines at the very start and end.</p>
+<p>Spaces between words are left unchanged.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="text">Original text</label>
+  <textarea id="text" name="text" rows="8"></textarea>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">Cleaned result</span>
+  <output id="output"></output>
+</div>
+    </div>
+    
+  </form>
+  <section class="howto">
+    <h2>How to use</h2>
+    <ol><li>Paste the text you want to clean into the input box.</li><li>The cleaned text appears in the output box.</li><li>Copy the output for use.</li></ol>
+  </section>
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>Are spaces between words removed?</summary><p>No. Only spaces at the start and end of each line are removed.</p></details>
+<details><summary>Can I remove all blank lines?</summary><p>No. A single blank line is kept to separate paragraphs.</p></details>
+<details><summary>Is my text saved?</summary><p>No. Everything is processed in your browser.</p></details>
+  </section>
+</main>
+<footer class="site-footer">
+  <p>Values you enter never leave your device.</p>
+</footer>
+<script type="module" src="/assets/tools/line-cleanup.js"></script>
+</body>
+</html>

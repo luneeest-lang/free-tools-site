@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>퇴직금 계산기 | 평균임금과 근속일수로 계산</title>
+  <meta name="description" content="최근 3개월 임금과 근속일수를 넣으면 한국 근로기준법 방식으로 퇴직금 개략액을 계산합니다.">
+  <link rel="canonical" href="https://example.com/ko/severance/">
+    <link rel="alternate" hreflang="ko" href="https://example.com/ko/severance/">
+    <link rel="alternate" hreflang="en" href="https://example.com/en/severance/">
+    <link rel="alternate" hreflang="x-default" href="https://example.com/ko/severance/">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/ko/severance/">무료 도구</a>
+  <a class="lang-switch" href="/en/severance/" hreflang="en" lang="en">English</a>
+</header>
+<main class="tool">
+  <h1>퇴직금 계산기</h1>
+  <div class="intro"><p>최근 3개월간 받은 임금 총액과 그 기간의 일수, 전체 근속일수로 퇴직금을 개략 계산합니다. 평균임금에 30일분을 곱하고 근속일수를 365로 나누는 방식입니다.</p>
+<p>상여금, 연차수당 포함 여부 등 세부 항목에 따라 실제 금액이 달라질 수 있으니 참고용으로만 써 주세요.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="wages">최근 3개월 임금 총액</label>
+  <div class="field-row">
+    <input id="wages" name="wages" type="text" inputmode="decimal">
+    <span class="unit">원</span>
+  </div>
+</div>
+<div class="field">
+  <label for="daysLast3">그 3개월의 일수</label>
+  <div class="field-row">
+    <input id="daysLast3" name="daysLast3" type="text" inputmode="numeric">
+    <span class="unit">일</span>
+  </div>
+</div>
+<div class="field">
+  <label for="daysWorked">총 근속일수</label>
+  <div class="field-row">
+    <input id="daysWorked" name="daysWorked" type="text" inputmode="numeric">
+    <span class="unit">일</span>
+  </div>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">예상 퇴직금</span>
+  <output id="severance"></output>
+</div>
+<div class="output">
+  <span class="output-label">1일 평균임금</span>
+  <output id="dailyWage"></output>
+</div>
+    </div>
+    <p class="error" data-error="errorInvalid" role="alert" hidden>모든 값을 0보다 큰 숫자로 입력해 주세요.</p>
+  </form>
+  <section class="howto">
+    <h2>사용 방법</h2>
+    <ol><li>최근 3개월간 받은 임금 총액을 입력합니다.</li><li>그 3개월의 일수를 입력합니다. 보통 90일 안팎입니다.</li><li>입사일부터 퇴사일까지 근속일수를 입력합니다.</li></ol>
+  </section>
+  <section class="faq">
+    <h2>자주 묻는 질문</h2>
+    <details><summary>퇴직금은 얼마부터 받을 수 있나요?</summary><p>일반적으로 1년 이상 계속 근로하고 퇴직할 때 받을 수 있습니다.</p></details>
+<details><summary>평균임금은 어떻게 구하나요?</summary><p>최근 3개월 임금 총액을 그 기간의 일수로 나눈 1일 평균임금입니다.</p></details>
+<details><summary>계산 결과가 실제 지급액과 다른 이유는 무엇인가요?</summary><p>상여금 반영 방식, 세금 공제, 회사 규정 등에 따라 차이가 날 수 있습니다.</p></details>
+  </section>
+</main>
+<footer class="site-footer">
+  <p>입력한 값은 기기 밖으로 전송되지 않습니다.</p>
+</footer>
+<script type="module" src="/assets/tools/severance.js"></script>
+</body>
+</html>

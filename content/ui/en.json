@@ -5,5 +5,10 @@
   "footer": "Values you enter never leave your device.",
   "toolsHeading": "All tools",
   "categoryCalc": "Calculators",
-  "categoryText": "Text tools"
+  "categoryText": "Text tools",
+  "homeDescription": "A free collection of calculators and text tools that run right in your browser.",
+  "heroTitle": "Get your calculations and text cleanup done in seconds",
+  "heroLead": "Values you enter never leave your device. No sign-up or install needed.",
+  "howToHeading": "How to use",
+  "faqHeading": "Frequently asked questions"
 }

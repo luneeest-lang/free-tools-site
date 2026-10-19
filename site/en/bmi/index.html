@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BMI Calculator | Body Mass Index from Height and Weight</title>
+  <meta name="description" content="Enter your height and weight to get your BMI and weight category. Adult reference only, not a medical diagnosis.">
+  <link rel="canonical" href="https://example.com/en/bmi/">
+    <link rel="alternate" hreflang="ko" href="https://example.com/ko/bmi/">
+    <link rel="alternate" hreflang="en" href="https://example.com/en/bmi/">
+    <link rel="alternate" hreflang="x-default" href="https://example.com/ko/bmi/">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/en/bmi/">Toolbox</a>
+  <a class="lang-switch" href="/ko/bmi/" hreflang="ko" lang="ko">한국어</a>
+</header>
+<main class="tool">
+  <h1>BMI calculator</h1>
+  <div class="intro"><p>Calculate your body mass index (BMI) from height and weight. BMI is weight in kilograms divided by height in meters squared. It is a rough reference for whether weight is in a typical range for height.</p>
+<p>Muscle mass and body shape affect the result, so BMI should not be used as a medical diagnosis on its own.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="height">Height</label>
+  <div class="field-row">
+    <input id="height" name="height" type="text" inputmode="decimal">
+    <span class="unit">cm</span>
+  </div>
+</div>
+<div class="field">
+  <label for="weight">Weight</label>
+  <div class="field-row">
+    <input id="weight" name="weight" type="text" inputmode="decimal">
+    <span class="unit">kg</span>
+  </div>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">BMI</span>
+  <output id="bmi"></output>
+</div>
+<div class="output">
+  <span class="output-label">Weight category</span>
+  <output id="category"></output>
+</div>
+    </div>
+    <p class="error" data-error="errorInvalid" role="alert" hidden>Enter height and weight as numbers greater than zero.</p>
+  </form>
+  <section class="howto">
+    <h2>How to use</h2>
+    <ol><li>Enter your height in centimeters.</li><li>Enter your weight in kilograms.</li><li>Read your BMI and weight category.</li></ol>
+  </section>
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>What are the BMI categories?</summary><p>Below 18.5 is underweight, 18.5 to under 25 is normal, 25 to under 30 is overweight, and 30 or above is obese.</p></details>
+<details><summary>Do the same categories apply to teenagers?</summary><p>No. Teenagers are assessed with age- and sex-specific charts.</p></details>
+<details><summary>Can BMI alone show my health?</summary><p>Not really. Waist size, muscle mass, and blood pressure give a fuller picture.</p></details>
+  </section>
+</main>
+<footer class="site-footer">
+  <p>Values you enter never leave your device.</p>
+</footer>
+<script type="module" src="/assets/tools/bmi.js"></script>
+</body>
+</html>

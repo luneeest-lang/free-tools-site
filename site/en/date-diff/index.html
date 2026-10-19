@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Date Difference Calculator | Days Between Two Dates</title>
+  <meta name="description" content="Enter a start and end date to get the number of days and weeks between them. Leap years are included.">
+  <link rel="canonical" href="https://example.com/en/date-diff/">
+    <link rel="alternate" hreflang="ko" href="https://example.com/ko/date-diff/">
+    <link rel="alternate" hreflang="en" href="https://example.com/en/date-diff/">
+    <link rel="alternate" hreflang="x-default" href="https://example.com/ko/date-diff/">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/en/date-diff/">Toolbox</a>
+  <a class="lang-switch" href="/ko/date-diff/" hreflang="ko" lang="ko">한국어</a>
+</header>
+<main class="tool">
+  <h1>Date difference calculator</h1>
+  <div class="intro"><p>Find out how many days, or weeks and days, separate two dates. Useful for contract periods, countdowns, and counting vacation days.</p>
+<p>If the end date comes before the start date, you will see a message instead of a result.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="start">Start date</label>
+  <div class="field-row">
+    <input id="start" name="start" type="date">
+    
+  </div>
+</div>
+<div class="field">
+  <label for="end">End date</label>
+  <div class="field-row">
+    <input id="end" name="end" type="date">
+    
+  </div>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">Days</span>
+  <output id="days"></output>
+</div>
+<div class="output">
+  <span class="output-label">Weeks</span>
+  <output id="weeks"></output>
+</div>
+    </div>
+    <p class="error" data-error="errorEndBeforeStart" role="alert" hidden>The end date is before the start date.</p>
+<p class="error" data-error="errorInvalidDate" role="alert" hidden>Enter a valid date.</p>
+  </form>
+  <section class="howto">
+    <h2>How to use</h2>
+    <ol><li>Pick a start date.</li><li>Pick an end date.</li><li>Read the days and weeks results.</li></ol>
+  </section>
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>Is the start or end date included?</summary><p>Neither is counted as an extra day. The result is the number of days from the start date to the end date.</p></details>
+<details><summary>Are leap years handled?</summary><p>Yes. Calculations use the real calendar, including February 29.</p></details>
+<details><summary>How are weeks and days calculated?</summary><p>Weeks are the total days divided by 7, and the remainder is the leftover days.</p></details>
+  </section>
+</main>
+<footer class="site-footer">
+  <p>Values you enter never leave your device.</p>
+</footer>
+<script type="module" src="/assets/tools/date-diff.js"></script>
+</body>
+</html>

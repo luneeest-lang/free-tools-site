@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Severance Pay Calculator | Korean Rules, Estimate</title>
+  <meta name="description" content="Enter recent three-month wages and days worked for an estimate of Korean severance pay under the Labor Standards Act.">
+  <link rel="canonical" href="https://example.com/en/severance/">
+    <link rel="alternate" hreflang="ko" href="https://example.com/ko/severance/">
+    <link rel="alternate" hreflang="en" href="https://example.com/en/severance/">
+    <link rel="alternate" hreflang="x-default" href="https://example.com/ko/severance/">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/en/severance/">Toolbox</a>
+  <a class="lang-switch" href="/ko/severance/" hreflang="ko" lang="ko">한국어</a>
+</header>
+<main class="tool">
+  <h1>Severance pay calculator</h1>
+  <div class="intro"><p>Estimate severance pay from your total wages over the last three months, the number of days in that period, and your total days worked. This calculator follows Korean severance pay rules: average daily wage times 30 days, scaled by days worked over 365.</p>
+<p>Bonuses, paid leave allowance, and company rules can change the actual amount. Use this as an estimate only.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="wages">Total wages, last 3 months</label>
+  <div class="field-row">
+    <input id="wages" name="wages" type="text" inputmode="decimal">
+    <span class="unit">KRW</span>
+  </div>
+</div>
+<div class="field">
+  <label for="daysLast3">Days in those 3 months</label>
+  <div class="field-row">
+    <input id="daysLast3" name="daysLast3" type="text" inputmode="numeric">
+    <span class="unit">days</span>
+  </div>
+</div>
+<div class="field">
+  <label for="daysWorked">Total days worked</label>
+  <div class="field-row">
+    <input id="daysWorked" name="daysWorked" type="text" inputmode="numeric">
+    <span class="unit">days</span>
+  </div>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">Estimated severance pay</span>
+  <output id="severance"></output>
+</div>
+<div class="output">
+  <span class="output-label">Average daily wage</span>
+  <output id="dailyWage"></output>
+</div>
+    </div>
+    <p class="error" data-error="errorInvalid" role="alert" hidden>Enter all values as numbers greater than zero.</p>
+  </form>
+  <section class="howto">
+    <h2>How to use</h2>
+    <ol><li>Enter your total wages for the last three months.</li><li>Enter the number of days in those three months, usually about 90.</li><li>Enter your total days worked, from your start date to your end date.</li></ol>
+  </section>
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>When is severance pay owed?</summary><p>Under Korean law it is generally owed after at least one year of continuous service, when you leave the job.</p></details>
+<details><summary>How is the average daily wage calculated?</summary><p>Total wages for the last three months divided by the number of days in that period.</p></details>
+<details><summary>Why can my actual payment differ?</summary><p>Bonus treatment, tax deductions, and company rules can all change the final amount.</p></details>
+  </section>
+</main>
+<footer class="site-footer">
+  <p>Values you enter never leave your device.</p>
+</footer>
+<script type="module" src="/assets/tools/severance.js"></script>
+</body>
+</html>

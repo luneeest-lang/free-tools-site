@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Character Counter | With and Without Spaces, Word Count</title>
+  <meta name="description" content="Paste your text to count characters with and without spaces, words, and lines instantly.">
+  <link rel="canonical" href="https://example.com/en/char-count/">
+    <link rel="alternate" hreflang="ko" href="https://example.com/ko/char-count/">
+    <link rel="alternate" hreflang="en" href="https://example.com/en/char-count/">
+    <link rel="alternate" hreflang="x-default" href="https://example.com/ko/char-count/">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/en/char-count/">Toolbox</a>
+  <a class="lang-switch" href="/ko/char-count/" hreflang="ko" lang="ko">한국어</a>
+</header>
+<main class="tool">
+  <h1>Character counter</h1>
+  <div class="intro"><p>Check text that has a length limit, such as a bio, a post, or a message. It shows the character count both with and without spaces.</p>
+<p>Words are counted by splitting on spaces, so the number may differ slightly from other word counters for languages without spaces.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="text">Your text</label>
+  <textarea id="text" name="text" rows="8"></textarea>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">Characters (with spaces)</span>
+  <output id="chars"></output>
+</div>
+<div class="output">
+  <span class="output-label">Characters (without spaces)</span>
+  <output id="charsNoSpaces"></output>
+</div>
+<div class="output">
+  <span class="output-label">Words</span>
+  <output id="words"></output>
+</div>
+<div class="output">
+  <span class="output-label">Lines</span>
+  <output id="lines"></output>
+</div>
+    </div>
+    
+  </form>
+  <section class="howto">
+    <h2>How to use</h2>
+    <ol><li>Paste or type your text into the box.</li><li>Read the character counts, word count, and line count.</li><li>Edit the text and check the numbers again as needed.</li></ol>
+  </section>
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>Are spaces counted as characters?</summary><p>Both are shown. Check the count with spaces and the count without spaces.</p></details>
+<details><summary>How are emoji counted?</summary><p>Counts are per code unit, so one emoji may count as two characters.</p></details>
+<details><summary>Is my text saved anywhere?</summary><p>No. Everything runs in your browser only.</p></details>
+  </section>
+</main>
+<footer class="site-footer">
+  <p>Values you enter never leave your device.</p>
+</footer>
+<script type="module" src="/assets/tools/char-count.js"></script>
+</body>
+</html>

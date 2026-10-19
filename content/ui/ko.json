@@ -5,5 +5,10 @@
   "footer": "입력한 값은 기기 밖으로 전송되지 않습니다.",
   "toolsHeading": "도구 목록",
   "categoryCalc": "계산기",
-  "categoryText": "텍스트 도구"
+  "categoryText": "텍스트 도구",
+  "homeDescription": "설치 없이 브라우저에서 바로 쓰는 무료 계산기와 텍스트 도구 모음입니다.",
+  "heroTitle": "필요한 계산과 글 정리를 바로 끝내세요",
+  "heroLead": "입력한 값은 기기 밖으로 나가지 않습니다. 가입도, 설치도 필요 없습니다.",
+  "howToHeading": "사용 방법",
+  "faqHeading": "자주 묻는 질문"
 }

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://example.com/ko/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
+  </url>
+  <url>
+    <loc>https://example.com/ko/loan-calculator/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/loan-calculator/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/loan-calculator/"/>
+  </url>
+  <url>
+    <loc>https://example.com/ko/date-diff/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/date-diff/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/date-diff/"/>
+  </url>
+  <url>
+    <loc>https://example.com/ko/bmi/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/bmi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/bmi/"/>
+  </url>
+  <url>
+    <loc>https://example.com/ko/severance/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/severance/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/severance/"/>
+  </url>
+  <url>
+    <loc>https://example.com/ko/char-count/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/char-count/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/char-count/"/>
+  </url>
+  <url>
+    <loc>https://example.com/ko/case-convert/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/case-convert/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/case-convert/"/>
+  </url>
+  <url>
+    <loc>https://example.com/ko/line-cleanup/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/line-cleanup/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/line-cleanup/"/>
+  </url>
+  <url>
+    <loc>https://example.com/ko/dedupe-lines/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/dedupe-lines/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/dedupe-lines/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/loan-calculator/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/loan-calculator/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/loan-calculator/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/date-diff/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/date-diff/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/date-diff/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/bmi/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/bmi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/bmi/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/severance/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/severance/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/severance/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/char-count/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/char-count/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/char-count/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/case-convert/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/case-convert/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/case-convert/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/line-cleanup/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/line-cleanup/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/line-cleanup/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/dedupe-lines/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://example.com/ko/dedupe-lines/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/dedupe-lines/"/>
+  </url>
+</urlset>
