@@ -48,7 +48,7 @@ function head({ lang, title, description, origin, alternates }) {
 function header({ lang, ui, alternates }) {
   const other = lang === 'ko' ? 'en' : 'ko';
   return `<header class="site-header">
-  <a class="site-name" href="${alternates[lang]}">${escapeHtml(ui.siteName)}</a>
+  <a class="site-name" href="/${lang}/">${escapeHtml(ui.siteName)}</a>
   <a class="lang-switch" href="${alternates[other]}" hreflang="${other}" lang="${other}">${escapeHtml(ui.languageSwitch)}</a>
 </header>`;
 }

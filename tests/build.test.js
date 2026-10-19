@@ -88,3 +88,8 @@ test('영어 숫자 표기는 페이지 lang 속성을 따른다', () => {
   const js = fs.readFileSync(path.join(ROOT, 'assets', 'common.js'), 'utf8');
   assert.match(js, /Intl\.NumberFormat\(document\.documentElement\.lang\)/);
 });
+
+test('도구 페이지의 사이트 이름은 해당 언어 홈으로 연결된다', () => {
+  assert.match(read('ko/bmi/index.html'), /class="site-name" href="\/ko\/"/);
+  assert.match(read('en/bmi/index.html'), /class="site-name" href="\/en\/"/);
+});
