@@ -10,5 +10,10 @@
   "heroTitle": "필요한 계산과 글 정리를 바로 끝내세요",
   "heroLead": "입력한 값은 기기 밖으로 나가지 않습니다. 가입도, 설치도 필요 없습니다.",
   "howToHeading": "사용 방법",
-  "faqHeading": "자주 묻는 질문"
+  "faqHeading": "자주 묻는 질문",
+  "formulaHeading": "계산·처리 방식",
+  "exampleHeading": "예시",
+  "notesHeading": "알아 두세요",
+  "sourcesHeading": "참고 자료",
+  "updatedLabel": "최종 수정일"
 }

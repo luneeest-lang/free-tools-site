@@ -134,3 +134,21 @@ test('스타일과 스크립트 주소에 버전 번호가 붙는다', () => {
   assert.match(page, /src="\/assets\/common\.js\?v=[0-9a-f]{8}"/);
   assert.match(page, /src="\/assets\/tools\/bmi\.js\?v=[0-9a-f]{8}"/);
 });
+
+test('한국어 도구 페이지에 확장 콘텐츠 섹션이 렌더링된다', () => {
+  const page = read('ko/loan-calculator/index.html');
+  assert.match(page, /<section class="formula">/);
+  assert.match(page, /<section class="example">/);
+  assert.match(page, /<section class="notes">/);
+  assert.match(page, /<section class="sources">/);
+  assert.match(page, /rel="noopener noreferrer"/);
+  assert.match(page, /class="updated"[^>]*>[^<]*2026-10-19/);
+});
+
+test('출처가 없는 도구는 참고 자료 섹션을 만들지 않는다', () => {
+  assert.doesNotMatch(read('ko/char-count/index.html'), /<section class="sources">/);
+});
+
+test('영어 페이지는 아직 확장 섹션 없이도 정상 생성된다', () => {
+  assert.doesNotMatch(read('en/loan-calculator/index.html'), /<section class="formula">/);
+});

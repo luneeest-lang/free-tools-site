@@ -10,5 +10,10 @@
   "heroTitle": "Get your calculations and text cleanup done in seconds",
   "heroLead": "Values you enter never leave your device. No sign-up or install needed.",
   "howToHeading": "How to use",
-  "faqHeading": "Frequently asked questions"
+  "faqHeading": "Frequently asked questions",
+  "formulaHeading": "How it works",
+  "exampleHeading": "Example",
+  "notesHeading": "Good to know",
+  "sourcesHeading": "Sources",
+  "updatedLabel": "Last updated"
 }

@@ -125,6 +125,46 @@ function renderErrors(keys, labels) {
     .join('\n');
 }
 
+function renderExplanation(tool, ui) {
+  const sections = [];
+  if (tool.formula) {
+    sections.push(`<section class="formula">
+    <h2>${escapeHtml(ui.formulaHeading)}</h2>
+    ${paragraphs(tool.formula)}
+  </section>`);
+  }
+  if (tool.example) {
+    sections.push(`<section class="example">
+    <h2>${escapeHtml(ui.exampleHeading)}</h2>
+    ${paragraphs(tool.example)}
+  </section>`);
+  }
+  if (tool.notes && tool.notes.length) {
+    sections.push(`<section class="notes">
+    <h2>${escapeHtml(ui.notesHeading)}</h2>
+    <ul>${tool.notes.map((note) => `<li>${escapeHtml(note)}</li>`).join('')}</ul>
+  </section>`);
+  }
+  return sections.join('\n  ');
+}
+
+function renderReferences(tool, ui) {
+  const parts = [];
+  if (tool.sources && tool.sources.length) {
+    const links = tool.sources
+      .map((source) => `<li><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.title)}</a></li>`)
+      .join('');
+    parts.push(`<section class="sources">
+    <h2>${escapeHtml(ui.sourcesHeading)}</h2>
+    <ul>${links}</ul>
+  </section>`);
+  }
+  if (tool.updated) {
+    parts.push(`<p class="updated">${escapeHtml(ui.updatedLabel)}: ${escapeHtml(tool.updated)}</p>`);
+  }
+  return parts.join('\n  ');
+}
+
 function renderToolPage({ lang, tool, ui, alternates, origin }) {
   const form = TOOL_FORMS[tool.slug];
   const labels = tool.labels;
@@ -153,10 +193,12 @@ ${header({ lang, ui, alternates: alternates.paths })}
     <h2>${escapeHtml(ui.howToHeading)}</h2>
     <ol>${tool.howTo.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>
   </section>
+  ${renderExplanation(tool, ui)}
   <section class="faq">
     <h2>${escapeHtml(ui.faqHeading)}</h2>
     ${tool.faq.map((item) => `<details><summary>${escapeHtml(item.q)}</summary><p>${escapeHtml(item.a)}</p></details>`).join('\n')}
   </section>
+  ${renderReferences(tool, ui)}
 </main>
 ${footer(ui)}
 <script type="application/json" id="tool-labels">${JSON.stringify(labels).replace(/</g, '\\u003c')}</script>

@@ -16,7 +16,21 @@ const SLUGS = [
 ];
 const LANGS = ['ko', 'en'];
 const REQUIRED_KEYS = ['slug', 'title', 'description', 'h1', 'intro', 'howTo', 'faq', 'labels'];
-const UI_KEYS = ['siteName', 'home', 'languageSwitch', 'footer', 'toolsHeading', 'categoryCalc', 'categoryText'];
+const UI_KEYS = [
+  'siteName',
+  'home',
+  'languageSwitch',
+  'footer',
+  'toolsHeading',
+  'categoryCalc',
+  'categoryText',
+  'formulaHeading',
+  'exampleHeading',
+  'notesHeading',
+  'sourcesHeading',
+  'updatedLabel',
+];
+const SOURCE_SLUGS = ['loan-calculator', 'bmi', 'severance'];
 
 function load(lang, slug) {
   return JSON.parse(fs.readFileSync(path.join(ROOT, lang, `${slug}.json`), 'utf8'));
@@ -86,4 +100,32 @@ test('같은 언어 안에서 title이 중복되지 않는다', () => {
 
 test('영어 퇴직금 페이지는 한국 제도 기준임을 밝힌다', () => {
   assert.ok(load('en', 'severance').intro.includes('Korean'));
+});
+
+test('한국어 도구 페이지에 계산 방식, 예시, 주의사항, 수정일이 있다', () => {
+  for (const slug of SLUGS) {
+    const tool = load('ko', slug);
+    assert.equal(typeof tool.formula, 'string', `${slug} formula`);
+    assert.equal(typeof tool.example, 'string', `${slug} example`);
+    assert.ok(Array.isArray(tool.notes) && tool.notes.length >= 2, `${slug} notes`);
+    assert.match(tool.updated, /^\d{4}-\d{2}-\d{2}$/, `${slug} updated`);
+  }
+});
+
+test('한국어 계산 방식과 예시의 합계는 150자 이상이다', () => {
+  for (const slug of SLUGS) {
+    const tool = load('ko', slug);
+    assert.ok(tool.formula.length + tool.example.length >= 150, `${slug} body length`);
+  }
+});
+
+test('금융과 건강 계산기는 공식 출처 링크를 가진다', () => {
+  for (const slug of SOURCE_SLUGS) {
+    const { sources } = load('ko', slug);
+    assert.ok(Array.isArray(sources) && sources.length >= 1, `${slug} sources`);
+    for (const source of sources) {
+      assert.equal(typeof source.title, 'string');
+      assert.ok(source.url.startsWith('https://'), `${slug} source url`);
+    }
+  }
 });
