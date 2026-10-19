@@ -70,8 +70,8 @@ test('로직 파일이 site/assets/logic에 복사된다', () => {
 
 test('도구 페이지가 로직 파일과 도구 스크립트를 불러온다', () => {
   const page = read('ko/loan-calculator/index.html');
-  assert.match(page, /src="\/assets\/logic\/finance\.js"/);
-  assert.match(page, /src="\/assets\/tools\/loan-calculator\.js"/);
+  assert.match(page, /src="\/assets\/logic\/finance\.js\?v=[0-9a-f]{8}"/);
+  assert.match(page, /src="\/assets\/tools\/loan-calculator\.js\?v=[0-9a-f]{8}"/);
 });
 
 test('도구 페이지에 라벨 데이터가 들어 있다', () => {
@@ -126,4 +126,11 @@ test('스타일에 카테고리별 색 변수가 있다', () => {
   const css = fs.readFileSync(path.join(ROOT, 'assets', 'style.css'), 'utf8');
   assert.match(css, /\[data-category="calc"\]/);
   assert.match(css, /\[data-category="text"\]/);
+});
+
+test('스타일과 스크립트 주소에 버전 번호가 붙는다', () => {
+  const page = read('ko/bmi/index.html');
+  assert.match(page, /href="\/assets\/style\.css\?v=[0-9a-f]{8}"/);
+  assert.match(page, /src="\/assets\/common\.js\?v=[0-9a-f]{8}"/);
+  assert.match(page, /src="\/assets\/tools\/bmi\.js\?v=[0-9a-f]{8}"/);
 });

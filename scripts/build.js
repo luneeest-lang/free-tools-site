@@ -1,6 +1,7 @@
+const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
-const { renderToolPage, renderHome, renderRootIndex } = require('./lib/render');
+const { renderToolPage, renderHome, renderRootIndex, setAssetVersion } = require('./lib/render');
 
 // Production origin. It appears in canonical and hreflang links, sitemap.xml,
 // and robots.txt. Change it if the site moves to a custom domain.
@@ -16,6 +17,25 @@ const SLUGS = [
   'dedupe-lines',
 ];
 const LANGS = ['ko', 'en'];
+
+function listFiles(dir) {
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir, { withFileTypes: true })
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .flatMap((entry) => {
+      const full = path.join(dir, entry.name);
+      return entry.isDirectory() ? listFiles(full) : [full];
+    });
+}
+
+function assetVersion(rootDir) {
+  const hash = crypto.createHash('sha256');
+  for (const file of [...listFiles(path.join(rootDir, 'assets')), ...listFiles(path.join(rootDir, 'src', 'logic'))]) {
+    hash.update(path.relative(rootDir, file));
+    hash.update(fs.readFileSync(file));
+  }
+  return hash.digest('hex').slice(0, 8);
+}
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -63,6 +83,7 @@ Sitemap: ${origin}/sitemap.xml
 }
 
 function buildSite({ rootDir, outDir, origin = SITE_ORIGIN }) {
+  setAssetVersion(assetVersion(rootDir));
   const ui = {};
   const tools = {};
   for (const lang of LANGS) {

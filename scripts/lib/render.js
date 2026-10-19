@@ -15,6 +15,16 @@ const LOGIC_FILE = {
   'dedupe-lines': 'text',
 };
 
+let assetVersion = 'dev';
+
+function setAssetVersion(version) {
+  assetVersion = version;
+}
+
+function asset(url) {
+  return `${url}?v=${assetVersion}`;
+}
+
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -48,7 +58,7 @@ function head({ lang, title, description, origin, alternates }) {
   <link rel="canonical" href="${escapeHtml(origin + alternates[lang])}">
     ${hreflangs}
     <link rel="alternate" hreflang="x-default" href="${escapeHtml(origin + alternates.ko)}">
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="${asset('/assets/style.css')}">
 </head>`;
 }
 
@@ -150,9 +160,9 @@ ${header({ lang, ui, alternates: alternates.paths })}
 </main>
 ${footer(ui)}
 <script type="application/json" id="tool-labels">${JSON.stringify(labels).replace(/</g, '\\u003c')}</script>
-<script src="/assets/logic/${LOGIC_FILE[tool.slug]}.js"></script>
-<script src="/assets/common.js"></script>
-<script src="/assets/tools/${tool.slug}.js" defer></script>
+<script src="${asset(`/assets/logic/${LOGIC_FILE[tool.slug]}.js`)}"></script>
+<script src="${asset('/assets/common.js')}"></script>
+<script src="${asset(`/assets/tools/${tool.slug}.js`)}" defer></script>
 </body>
 </html>
 `;
@@ -198,7 +208,7 @@ function renderRootIndex({ ui, origin }) {
   <meta name="description" content="${escapeHtml(ui.homeDescription)}">
   <link rel="alternate" hreflang="ko" href="${escapeHtml(origin)}/ko/">
   <link rel="alternate" hreflang="en" href="${escapeHtml(origin)}/en/">
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="${asset('/assets/style.css')}">
   <script>
     if (navigator.language && navigator.language.indexOf('ko') === 0) {
       location.replace('/ko/');
@@ -216,4 +226,4 @@ function renderRootIndex({ ui, origin }) {
 `;
 }
 
-module.exports = { escapeHtml, renderToolPage, renderHome, renderRootIndex };
+module.exports = { escapeHtml, setAssetVersion, renderToolPage, renderHome, renderRootIndex };
