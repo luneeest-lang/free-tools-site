@@ -75,7 +75,10 @@ const TOOL_FORMS = {
     errorKeys: [],
   },
   'line-cleanup': {
-    inputs: [{ id: 'text', labelKey: 'inputLabel', type: 'textarea' }],
+    inputs: [
+      { id: 'text', labelKey: 'inputLabel', type: 'textarea' },
+      { id: 'joinLines', labelKey: 'joinLinesLabel', type: 'checkbox' },
+    ],
     outputs: [{ id: 'output', labelKey: 'outputLabel', primary: true }],
     errorKeys: [],
   },

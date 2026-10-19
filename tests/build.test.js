@@ -152,3 +152,14 @@ test('출처가 없는 도구는 참고 자료 섹션을 만들지 않는다', (
 test('영어 페이지는 아직 확장 섹션 없이도 정상 생성된다', () => {
   assert.doesNotMatch(read('en/loan-calculator/index.html'), /<section class="formula">/);
 });
+
+test('BMI 스크립트는 한국어 페이지에서 한국 기준을 쓴다', () => {
+  const js = fs.readFileSync(path.join(ROOT, 'assets', 'tools', 'bmi.js'), 'utf8');
+  assert.match(js, /documentElement\.lang === 'ko'/);
+  assert.match(js, /'korea'/);
+});
+
+test('줄바꿈 정리 페이지에 합치기 체크박스가 있다', () => {
+  assert.match(read('ko/line-cleanup/index.html'), /id="joinLines"/);
+  assert.match(read('en/line-cleanup/index.html'), /id="joinLines"/);
+});

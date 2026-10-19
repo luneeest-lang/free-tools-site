@@ -3,9 +3,12 @@
   const { cleanupLines } = window.ToolLogic;
 
   function update() {
-    ToolUI.setOutput('output', cleanupLines(document.getElementById('text').value));
+    const text = document.getElementById('text').value;
+    const joinLines = document.getElementById('joinLines').checked;
+    ToolUI.setOutput('output', cleanupLines(text, { joinLines }));
   }
 
   form.addEventListener('input', update);
+  form.addEventListener('change', update);
   update();
 })();

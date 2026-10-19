@@ -6,13 +6,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
-  <title>줄바꿈·공백 정리 | 줄 앞뒤 공백과 빈 줄 정리</title>
-  <meta name="description" content="복사한 글의 줄 앞뒤 공백을 지우고 연속된 빈 줄을 하나로 줄여 깔끔하게 정리합니다.">
+  <title>줄바꿈 제거·공백 정리 | 줄 앞뒤 공백과 빈 줄 정리</title>
+  <meta name="description" content="복사한 글의 줄바꿈을 없애 한 줄로 합치거나, 줄 앞뒤 공백과 연속된 빈 줄을 정리해 깔끔하게 만듭니다.">
   <link rel="canonical" href="https://luneeest-lang.github.io/ko/line-cleanup/">
     <link rel="alternate" hreflang="ko" href="https://luneeest-lang.github.io/ko/line-cleanup/">
     <link rel="alternate" hreflang="en" href="https://luneeest-lang.github.io/en/line-cleanup/">
     <link rel="alternate" hreflang="x-default" href="https://luneeest-lang.github.io/ko/line-cleanup/">
-  <link rel="stylesheet" href="/assets/style.css?v=3bd14d98">
+  <link rel="stylesheet" href="/assets/style.css?v=19c76635">
 </head>
 <body>
 <header class="site-header">
@@ -20,13 +20,17 @@
   <a class="lang-switch" href="/en/line-cleanup/" hreflang="en" lang="en">English</a>
 </header>
 <main class="tool" data-category="text">
-  <h1>줄바꿈·공백 정리</h1>
+  <h1>줄바꿈 제거·공백 정리</h1>
   <div class="intro"><p>PDF나 웹에서 복사한 글은 줄 앞뒤에 공백이 많고 빈 줄이 여러 번 들어가는 경우가 많습니다. 이 도구는 줄마다 앞뒤 공백을 지우고, 연속된 빈 줄은 하나로 줄이며, 글 맨 앞과 뒤의 빈 줄도 없앱니다.</p>
-<p>단어 사이의 공백은 바꾸지 않습니다.</p></div>
+<p>줄바꿈 제거가 필요하면 &quot;줄바꿈을 없애고 한 줄로 합치기&quot;를 켜세요. 줄바꿈이 모두 사라지고 줄 사이는 공백 하나로 이어집니다. 단어 사이의 공백은 바꾸지 않습니다.</p></div>
   <form class="tool-form" id="tool-form">
     <div class="field">
   <label for="text">원본 글</label>
   <textarea id="text" name="text" rows="8"></textarea>
+</div>
+<div class="field field-check">
+  <input id="joinLines" name="joinLines" type="checkbox">
+  <label for="joinLines">줄바꿈을 없애고 한 줄로 합치기</label>
 </div>
     <div class="results" aria-live="polite">
       <div class="output output-primary">
@@ -38,24 +42,26 @@
   </form>
   <section class="howto">
     <h2>사용 방법</h2>
-    <ol><li>정리할 글을 입력 칸에 붙여 넣습니다.</li><li>결과 칸에 정리된 글이 바로 나타납니다.</li><li>결과 칸의 글을 복사해 사용합니다.</li></ol>
+    <ol><li>정리할 글을 입력 칸에 붙여 넣습니다.</li><li>필요하면 &quot;줄바꿈을 없애고 한 줄로 합치기&quot;를 켭니다.</li><li>결과 칸의 글을 복사해 사용합니다.</li></ol>
   </section>
   <section class="formula">
     <h2>계산·처리 방식</h2>
     <p>각 줄의 앞뒤 공백(스페이스, 탭)을 지웁니다. 빈 줄이 연달아 나오면 하나로 줄이고, 글 맨 앞과 맨 뒤의 빈 줄은 없앱니다. 줄 안에서 단어 사이의 공백은 그대로 둡니다. Windows와 Mac, Linux의 줄바꿈 방식이 섞여 있어도 하나로 통일해 처리합니다.</p>
+<p>합치기 옵션을 켜면 앞뒤 공백을 지운 뒤 빈 줄을 버리고, 남은 줄을 공백 하나로 이어 붙여 한 줄로 만듭니다.</p>
   </section>
   <section class="example">
     <h2>예시</h2>
     <p>&quot;  안녕하세요  &quot; 다음에 빈 줄이 세 줄 있고 &quot;  반갑습니다 &quot;가 이어지는 글을 넣으면, 앞뒤 공백이 지워지고 빈 줄이 하나로 줄어서 &quot;안녕하세요&quot;, 빈 줄 하나, &quot;반갑습니다&quot; 순서로 정리됩니다.</p>
+<p>합치기 옵션을 켜고 &quot;가나&quot;, &quot;다라&quot;, 빈 줄, &quot;마바&quot;를 넣으면 &quot;가나 다라 마바&quot; 한 줄이 됩니다.</p>
   </section>
   <section class="notes">
     <h2>알아 두세요</h2>
-    <ul><li>문단을 구분하는 빈 줄 하나는 남깁니다. 빈 줄을 모두 없애는 도구는 아닙니다.</li><li>줄바꿈을 모두 없애 한 줄로 합치는 기능은 지원하지 않습니다.</li><li>PDF나 웹에서 복사한 글의 불필요한 공백을 정리할 때 알맞습니다.</li></ul>
+    <ul><li>문단을 구분하는 빈 줄 하나는 남깁니다. 빈 줄을 모두 없애는 도구는 아닙니다.</li><li>줄바꿈 제거 옵션은 줄 사이를 공백 하나로 이어 붙입니다. 한글 문장이 줄 중간에서 끊긴 PDF 글을 합치면 단어 사이에 공백이 생길 수 있으니 결과를 확인하세요.</li><li>PDF나 웹에서 복사한 글의 불필요한 공백을 정리할 때 알맞습니다.</li></ul>
   </section>
   <section class="faq">
     <h2>자주 묻는 질문</h2>
     <details><summary>단어 사이 공백도 지워지나요?</summary><p>아닙니다. 줄 시작과 끝의 공백만 지웁니다.</p></details>
-<details><summary>빈 줄을 모두 없앨 수 있나요?</summary><p>아닙니다. 문단을 나누는 빈 줄은 하나로 남깁니다.</p></details>
+<details><summary>줄바꿈이나 빈 줄을 모두 없앨 수 있나요?</summary><p>네. &quot;줄바꿈을 없애고 한 줄로 합치기&quot;를 켜면 빈 줄과 줄바꿈이 모두 사라지고 줄 사이가 공백 하나로 이어진 한 줄이 됩니다. 켜지 않으면 문단을 나누는 빈 줄 하나는 남깁니다.</p></details>
 <details><summary>입력한 글이 저장되나요?</summary><p>저장되지 않습니다. 모든 처리는 브라우저 안에서 이뤄집니다.</p></details>
   </section>
   <p class="updated">최종 수정일: 2026-10-19</p>
@@ -63,9 +69,9 @@
 <footer class="site-footer">
   <p>입력한 값은 기기 밖으로 전송되지 않습니다.</p>
 </footer>
-<script type="application/json" id="tool-labels">{"inputLabel":"원본 글","outputLabel":"정리 결과"}</script>
-<script src="/assets/logic/text.js?v=3bd14d98"></script>
-<script src="/assets/common.js?v=3bd14d98"></script>
-<script src="/assets/tools/line-cleanup.js?v=3bd14d98" defer></script>
+<script type="application/json" id="tool-labels">{"inputLabel":"원본 글","outputLabel":"정리 결과","joinLinesLabel":"줄바꿈을 없애고 한 줄로 합치기"}</script>
+<script src="/assets/logic/text.js?v=19c76635"></script>
+<script src="/assets/common.js?v=19c76635"></script>
+<script src="/assets/tools/line-cleanup.js?v=19c76635" defer></script>
 </body>
 </html>

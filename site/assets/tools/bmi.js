@@ -1,11 +1,16 @@
 (function () {
   const form = document.getElementById('tool-form');
   const { bmi, bmiCategory } = window.ToolLogic;
+  const standard = document.documentElement.lang === 'ko' ? 'korea' : 'who';
   const CATEGORY_KEY = {
     underweight: 'categoryUnderweight',
     normal: 'categoryNormal',
     overweight: 'categoryOverweight',
     obese: 'categoryObese',
+    preObese: 'categoryPreObese',
+    obese1: 'categoryObese1',
+    obese2: 'categoryObese2',
+    obese3: 'categoryObese3',
   };
 
   function update() {
@@ -27,7 +32,7 @@
 
     ToolUI.clearErrors(form);
     ToolUI.setOutput('bmi', value.toFixed(1));
-    ToolUI.setOutput('category', ToolUI.label(CATEGORY_KEY[bmiCategory(value)]));
+    ToolUI.setOutput('category', ToolUI.label(CATEGORY_KEY[bmiCategory(value, standard)]));
   }
 
   form.addEventListener('input', update);

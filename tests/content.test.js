@@ -129,3 +129,24 @@ test('금융과 건강 계산기는 공식 출처 링크를 가진다', () => {
     }
   }
 });
+
+test('BMI 라벨에 한국 기준 분류 이름이 있다', () => {
+  for (const lang of LANGS) {
+    const { labels } = load(lang, 'bmi');
+    for (const key of ['categoryPreObese', 'categoryObese1', 'categoryObese2', 'categoryObese3']) {
+      assert.ok(key in labels, `${lang} bmi label ${key}`);
+    }
+  }
+});
+
+test('줄바꿈 정리 라벨에 합치기 옵션 이름이 있다', () => {
+  for (const lang of LANGS) {
+    assert.ok('joinLinesLabel' in load(lang, 'line-cleanup').labels, `${lang} joinLinesLabel`);
+  }
+});
+
+test('한국어 BMI 페이지는 한국 기준임을 밝힌다', () => {
+  const tool = load('ko', 'bmi');
+  assert.ok(tool.faq[0].a.includes('한국'));
+  assert.ok(!tool.notes[0].includes('WHO 국제 기준입니다'));
+});

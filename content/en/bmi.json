@@ -10,9 +10,18 @@
     "Read your BMI and weight category."
   ],
   "faq": [
-    { "q": "What are the BMI categories?", "a": "Below 18.5 is underweight, 18.5 to under 25 is normal, 25 to under 30 is overweight, and 30 or above is obese." },
-    { "q": "Do the same categories apply to teenagers?", "a": "No. Teenagers are assessed with age- and sex-specific charts." },
-    { "q": "Can BMI alone show my health?", "a": "Not really. Waist size, muscle mass, and blood pressure give a fuller picture." }
+    {
+      "q": "What are the BMI categories?",
+      "a": "Below 18.5 is underweight, 18.5 to under 25 is normal, 25 to under 30 is overweight, and 30 or above is obese."
+    },
+    {
+      "q": "Do the same categories apply to teenagers?",
+      "a": "No. Teenagers are assessed with age- and sex-specific charts."
+    },
+    {
+      "q": "Can BMI alone show my health?",
+      "a": "Not really. Waist size, muscle mass, and blood pressure give a fuller picture."
+    }
   ],
   "labels": {
     "heightLabel": "Height",
@@ -25,6 +34,10 @@
     "categoryNormal": "Normal",
     "categoryOverweight": "Overweight",
     "categoryObese": "Obese",
-    "errorInvalid": "Enter height and weight as numbers greater than zero."
+    "errorInvalid": "Enter height and weight as numbers greater than zero.",
+    "categoryPreObese": "Pre-obese",
+    "categoryObese1": "Obese (class 1)",
+    "categoryObese2": "Obese (class 2)",
+    "categoryObese3": "Obese (class 3)"
   }
 }

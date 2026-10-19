@@ -37,3 +37,16 @@ test('중복 줄은 처음 나온 것만 남긴다', () => {
 test('ignoreCase를 켜면 대소문자만 다른 줄도 중복', () => {
   assert.deepEqual(dedupeLines('A\na', { ignoreCase: true }), { result: 'A', removed: 1 });
 });
+
+test('joinLines를 켜면 줄바꿈을 없애고 한 줄로 합친다', () => {
+  assert.equal(cleanupLines('가나\n  다라 \n\n마바', { joinLines: true }), '가나 다라 마바');
+});
+
+test('joinLines는 빈 입력과 줄바꿈만 있는 입력에서 빈 문자열을 돌려준다', () => {
+  assert.equal(cleanupLines('', { joinLines: true }), '');
+  assert.equal(cleanupLines('\n\n  \n', { joinLines: true }), '');
+});
+
+test('joinLines를 끄면 기존 동작과 같다', () => {
+  assert.equal(cleanupLines('  a  \n\n\n  b \n', { joinLines: false }), 'a\n\nb');
+});

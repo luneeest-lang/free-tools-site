@@ -27,8 +27,11 @@ function convertCase(text, mode) {
   throw new RangeError(`unknown mode: ${mode}`);
 }
 
-function cleanupLines(text) {
+function cleanupLines(text, { joinLines = false } = {}) {
   const trimmed = splitLines(text).map((line) => line.trim());
+  if (joinLines) {
+    return trimmed.filter((line) => line !== '').join(' ');
+  }
   const collapsed = [];
   for (const line of trimmed) {
     if (line === '' && collapsed[collapsed.length - 1] === '') continue;

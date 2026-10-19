@@ -12,7 +12,7 @@
     <link rel="alternate" hreflang="ko" href="https://luneeest-lang.github.io/ko/line-cleanup/">
     <link rel="alternate" hreflang="en" href="https://luneeest-lang.github.io/en/line-cleanup/">
     <link rel="alternate" hreflang="x-default" href="https://luneeest-lang.github.io/ko/line-cleanup/">
-  <link rel="stylesheet" href="/assets/style.css?v=3bd14d98">
+  <link rel="stylesheet" href="/assets/style.css?v=19c76635">
 </head>
 <body>
 <header class="site-header">
@@ -22,11 +22,16 @@
 <main class="tool" data-category="text">
   <h1>Line break and space cleanup</h1>
   <div class="intro"><p>Text copied from PDFs or web pages often has extra spaces at line ends and repeated blank lines. This tool trims spaces at the start and end of each line, reduces repeated blank lines to one, and removes blank lines at the very start and end.</p>
-<p>Spaces between words are left unchanged.</p></div>
+<p>Spaces between words are left unchanged.</p>
+<p>Turn on &quot;Remove line breaks and join into one line&quot; to get a single line, with one space where each line break was.</p></div>
   <form class="tool-form" id="tool-form">
     <div class="field">
   <label for="text">Original text</label>
   <textarea id="text" name="text" rows="8"></textarea>
+</div>
+<div class="field field-check">
+  <input id="joinLines" name="joinLines" type="checkbox">
+  <label for="joinLines">Remove line breaks and join into one line</label>
 </div>
     <div class="results" aria-live="polite">
       <div class="output output-primary">
@@ -44,7 +49,7 @@
   <section class="faq">
     <h2>Frequently asked questions</h2>
     <details><summary>Are spaces between words removed?</summary><p>No. Only spaces at the start and end of each line are removed.</p></details>
-<details><summary>Can I remove all blank lines?</summary><p>No. A single blank line is kept to separate paragraphs.</p></details>
+<details><summary>Can I remove all blank lines and line breaks?</summary><p>Yes. Turn on &quot;Remove line breaks and join into one line&quot; to get a single line. Without it, one blank line is kept to separate paragraphs.</p></details>
 <details><summary>Is my text saved?</summary><p>No. Everything is processed in your browser.</p></details>
   </section>
   
@@ -52,9 +57,9 @@
 <footer class="site-footer">
   <p>Values you enter never leave your device.</p>
 </footer>
-<script type="application/json" id="tool-labels">{"inputLabel":"Original text","outputLabel":"Cleaned result"}</script>
-<script src="/assets/logic/text.js?v=3bd14d98"></script>
-<script src="/assets/common.js?v=3bd14d98"></script>
-<script src="/assets/tools/line-cleanup.js?v=3bd14d98" defer></script>
+<script type="application/json" id="tool-labels">{"inputLabel":"Original text","outputLabel":"Cleaned result","joinLinesLabel":"Remove line breaks and join into one line"}</script>
+<script src="/assets/logic/text.js?v=19c76635"></script>
+<script src="/assets/common.js?v=19c76635"></script>
+<script src="/assets/tools/line-cleanup.js?v=19c76635" defer></script>
 </body>
 </html>
