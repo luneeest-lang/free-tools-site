@@ -34,6 +34,7 @@
     ToolUI.setOutput('dailyWage', ToolUI.fmt(Math.round(result.averageDailyWage)));
   }
 
+  ToolUI.bindAmount('wages');
   form.addEventListener('input', update);
   update();
 })();

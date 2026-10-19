@@ -100,3 +100,8 @@ test('대출 원금 입력은 자동으로 콤마를 넣는다', () => {
   assert.match(common, /function groupDigits/);
   assert.match(loan, /bindAmount\('principal'\)/);
 });
+
+test('퇴직금 임금 총액 입력은 자동으로 콤마를 넣는다', () => {
+  const severance = fs.readFileSync(path.join(ROOT, 'assets', 'tools', 'severance.js'), 'utf8');
+  assert.match(severance, /bindAmount\('wages'\)/);
+});
