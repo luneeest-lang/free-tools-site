@@ -62,3 +62,29 @@ test('페이지 수는 19 (루트 1, 언어 홈 2, 도구 16)', () => {
   const result = buildSite({ rootDir: ROOT, outDir: fs.mkdtempSync(path.join(os.tmpdir(), 'site-count-')) });
   assert.equal(result.pages, 19);
 });
+
+test('로직 파일이 site/assets/logic에 복사된다', () => {
+  assert.ok(fs.existsSync(path.join(outDir, 'assets', 'logic', 'finance.js')));
+  assert.ok(fs.existsSync(path.join(outDir, 'assets', 'logic', 'text.js')));
+});
+
+test('도구 페이지가 로직 파일과 도구 스크립트를 불러온다', () => {
+  const page = read('ko/loan-calculator/index.html');
+  assert.match(page, /src="\/assets\/logic\/finance\.js"/);
+  assert.match(page, /src="\/assets\/tools\/loan-calculator\.js"/);
+});
+
+test('도구 페이지에 라벨 데이터가 들어 있다', () => {
+  assert.match(read('en/bmi/index.html'), /id="tool-labels"/);
+});
+
+test('스타일에 모바일 규칙과 다크 모드 규칙이 있다', () => {
+  const css = fs.readFileSync(path.join(ROOT, 'assets', 'style.css'), 'utf8');
+  assert.match(css, /@media \(max-width/);
+  assert.match(css, /prefers-color-scheme: dark/);
+});
+
+test('영어 숫자 표기는 페이지 lang 속성을 따른다', () => {
+  const js = fs.readFileSync(path.join(ROOT, 'assets', 'common.js'), 'utf8');
+  assert.match(js, /Intl\.NumberFormat\(document\.documentElement\.lang\)/);
+});

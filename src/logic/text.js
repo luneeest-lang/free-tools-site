@@ -59,4 +59,6 @@ function dedupeLines(text, { ignoreCase = false } = {}) {
   return { result: kept.join('\n'), removed };
 }
 
-module.exports = { charCount, convertCase, cleanupLines, dedupeLines };
+const api = { charCount, convertCase, cleanupLines, dedupeLines };
+if (typeof module !== 'undefined') module.exports = api;
+if (typeof window !== 'undefined') window.ToolLogic = Object.assign(window.ToolLogic || {}, api);

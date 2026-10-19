@@ -108,6 +108,7 @@ function buildSite({ rootDir, outDir, origin = SITE_ORIGIN }) {
   if (fs.existsSync(assetsDir)) {
     fs.cpSync(assetsDir, path.join(outDir, 'assets'), { recursive: true });
   }
+  fs.cpSync(path.join(rootDir, 'src', 'logic'), path.join(outDir, 'assets', 'logic'), { recursive: true });
 
   writePage(outDir, 'sitemap.xml', sitemapXml(origin, sitemapEntries));
   writePage(outDir, 'robots.txt', robotsTxt(origin));

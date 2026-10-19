@@ -19,4 +19,6 @@ function severancePay({ wagesLast3Months, daysLast3Months, daysWorked }) {
   return { averageDailyWage, severance };
 }
 
-module.exports = { monthlyPayment, severancePay };
+const api = { monthlyPayment, severancePay };
+if (typeof module !== 'undefined') module.exports = api;
+if (typeof window !== 'undefined') window.ToolLogic = Object.assign(window.ToolLogic || {}, api);

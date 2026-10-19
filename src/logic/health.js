@@ -13,4 +13,6 @@ function bmiCategory(value) {
   return 'obese';
 }
 
-module.exports = { bmi, bmiCategory };
+const api = { bmi, bmiCategory };
+if (typeof module !== 'undefined') module.exports = api;
+if (typeof window !== 'undefined') window.ToolLogic = Object.assign(window.ToolLogic || {}, api);

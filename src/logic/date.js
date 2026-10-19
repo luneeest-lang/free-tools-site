@@ -30,4 +30,6 @@ function dateDiff({ start, end }) {
   };
 }
 
-module.exports = { dateDiff };
+const api = { dateDiff };
+if (typeof module !== 'undefined') module.exports = api;
+if (typeof window !== 'undefined') window.ToolLogic = Object.assign(window.ToolLogic || {}, api);

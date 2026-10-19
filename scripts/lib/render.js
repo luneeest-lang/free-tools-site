@@ -1,5 +1,16 @@
 const { TOOL_FORMS, CALC_SLUGS, TEXT_SLUGS } = require('./forms');
 
+const LOGIC_FILE = {
+  'loan-calculator': 'finance',
+  severance: 'finance',
+  'date-diff': 'date',
+  bmi: 'health',
+  'char-count': 'text',
+  'case-convert': 'text',
+  'line-cleanup': 'text',
+  'dedupe-lines': 'text',
+};
+
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -131,7 +142,10 @@ ${header({ lang, ui, alternates: alternates.paths })}
   </section>
 </main>
 ${footer(ui)}
-<script type="module" src="/assets/tools/${tool.slug}.js"></script>
+<script type="application/json" id="tool-labels">${JSON.stringify(labels).replace(/</g, '\\u003c')}</script>
+<script src="/assets/logic/${LOGIC_FILE[tool.slug]}.js"></script>
+<script src="/assets/common.js"></script>
+<script src="/assets/tools/${tool.slug}.js" defer></script>
 </body>
 </html>
 `;
