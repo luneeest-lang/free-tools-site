@@ -5,7 +5,7 @@ const { renderToolPage, renderHome, renderRootIndex, setAssetVersion } = require
 
 // Production origin. It appears in canonical and hreflang links, sitemap.xml,
 // and robots.txt. Change it if the site moves to a custom domain.
-const SITE_ORIGIN = 'https://luneeest-lang.github.io';
+const SITE_ORIGIN = 'https://moatool.com';
 const SLUGS = [
   'loan-calculator',
   'date-diff',
