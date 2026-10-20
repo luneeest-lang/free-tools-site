@@ -51,7 +51,11 @@ function readJson(file) {
 function loadConfig(rootDir) {
   const file = path.join(rootDir, 'site.config.json');
   const config = fs.existsSync(file) ? readJson(file) : {};
-  return { adsensePublisherId: config.adsensePublisherId || '', contactEmail: config.contactEmail || '' };
+  return {
+    adsensePublisherId: config.adsensePublisherId || '',
+    contactEmail: config.contactEmail || '',
+    naverSiteVerification: config.naverSiteVerification || '',
+  };
 }
 
 function validateConfig(config) {
@@ -60,6 +64,9 @@ function validateConfig(config) {
   }
   if (config.contactEmail && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(config.contactEmail)) {
     throw new Error('contactEmail must be a valid email address');
+  }
+  if (config.naverSiteVerification && !/^[A-Za-z0-9_-]{10,100}$/.test(config.naverSiteVerification)) {
+    throw new Error('naverSiteVerification must contain only letters, digits, "-" and "_"');
   }
 }
 
@@ -110,6 +117,7 @@ function buildSite({ rootDir, outDir, origin = SITE_ORIGIN, config = loadConfig(
   setSiteConfig({
     adsenseClient: config.adsensePublisherId ? `ca-${config.adsensePublisherId}` : null,
     contactEmail: config.contactEmail,
+    naverVerification: config.naverSiteVerification,
   });
   const ui = {};
   const tools = {};

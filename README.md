@@ -51,5 +51,6 @@ npm run build
 
 - `adsensePublisherId`: `pub-`으로 시작하는 애드센스 게시자 ID. 값이 있으면 모든 페이지의 `<head>`에 애드센스 코드가 들어가고 `ads.txt`가 만들어집니다. 비어 있으면 둘 다 만들지 않습니다.
 - `contactEmail`: 개인정보처리방침의 문의 이메일. 비어 있으면 문의 항목을 보여 주지 않습니다.
+- `naverSiteVerification`: 네이버 서치어드바이저 소유 확인 메타 태그의 `content` 값. 값이 있으면 모든 페이지 `<head>`에 태그가 들어갑니다.
 
 형식이 틀리면 빌드가 중단됩니다.

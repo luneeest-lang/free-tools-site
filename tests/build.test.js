@@ -218,3 +218,29 @@ test('형식이 잘못된 게시자 ID나 이메일은 빌드를 중단한다', 
   assert.throws(() => buildWithConfig({ adsensePublisherId: 'ca-pub-123', contactEmail: '' }), /adsensePublisherId/);
   assert.throws(() => buildWithConfig({ adsensePublisherId: '', contactEmail: 'not-an-email' }), /contactEmail/);
 });
+
+test('네이버 소유 확인 값이 있으면 모든 페이지 head에 메타 태그가 들어간다', () => {
+  const token = '039452e4a2ed6ef92166e9a02eaa07735279ac95';
+  const dir = buildWithConfig({ adsensePublisherId: '', contactEmail: '', naverSiteVerification: token });
+  for (const page of ['index.html', 'ko/index.html', 'en/index.html', 'ko/bmi/index.html', 'en/privacy/index.html']) {
+    assert.match(
+      fs.readFileSync(path.join(dir, page), 'utf8'),
+      new RegExp(`<meta name="naver-site-verification" content="${token}" />`),
+      page
+    );
+  }
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+test('네이버 소유 확인 값이 비어 있으면 메타 태그를 만들지 않는다', () => {
+  const dir = buildWithConfig({ adsensePublisherId: '', contactEmail: '', naverSiteVerification: '' });
+  assert.doesNotMatch(fs.readFileSync(path.join(dir, 'ko', 'index.html'), 'utf8'), /naver-site-verification/);
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+test('형식이 잘못된 네이버 소유 확인 값은 빌드를 중단한다', () => {
+  assert.throws(
+    () => buildWithConfig({ adsensePublisherId: '', contactEmail: '', naverSiteVerification: '"><script>' }),
+    /naverSiteVerification/
+  );
+});

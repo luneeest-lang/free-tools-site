@@ -16,14 +16,23 @@ const LOGIC_FILE = {
 };
 
 let assetVersion = 'dev';
-let siteConfig = { adsenseClient: null, contactEmail: null };
+let siteConfig = { adsenseClient: null, contactEmail: null, naverVerification: null };
 
 function setAssetVersion(version) {
   assetVersion = version;
 }
 
 function setSiteConfig(config) {
-  siteConfig = { adsenseClient: config.adsenseClient || null, contactEmail: config.contactEmail || null };
+  siteConfig = {
+    adsenseClient: config.adsenseClient || null,
+    contactEmail: config.contactEmail || null,
+    naverVerification: config.naverVerification || null,
+  };
+}
+
+function verificationTag() {
+  if (!siteConfig.naverVerification) return '';
+  return `\n  <meta name="naver-site-verification" content="${escapeHtml(siteConfig.naverVerification)}" />`;
 }
 
 function adsenseTag() {
@@ -59,7 +68,7 @@ function head({ lang, title, description, origin, alternates }) {
 <html lang="${lang}">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">${verificationTag()}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
@@ -308,7 +317,7 @@ function renderRootIndex({ ui, origin }) {
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">${verificationTag()}
   <title>${escapeHtml(ui.siteName)}</title>
   <meta name="description" content="${escapeHtml(ui.homeDescription)}">
   <link rel="alternate" hreflang="ko" href="${escapeHtml(origin)}/ko/">
