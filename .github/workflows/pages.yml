@@ -2,7 +2,7 @@ name: Deploy site
 
 on:
   push:
-    branches: [master, feature/free-tools-site]
+    branches: [master]
   workflow_dispatch:
 
 permissions:
