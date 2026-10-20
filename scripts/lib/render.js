@@ -62,6 +62,7 @@ function paragraphs(text) {
 
 function head({ lang, title, description, origin, alternates }) {
   const hreflangs = ['ko', 'en']
+    .filter((code) => alternates[code])
     .map((code) => `<link rel="alternate" hreflang="${code}" href="${escapeHtml(origin + alternates[code])}">`)
     .join('\n    ');
   return `<!doctype html>
@@ -85,7 +86,7 @@ function header({ lang, ui, alternates }) {
   const other = lang === 'ko' ? 'en' : 'ko';
   return `<header class="site-header">
   <a class="site-name" href="/${lang}/">${escapeHtml(ui.siteName)}</a>
-  <a class="lang-switch" href="${alternates[other]}" hreflang="${other}" lang="${other}">${escapeHtml(ui.languageSwitch)}</a>
+  <a class="lang-switch" href="${alternates[other] || `/${other}/`}" hreflang="${other}" lang="${other}">${escapeHtml(ui.languageSwitch)}</a>
 </header>`;
 }
 
@@ -93,7 +94,7 @@ function footer(ui, lang) {
   const text = siteConfig.adsenseClient ? `${ui.footer} ${ui.footerAds}` : ui.footer;
   return `<footer class="site-footer">
   <p>${escapeHtml(text)}</p>
-  <p><a href="/${lang}/privacy/">${escapeHtml(ui.privacyLink)}</a></p>
+  <p>${lang === 'ko' ? `<a href="/ko/guides/">${escapeHtml(ui.guidesLink)}</a> · ` : ''}<a href="/${lang}/privacy/">${escapeHtml(ui.privacyLink)}</a></p>
 </footer>`;
 }
 
@@ -186,7 +187,15 @@ function renderReferences(tool, ui) {
   return parts.join('\n  ');
 }
 
-function renderToolPage({ lang, tool, ui, alternates, origin }) {
+function renderRelatedGuide(relatedGuide, ui) {
+  if (!relatedGuide) return '';
+  return `<section class="related-guide">
+    <h2>${escapeHtml(ui.relatedGuideHeading)}</h2>
+    <p><a href="/ko/guides/${escapeHtml(relatedGuide.slug)}/">${escapeHtml(relatedGuide.title)}</a></p>
+  </section>`;
+}
+
+function renderToolPage({ lang, tool, ui, alternates, origin, relatedGuide }) {
   const form = TOOL_FORMS[tool.slug];
   const labels = tool.labels;
   const inputs = form.inputs.map((field) => renderField(field, labels)).join('\n');
@@ -215,6 +224,7 @@ ${header({ lang, ui, alternates: alternates.paths })}
     <ol>${tool.howTo.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>
   </section>
   ${renderExplanation(tool, ui)}
+  ${renderRelatedGuide(relatedGuide, ui)}
   <section class="faq">
     <h2>${escapeHtml(ui.faqHeading)}</h2>
     ${tool.faq.map((item) => `<details><summary>${escapeHtml(item.q)}</summary><p>${escapeHtml(item.a)}</p></details>`).join('\n')}
@@ -231,7 +241,18 @@ ${footer(ui, lang)}
 `;
 }
 
-function renderHome({ lang, ui, tools, alternates, origin }) {
+function guideCards(guides) {
+  return guides
+    .map(
+      (guide) => `<a class="tool-card" href="/ko/guides/${escapeHtml(guide.slug)}/">
+  <span class="tool-card-title">${escapeHtml(guide.h1)}</span>
+  <span class="tool-card-desc">${escapeHtml(guide.description)}</span>
+</a>`
+    )
+    .join('\n');
+}
+
+function renderHome({ lang, ui, tools, alternates, origin, guides = [] }) {
   const bySlug = new Map(tools.map((tool) => [tool.slug, tool]));
   const card = (slug) => {
     const tool = bySlug.get(slug);
@@ -254,6 +275,78 @@ ${header({ lang, ui, alternates: alternates.paths })}
   <p class="lead">${escapeHtml(ui.heroLead)}</p>
   ${section(ui.categoryCalc, CALC_SLUGS, 'calc')}
   ${section(ui.categoryText, TEXT_SLUGS, 'text')}
+  ${
+    guides.length
+      ? `<section class="category category-guide" data-category="guide">
+  <h2>${escapeHtml(ui.guidesHeading)}</h2>
+  <div class="grid">${guideCards(guides)}</div>
+</section>`
+      : ''
+  }
+</main>
+${footer(ui, lang)}
+</body>
+</html>
+`;
+}
+
+function renderTextSections(sections) {
+  return sections
+    .map((section) => {
+      const paragraphsHtml = section.paragraphs.map((text) => `<p>${escapeHtml(text)}</p>`).join('\n    ');
+      const items = section.items
+        ? `<ul>${section.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`
+        : '';
+      return `<section>
+    <h2>${escapeHtml(section.heading)}</h2>
+    ${paragraphsHtml}
+    ${items}
+  </section>`;
+    })
+    .join('\n  ');
+}
+
+function renderGuidePage({ lang, guide, ui, alternates, origin }) {
+  const cta = `<p><a class="cta" href="/ko/${escapeHtml(guide.toolSlug)}/">${escapeHtml(guide.ctaText)}</a></p>`;
+  return `${head({
+    lang,
+    title: guide.title,
+    description: guide.description,
+    origin,
+    alternates: alternates.paths,
+  })}
+<body>
+${header({ lang, ui, alternates: alternates.paths })}
+<main class="guide" data-category="${categoryOf(guide.toolSlug)}">
+  <h1>${escapeHtml(guide.h1)}</h1>
+  <div class="intro">${paragraphs(guide.intro)}</div>
+  ${cta}
+  ${renderTextSections(guide.sections)}
+  ${cta}
+  ${renderReferences(guide, ui)}
+</main>
+${footer(ui, lang)}
+</body>
+</html>
+`;
+}
+
+function renderGuidesHub({ lang, hub, guides, ui, alternates, origin }) {
+  return `${head({
+    lang,
+    title: hub.title,
+    description: hub.description,
+    origin,
+    alternates: alternates.paths,
+  })}
+<body>
+${header({ lang, ui, alternates: alternates.paths })}
+<main class="guide-hub">
+  <h1>${escapeHtml(hub.h1)}</h1>
+  <p class="lead">${escapeHtml(hub.intro)}</p>
+  <section class="category category-guide" data-category="guide">
+    <div class="grid">${guideCards(guides)}</div>
+  </section>
 </main>
 ${footer(ui, lang)}
 </body>
@@ -346,6 +439,8 @@ module.exports = {
   setSiteConfig,
   renderToolPage,
   renderHome,
+  renderGuidePage,
+  renderGuidesHub,
   renderPrivacyPage,
   renderRootIndex,
 };

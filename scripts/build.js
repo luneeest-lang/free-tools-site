@@ -4,6 +4,8 @@ const path = require('node:path');
 const {
   renderToolPage,
   renderHome,
+  renderGuidePage,
+  renderGuidesHub,
   renderPrivacyPage,
   renderRootIndex,
   setAssetVersion,
@@ -24,6 +26,7 @@ const SLUGS = [
   'dedupe-lines',
 ];
 const LANGS = ['ko', 'en'];
+const GUIDE_SLUGS = ['severance', 'loan-repayment-methods', 'bmi', 'char-count'];
 
 function listFiles(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -87,9 +90,9 @@ function homePaths() {
 function sitemapXml(origin, entries) {
   const urls = entries
     .map((entry) => {
-      const links = LANGS.map(
-        (lang) => `    <xhtml:link rel="alternate" hreflang="${lang}" href="${origin}${entry.paths[lang]}"/>`
-      ).join('\n');
+      const links = LANGS.filter((lang) => entry.paths[lang])
+        .map((lang) => `    <xhtml:link rel="alternate" hreflang="${lang}" href="${origin}${entry.paths[lang]}"/>`)
+        .join('\n');
       return `  <url>
     <loc>${origin}${entry.paths[entry.lang]}</loc>
 ${links}
@@ -122,6 +125,12 @@ function buildSite({ rootDir, outDir, origin = SITE_ORIGIN, config = loadConfig(
   const ui = {};
   const tools = {};
   const privacy = {};
+  const guideHub = readJson(path.join(rootDir, 'content', 'ko', 'guides', 'index.json'));
+  const guides = GUIDE_SLUGS.map((slug) => readJson(path.join(rootDir, 'content', 'ko', 'guides', `${slug}.json`)));
+  const relatedByTool = {};
+  for (const guide of guides) {
+    relatedByTool[guide.toolSlug] = { slug: guide.slug, title: guide.h1 };
+  }
   for (const lang of LANGS) {
     ui[lang] = readJson(path.join(rootDir, 'content', 'ui', `${lang}.json`));
     privacy[lang] = readJson(path.join(rootDir, 'content', lang, 'privacy.json'));
@@ -142,7 +151,14 @@ function buildSite({ rootDir, outDir, origin = SITE_ORIGIN, config = loadConfig(
     writePage(
       outDir,
       `${lang}/index.html`,
-      renderHome({ lang, ui: ui[lang], tools: Object.values(tools[lang]), alternates: home, origin })
+      renderHome({
+        lang,
+        ui: ui[lang],
+        tools: Object.values(tools[lang]),
+        alternates: home,
+        origin,
+        guides: lang === 'ko' ? guides : [],
+      })
     );
     pages += 1;
     sitemapEntries.push({ lang, paths: home.paths });
@@ -154,11 +170,38 @@ function buildSite({ rootDir, outDir, origin = SITE_ORIGIN, config = loadConfig(
       writePage(
         outDir,
         `${lang}/${slug}/index.html`,
-        renderToolPage({ lang, tool: tools[lang][slug], ui: ui[lang], alternates, origin })
+        renderToolPage({
+          lang,
+          tool: tools[lang][slug],
+          ui: ui[lang],
+          alternates,
+          origin,
+          relatedGuide: lang === 'ko' ? relatedByTool[slug] : undefined,
+        })
       );
       pages += 1;
       sitemapEntries.push({ lang, paths: alternates.paths });
     }
+  }
+
+  const hubPaths = { paths: { ko: '/ko/guides/' } };
+  writePage(
+    outDir,
+    'ko/guides/index.html',
+    renderGuidesHub({ lang: 'ko', hub: guideHub, guides, ui: ui.ko, alternates: hubPaths, origin })
+  );
+  pages += 1;
+  sitemapEntries.push({ lang: 'ko', paths: hubPaths.paths });
+
+  for (const guide of guides) {
+    const guidePaths = { paths: { ko: `/ko/guides/${guide.slug}/` } };
+    writePage(
+      outDir,
+      `ko/guides/${guide.slug}/index.html`,
+      renderGuidePage({ lang: 'ko', guide, ui: ui.ko, alternates: guidePaths, origin })
+    );
+    pages += 1;
+    sitemapEntries.push({ lang: 'ko', paths: guidePaths.paths });
   }
 
   const privacyPaths = { paths: { ko: '/ko/privacy/', en: '/en/privacy/' } };

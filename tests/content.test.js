@@ -30,6 +30,9 @@ const UI_KEYS = [
   'sourcesHeading',
   'updatedLabel',
   'privacyLink',
+  'guidesHeading',
+  'guidesLink',
+  'relatedGuideHeading',
   'footerAds',
 ];
 const SOURCE_SLUGS = ['loan-calculator', 'bmi', 'severance'];
@@ -191,6 +194,71 @@ test('개인정보처리방침 외부 링크는 https 주소다', () => {
       for (const link of section.links || []) {
         assert.ok(link.url.startsWith('https://'), `${lang} privacy link ${link.url}`);
       }
+    }
+  }
+});
+
+const GUIDE_SLUGS = ['severance', 'loan-repayment-methods', 'bmi', 'char-count'];
+const GUIDE_SOURCE_SLUGS = ['severance', 'loan-repayment-methods', 'bmi'];
+
+function loadGuide(slug) {
+  return JSON.parse(fs.readFileSync(path.join(ROOT, 'ko', 'guides', `${slug}.json`), 'utf8'));
+}
+
+function guideText(guide) {
+  const parts = [guide.intro];
+  for (const section of guide.sections) {
+    parts.push(...section.paragraphs, ...(section.items || []));
+  }
+  return parts.join('');
+}
+
+test('가이드 목록 콘텐츠가 있다', () => {
+  const hub = JSON.parse(fs.readFileSync(path.join(ROOT, 'ko', 'guides', 'index.json'), 'utf8'));
+  for (const key of ['title', 'description', 'h1', 'intro']) {
+    assert.equal(typeof hub[key], 'string', `hub ${key}`);
+  }
+  assert.ok(hub.title.length <= 60 && hub.description.length <= 160);
+});
+
+test('가이드 글에 필수 항목이 있다', () => {
+  const toolSlugs = new Set(SLUGS);
+  for (const slug of GUIDE_SLUGS) {
+    const guide = loadGuide(slug);
+    assert.equal(guide.slug, slug);
+    for (const key of ['title', 'description', 'h1', 'intro', 'ctaText']) {
+      assert.equal(typeof guide[key], 'string', `${slug} ${key}`);
+    }
+    assert.ok(toolSlugs.has(guide.toolSlug), `${slug} toolSlug`);
+    assert.ok(guide.title.length <= 60, `${slug} title length`);
+    assert.ok(guide.description.length <= 160, `${slug} description length`);
+    assert.match(guide.updated, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(Array.isArray(guide.sections) && guide.sections.length >= 4, `${slug} sections`);
+    for (const section of guide.sections) {
+      assert.equal(typeof section.heading, 'string');
+      assert.ok(Array.isArray(section.paragraphs) && section.paragraphs.length >= 1);
+    }
+  }
+});
+
+test('가이드 글은 충분한 분량이다', () => {
+  for (const slug of GUIDE_SLUGS) {
+    assert.ok(guideText(loadGuide(slug)).length >= 1200, `${slug} body length`);
+  }
+});
+
+test('가이드 제목은 서로 다르다', () => {
+  const titles = GUIDE_SLUGS.map((slug) => loadGuide(slug).title);
+  assert.equal(new Set(titles).size, titles.length);
+});
+
+test('금융과 건강 가이드는 공식 출처를 가진다', () => {
+  for (const slug of GUIDE_SOURCE_SLUGS) {
+    const { sources } = loadGuide(slug);
+    assert.ok(Array.isArray(sources) && sources.length >= 2, `${slug} sources`);
+    for (const source of sources) {
+      assert.equal(typeof source.title, 'string');
+      assert.ok(source.url.startsWith('https://'), `${slug} source url`);
     }
   }
 });

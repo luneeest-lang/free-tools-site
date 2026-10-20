@@ -91,6 +91,26 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/dedupe-lines/"/>
   </url>
   <url>
+    <loc>https://moatool.com/ko/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/ko/guides/severance/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/severance/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/ko/guides/loan-repayment-methods/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/loan-repayment-methods/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/ko/guides/bmi/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/bmi/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/ko/guides/char-count/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/char-count/"/>
+  </url>
+  <url>
     <loc>https://moatool.com/ko/privacy/</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/privacy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/privacy/"/>

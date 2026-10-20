@@ -31,6 +31,12 @@
   --cat-text: var(--text-teal);
 }
 
+[data-category="guide"] {
+  --cat-bg: var(--surface-1);
+  --cat-fill: var(--text-muted);
+  --cat-text: var(--text-primary);
+}
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --surface-0: #1f1e1d;
@@ -321,8 +327,42 @@ textarea {
   color: var(--text-secondary);
 }
 
-.privacy p {
+.privacy p,
+.guide p,
+.guide-hub .lead {
   max-width: 680px;
+}
+
+.guide ul {
+  max-width: 680px;
+  padding-left: 20px;
+  color: var(--text-secondary);
+}
+
+.guide li {
+  margin-bottom: 8px;
+}
+
+.guide .intro p {
+  font-size: 17px;
+}
+
+.cta {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: var(--cat-bg);
+  color: var(--cat-text);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.cta:hover {
+  box-shadow: inset 0 0 0 1px var(--cat-fill);
+}
+
+.related-guide p {
+  margin: 0;
 }
 
 .notes li,

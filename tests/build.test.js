@@ -58,9 +58,9 @@ test('계산기 페이지에 폼 입력 칸이 있다', () => {
   assert.match(page, /id="months"/);
 });
 
-test('페이지 수는 21 (루트 1, 언어 홈 2, 도구 16, 개인정보 2)', () => {
+test('페이지 수는 26 (루트 1, 언어 홈 2, 도구 16, 개인정보 2, 가이드 목록 1, 가이드 4)', () => {
   const result = buildSite({ rootDir: ROOT, outDir: fs.mkdtempSync(path.join(os.tmpdir(), 'site-count-')) });
-  assert.equal(result.pages, 21);
+  assert.equal(result.pages, 26);
 });
 
 test('로직 파일이 site/assets/logic에 복사된다', () => {
@@ -243,4 +243,50 @@ test('형식이 잘못된 네이버 소유 확인 값은 빌드를 중단한다'
     () => buildWithConfig({ adsensePublisherId: '', contactEmail: '', naverSiteVerification: '"><script>' }),
     /naverSiteVerification/
   );
+});
+
+test('가이드 목록과 글 페이지가 한국어로만 생성된다', () => {
+  assert.ok(fs.existsSync(path.join(outDir, 'ko', 'guides', 'index.html')));
+  for (const slug of ['severance', 'loan-repayment-methods', 'bmi', 'char-count']) {
+    const page = read(`ko/guides/${slug}/index.html`);
+    assert.match(page, /<html lang="ko"/);
+    assert.match(page, /<main class="guide"/);
+    assert.doesNotMatch(page, /<link rel="alternate" hreflang="en"/);
+    assert.match(page, /class="lang-switch" href="\/en\/"/);
+  }
+  assert.ok(!fs.existsSync(path.join(outDir, 'en', 'guides')));
+});
+
+test('가이드 글에서 연결된 도구로 이동하는 링크가 있다', () => {
+  assert.match(read('ko/guides/severance/index.html'), /class="cta" href="\/ko\/severance\/"/);
+  assert.match(read('ko/guides/loan-repayment-methods/index.html'), /class="cta" href="\/ko\/loan-calculator\/"/);
+});
+
+test('도구 페이지에서 관련 가이드로 이동하는 링크가 있다', () => {
+  assert.match(read('ko/severance/index.html'), /href="\/ko\/guides\/severance\/"/);
+  assert.match(read('ko/loan-calculator/index.html'), /href="\/ko\/guides\/loan-repayment-methods\/"/);
+  assert.match(read('ko/bmi/index.html'), /href="\/ko\/guides\/bmi\/"/);
+  assert.match(read('ko/char-count/index.html'), /href="\/ko\/guides\/char-count\/"/);
+  assert.doesNotMatch(read('ko/date-diff/index.html'), /class="related-guide"/);
+});
+
+test('한국어 홈과 푸터에 가이드가 보이고 영어 페이지에는 없다', () => {
+  assert.match(read('ko/index.html'), /data-category="guide"/);
+  assert.match(read('ko/index.html'), /href="\/ko\/guides\/"/);
+  assert.doesNotMatch(read('en/index.html'), /guides/);
+  assert.doesNotMatch(read('en/severance/index.html'), /related-guide/);
+});
+
+test('사이트맵에 가이드 주소가 들어가고 영어 연결은 없다', () => {
+  const sitemap = read('sitemap.xml');
+  assert.match(sitemap, /<loc>https:\/\/moatool\.com\/ko\/guides\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/moatool\.com\/ko\/guides\/severance\/<\/loc>/);
+  assert.doesNotMatch(sitemap, /en\/guides/);
+});
+
+test('가이드 글에 출처 링크와 수정일이 렌더링된다', () => {
+  const page = read('ko/guides/severance/index.html');
+  assert.match(page, /<section class="sources">/);
+  assert.match(page, /rel="noopener noreferrer"/);
+  assert.match(page, /class="updated"/);
 });
