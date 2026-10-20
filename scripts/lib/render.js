@@ -16,9 +16,19 @@ const LOGIC_FILE = {
 };
 
 let assetVersion = 'dev';
+let siteConfig = { adsenseClient: null, contactEmail: null };
 
 function setAssetVersion(version) {
   assetVersion = version;
+}
+
+function setSiteConfig(config) {
+  siteConfig = { adsenseClient: config.adsenseClient || null, contactEmail: config.contactEmail || null };
+}
+
+function adsenseTag() {
+  if (!siteConfig.adsenseClient) return '';
+  return `\n  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${siteConfig.adsenseClient}" crossorigin="anonymous"></script>`;
 }
 
 function asset(url) {
@@ -58,7 +68,7 @@ function head({ lang, title, description, origin, alternates }) {
   <link rel="canonical" href="${escapeHtml(origin + alternates[lang])}">
     ${hreflangs}
     <link rel="alternate" hreflang="x-default" href="${escapeHtml(origin + alternates.ko)}">
-  <link rel="stylesheet" href="${asset('/assets/style.css')}">
+  <link rel="stylesheet" href="${asset('/assets/style.css')}">${adsenseTag()}
 </head>`;
 }
 
@@ -70,9 +80,11 @@ function header({ lang, ui, alternates }) {
 </header>`;
 }
 
-function footer(ui) {
+function footer(ui, lang) {
+  const text = siteConfig.adsenseClient ? `${ui.footer} ${ui.footerAds}` : ui.footer;
   return `<footer class="site-footer">
-  <p>${escapeHtml(ui.footer)}</p>
+  <p>${escapeHtml(text)}</p>
+  <p><a href="/${lang}/privacy/">${escapeHtml(ui.privacyLink)}</a></p>
 </footer>`;
 }
 
@@ -200,7 +212,7 @@ ${header({ lang, ui, alternates: alternates.paths })}
   </section>
   ${renderReferences(tool, ui)}
 </main>
-${footer(ui)}
+${footer(ui, lang)}
 <script type="application/json" id="tool-labels">${JSON.stringify(labels).replace(/</g, '\\u003c')}</script>
 <script src="${asset(`/assets/logic/${LOGIC_FILE[tool.slug]}.js`)}"></script>
 <script src="${asset('/assets/common.js')}"></script>
@@ -234,7 +246,58 @@ ${header({ lang, ui, alternates: alternates.paths })}
   ${section(ui.categoryCalc, CALC_SLUGS, 'calc')}
   ${section(ui.categoryText, TEXT_SLUGS, 'text')}
 </main>
-${footer(ui)}
+${footer(ui, lang)}
+</body>
+</html>
+`;
+}
+
+function renderPrivacyPage({ lang, page, ui, alternates, origin }) {
+  const sections = page.sections
+    .map((section) => {
+      const paragraphsHtml = section.paragraphs.map((text) => `<p>${escapeHtml(text)}</p>`).join('\n    ');
+      const items = section.items
+        ? `<ul>${section.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`
+        : '';
+      const links = section.links
+        ? `<ul>${section.links
+            .map(
+              (link) =>
+                `<li><a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.title)}</a></li>`
+            )
+            .join('')}</ul>`
+        : '';
+      return `<section>
+    <h2>${escapeHtml(section.heading)}</h2>
+    ${paragraphsHtml}
+    ${items}
+    ${links}
+  </section>`;
+    })
+    .join('\n  ');
+  const contact = siteConfig.contactEmail
+    ? `<section class="contact">
+    <h2>${escapeHtml(page.contact.heading)}</h2>
+    <p>${escapeHtml(page.contact.text)}</p>
+    <p><a href="mailto:${escapeHtml(siteConfig.contactEmail)}">${escapeHtml(siteConfig.contactEmail)}</a></p>
+  </section>`
+    : '';
+  return `${head({
+    lang,
+    title: page.title,
+    description: page.description,
+    origin,
+    alternates: alternates.paths,
+  })}
+<body>
+${header({ lang, ui, alternates: alternates.paths })}
+<main class="privacy">
+  <h1>${escapeHtml(page.h1)}</h1>
+  ${sections}
+  ${contact}
+  <p class="updated">${escapeHtml(ui.updatedLabel)}: ${escapeHtml(page.updated)}</p>
+</main>
+${footer(ui, lang)}
 </body>
 </html>
 `;
@@ -250,7 +313,7 @@ function renderRootIndex({ ui, origin }) {
   <meta name="description" content="${escapeHtml(ui.homeDescription)}">
   <link rel="alternate" hreflang="ko" href="${escapeHtml(origin)}/ko/">
   <link rel="alternate" hreflang="en" href="${escapeHtml(origin)}/en/">
-  <link rel="stylesheet" href="${asset('/assets/style.css')}">
+  <link rel="stylesheet" href="${asset('/assets/style.css')}">${adsenseTag()}
   <script>
     if (navigator.language && navigator.language.indexOf('ko') === 0) {
       location.replace('/ko/');
@@ -268,4 +331,12 @@ function renderRootIndex({ ui, origin }) {
 `;
 }
 
-module.exports = { escapeHtml, setAssetVersion, renderToolPage, renderHome, renderRootIndex };
+module.exports = {
+  escapeHtml,
+  setAssetVersion,
+  setSiteConfig,
+  renderToolPage,
+  renderHome,
+  renderPrivacyPage,
+  renderRootIndex,
+};

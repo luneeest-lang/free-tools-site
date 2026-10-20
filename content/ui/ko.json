@@ -2,7 +2,7 @@
   "siteName": "무료 도구",
   "home": "홈",
   "languageSwitch": "English",
-  "footer": "입력한 값은 기기 밖으로 전송되지 않습니다.",
+  "footer": "입력하신 값은 저장되거나 서버로 전송되지 않습니다.",
   "toolsHeading": "도구 목록",
   "categoryCalc": "계산기",
   "categoryText": "텍스트 도구",
@@ -15,5 +15,7 @@
   "exampleHeading": "예시",
   "notesHeading": "알아 두세요",
   "sourcesHeading": "참고 자료",
-  "updatedLabel": "최종 수정일"
+  "updatedLabel": "최종 수정일",
+  "footerAds": "광고 서비스는 쿠키를 사용할 수 있습니다.",
+  "privacyLink": "개인정보처리방침"
 }

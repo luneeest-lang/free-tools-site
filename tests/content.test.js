@@ -29,6 +29,8 @@ const UI_KEYS = [
   'notesHeading',
   'sourcesHeading',
   'updatedLabel',
+  'privacyLink',
+  'footerAds',
 ];
 const SOURCE_SLUGS = ['loan-calculator', 'bmi', 'severance'];
 
@@ -149,4 +151,46 @@ test('한국어 BMI 페이지는 한국 기준임을 밝힌다', () => {
   const tool = load('ko', 'bmi');
   assert.ok(tool.faq[0].a.includes('한국'));
   assert.ok(!tool.notes[0].includes('WHO 국제 기준입니다'));
+});
+
+function loadPrivacy(lang) {
+  return JSON.parse(fs.readFileSync(path.join(ROOT, lang, 'privacy.json'), 'utf8'));
+}
+
+test('개인정보처리방침 콘텐츠가 두 언어로 있다', () => {
+  for (const lang of LANGS) {
+    const page = loadPrivacy(lang);
+    assert.equal(page.slug, 'privacy');
+    assert.ok(page.title.length <= 60, `${lang} privacy title length`);
+    assert.ok(page.description.length <= 160, `${lang} privacy description length`);
+    assert.match(page.updated, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(Array.isArray(page.sections) && page.sections.length >= 5, `${lang} sections`);
+    for (const section of page.sections) {
+      assert.equal(typeof section.heading, 'string');
+      assert.ok(Array.isArray(section.paragraphs) && section.paragraphs.length >= 1);
+    }
+    assert.equal(typeof page.contact.heading, 'string');
+    assert.equal(typeof page.contact.text, 'string');
+  }
+});
+
+test('개인정보처리방침은 쿠키, 광고, 글꼴 서비스, 입력값 처리를 다룬다', () => {
+  const ko = JSON.stringify(loadPrivacy('ko'));
+  for (const word of ['쿠키', 'AdSense', 'Google Fonts', 'GitHub Pages', '서버로 전송되지 않']) {
+    assert.ok(ko.includes(word), `ko privacy mentions ${word}`);
+  }
+  const en = JSON.stringify(loadPrivacy('en'));
+  for (const word of ['cookies', 'AdSense', 'Google Fonts', 'GitHub Pages', 'never sent']) {
+    assert.ok(en.includes(word), `en privacy mentions ${word}`);
+  }
+});
+
+test('개인정보처리방침 외부 링크는 https 주소다', () => {
+  for (const lang of LANGS) {
+    for (const section of loadPrivacy(lang).sections) {
+      for (const link of section.links || []) {
+        assert.ok(link.url.startsWith('https://'), `${lang} privacy link ${link.url}`);
+      }
+    }
+  }
 });

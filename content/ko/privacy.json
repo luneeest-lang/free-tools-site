@@ -1,0 +1,75 @@
+{
+  "slug": "privacy",
+  "title": "개인정보처리방침 | 무료 도구",
+  "description": "무료 도구 사이트의 개인정보 처리 방침입니다. 입력값 처리, 쿠키와 광고, 제3자 서비스 이용 내용을 안내합니다.",
+  "h1": "개인정보처리방침",
+  "updated": "2026-10-20",
+  "sections": [
+    {
+      "heading": "1. 수집하는 정보",
+      "paragraphs": [
+        "이 사이트는 회원가입이나 로그인을 요구하지 않으며, 이름이나 연락처 같은 개인정보를 직접 수집하지 않습니다.",
+        "계산기와 텍스트 도구에 입력한 값은 사용자의 브라우저 안에서만 처리됩니다. 입력값은 서버로 전송되지 않고 저장되지도 않습니다."
+      ]
+    },
+    {
+      "heading": "2. 이용하는 제3자 서비스",
+      "paragraphs": [
+        "이 사이트는 아래 제3자 서비스를 이용합니다. 이 과정에서 방문자의 IP 주소와 브라우저 정보 같은 접속 정보가 해당 서비스 제공자에게 전달될 수 있습니다."
+      ],
+      "items": [
+        "호스팅: GitHub Pages(GitHub). 사이트를 제공하는 과정에서 접속 기록을 처리할 수 있습니다.",
+        "글꼴: Google Fonts(Google). 페이지를 열 때 글꼴을 내려받기 위해 Google 서버에 접속합니다.",
+        "광고: Google AdSense(Google). 광고를 게재하는 경우에 사용합니다."
+      ],
+      "links": [
+        {
+          "title": "GitHub 개인정보 처리방침",
+          "url": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+        },
+        {
+          "title": "Google 개인정보처리방침",
+          "url": "https://policies.google.com/privacy"
+        }
+      ]
+    },
+    {
+      "heading": "3. 쿠키와 광고",
+      "paragraphs": [
+        "Google을 비롯한 제3자 광고 사업자는 쿠키와 광고 식별자를 사용해, 방문자의 이전 방문 기록을 바탕으로 광고를 게재할 수 있습니다.",
+        "Google의 광고 쿠키 사용으로 Google과 파트너는 이 사이트와 인터넷의 다른 사이트 방문 기록에 근거해 방문자에게 광고를 보여 줄 수 있습니다.",
+        "방문자는 아래 링크에서 맞춤 광고를 끄거나, 제3자 광고 사업자의 맞춤 광고용 쿠키 사용을 거부할 수 있습니다."
+      ],
+      "links": [
+        {
+          "title": "Google 광고 설정",
+          "url": "https://adssettings.google.com/"
+        },
+        {
+          "title": "Google의 파트너 사이트 데이터 사용 방식",
+          "url": "https://policies.google.com/technologies/partner-sites"
+        },
+        {
+          "title": "맞춤 광고 선택 (aboutads.info)",
+          "url": "https://www.aboutads.info/choices/"
+        }
+      ]
+    },
+    {
+      "heading": "4. 쿠키 차단과 삭제",
+      "paragraphs": [
+        "브라우저 설정에서 쿠키를 차단하거나 삭제할 수 있습니다. 쿠키를 차단하면 광고 표시가 달라질 수 있지만, 이 사이트의 도구는 쿠키 없이도 동작합니다."
+      ]
+    },
+    {
+      "heading": "5. 방침 변경",
+      "paragraphs": [
+        "이 방침을 바꾸면 이 페이지에 새 내용을 게시하고 최종 수정일을 갱신합니다."
+      ]
+    }
+  ],
+  "contact": {
+    "heading": "6. 문의",
+    "text": "이 방침에 관한 문의는 아래 이메일로 보내 주세요."
+  }
+}

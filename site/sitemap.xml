@@ -90,4 +90,14 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/dedupe-lines/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/dedupe-lines/"/>
   </url>
+  <url>
+    <loc>https://moatool.com/ko/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/privacy/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/en/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/privacy/"/>
+  </url>
 </urlset>

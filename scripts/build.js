@@ -1,7 +1,14 @@
 const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
-const { renderToolPage, renderHome, renderRootIndex, setAssetVersion } = require('./lib/render');
+const {
+  renderToolPage,
+  renderHome,
+  renderPrivacyPage,
+  renderRootIndex,
+  setAssetVersion,
+  setSiteConfig,
+} = require('./lib/render');
 
 // Production origin. It appears in canonical and hreflang links, sitemap.xml,
 // and robots.txt. Change it if the site moves to a custom domain.
@@ -39,6 +46,21 @@ function assetVersion(rootDir) {
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
+}
+
+function loadConfig(rootDir) {
+  const file = path.join(rootDir, 'site.config.json');
+  const config = fs.existsSync(file) ? readJson(file) : {};
+  return { adsensePublisherId: config.adsensePublisherId || '', contactEmail: config.contactEmail || '' };
+}
+
+function validateConfig(config) {
+  if (config.adsensePublisherId && !/^pub-\d{16}$/.test(config.adsensePublisherId)) {
+    throw new Error('adsensePublisherId must look like pub-1234567890123456');
+  }
+  if (config.contactEmail && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(config.contactEmail)) {
+    throw new Error('contactEmail must be a valid email address');
+  }
 }
 
 function writePage(outDir, relative, content) {
@@ -82,12 +104,19 @@ Sitemap: ${origin}/sitemap.xml
 `;
 }
 
-function buildSite({ rootDir, outDir, origin = SITE_ORIGIN }) {
+function buildSite({ rootDir, outDir, origin = SITE_ORIGIN, config = loadConfig(rootDir) }) {
+  validateConfig(config);
   setAssetVersion(assetVersion(rootDir));
+  setSiteConfig({
+    adsenseClient: config.adsensePublisherId ? `ca-${config.adsensePublisherId}` : null,
+    contactEmail: config.contactEmail,
+  });
   const ui = {};
   const tools = {};
+  const privacy = {};
   for (const lang of LANGS) {
     ui[lang] = readJson(path.join(rootDir, 'content', 'ui', `${lang}.json`));
+    privacy[lang] = readJson(path.join(rootDir, 'content', lang, 'privacy.json'));
     tools[lang] = {};
     for (const slug of SLUGS) {
       tools[lang][slug] = readJson(path.join(rootDir, 'content', lang, `${slug}.json`));
@@ -124,8 +153,23 @@ function buildSite({ rootDir, outDir, origin = SITE_ORIGIN }) {
     }
   }
 
+  const privacyPaths = { paths: { ko: '/ko/privacy/', en: '/en/privacy/' } };
+  for (const lang of LANGS) {
+    writePage(
+      outDir,
+      `${lang}/privacy/index.html`,
+      renderPrivacyPage({ lang, page: privacy[lang], ui: ui[lang], alternates: privacyPaths, origin })
+    );
+    pages += 1;
+    sitemapEntries.push({ lang, paths: privacyPaths.paths });
+  }
+
   writePage(outDir, 'index.html', renderRootIndex({ ui: ui.ko, origin }));
   pages += 1;
+
+  if (config.adsensePublisherId) {
+    writePage(outDir, 'ads.txt', `google.com, ${config.adsensePublisherId}, DIRECT, f08c47fec0942fa0\n`);
+  }
 
   const assetsDir = path.join(rootDir, 'assets');
   if (fs.existsSync(assetsDir)) {

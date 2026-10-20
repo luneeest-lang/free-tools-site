@@ -314,14 +314,20 @@ textarea {
 }
 
 .notes ul,
-.sources ul {
+.sources ul,
+.privacy ul {
   max-width: 680px;
   padding-left: 20px;
   color: var(--text-secondary);
 }
 
+.privacy p {
+  max-width: 680px;
+}
+
 .notes li,
-.sources li {
+.sources li,
+.privacy li {
   margin-bottom: 6px;
 }
 

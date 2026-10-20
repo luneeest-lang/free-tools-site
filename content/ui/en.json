@@ -2,7 +2,7 @@
   "siteName": "Toolbox",
   "home": "Home",
   "languageSwitch": "한국어",
-  "footer": "Values you enter never leave your device.",
+  "footer": "Values you enter are never stored or sent to a server.",
   "toolsHeading": "All tools",
   "categoryCalc": "Calculators",
   "categoryText": "Text tools",
@@ -15,5 +15,7 @@
   "exampleHeading": "Example",
   "notesHeading": "Good to know",
   "sourcesHeading": "Sources",
-  "updatedLabel": "Last updated"
+  "updatedLabel": "Last updated",
+  "footerAds": "Advertising partners may use cookies.",
+  "privacyLink": "Privacy policy"
 }

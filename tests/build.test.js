@@ -58,9 +58,9 @@ test('계산기 페이지에 폼 입력 칸이 있다', () => {
   assert.match(page, /id="months"/);
 });
 
-test('페이지 수는 19 (루트 1, 언어 홈 2, 도구 16)', () => {
+test('페이지 수는 21 (루트 1, 언어 홈 2, 도구 16, 개인정보 2)', () => {
   const result = buildSite({ rootDir: ROOT, outDir: fs.mkdtempSync(path.join(os.tmpdir(), 'site-count-')) });
-  assert.equal(result.pages, 19);
+  assert.equal(result.pages, 21);
 });
 
 test('로직 파일이 site/assets/logic에 복사된다', () => {
@@ -162,4 +162,59 @@ test('BMI 스크립트는 한국어 페이지에서 한국 기준을 쓴다', ()
 test('줄바꿈 정리 페이지에 합치기 체크박스가 있다', () => {
   assert.match(read('ko/line-cleanup/index.html'), /id="joinLines"/);
   assert.match(read('en/line-cleanup/index.html'), /id="joinLines"/);
+});
+
+function buildWithConfig(config) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-config-'));
+  buildSite({ rootDir: ROOT, outDir: dir, config });
+  return dir;
+}
+
+test('개인정보처리방침 페이지가 두 언어로 생성된다', () => {
+  assert.match(read('ko/privacy/index.html'), /<html lang="ko"/);
+  assert.match(read('en/privacy/index.html'), /<html lang="en"/);
+  assert.match(read('ko/privacy/index.html'), /hreflang="en"/);
+});
+
+test('모든 푸터에 개인정보처리방침 링크가 있다', () => {
+  assert.match(read('ko/bmi/index.html'), /href="\/ko\/privacy\/"/);
+  assert.match(read('en/index.html'), /href="\/en\/privacy\/"/);
+  assert.match(read('ko/privacy/index.html'), /href="\/ko\/privacy\/"/);
+});
+
+test('사이트맵에 개인정보처리방침 주소가 들어간다', () => {
+  assert.match(read('sitemap.xml'), /\/ko\/privacy\//);
+  assert.match(read('sitemap.xml'), /\/en\/privacy\//);
+});
+
+test('설정이 비어 있으면 광고 코드와 ads.txt를 만들지 않는다', () => {
+  const dir = buildWithConfig({ adsensePublisherId: '', contactEmail: '' });
+  assert.ok(!fs.existsSync(path.join(dir, 'ads.txt')));
+  assert.doesNotMatch(fs.readFileSync(path.join(dir, 'ko', 'index.html'), 'utf8'), /adsbygoogle/);
+  assert.doesNotMatch(fs.readFileSync(path.join(dir, 'ko', 'privacy', 'index.html'), 'utf8'), /mailto:/);
+  assert.doesNotMatch(fs.readFileSync(path.join(dir, 'ko', 'index.html'), 'utf8'), /광고 서비스는 쿠키/);
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+test('게시자 ID가 있으면 ads.txt와 광고 코드가 생긴다', () => {
+  const dir = buildWithConfig({ adsensePublisherId: 'pub-1234567890123456', contactEmail: 'hello@example.com' });
+  assert.equal(
+    fs.readFileSync(path.join(dir, 'ads.txt'), 'utf8').trim(),
+    'google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0'
+  );
+  for (const page of ['index.html', 'ko/index.html', 'en/bmi/index.html', 'ko/privacy/index.html']) {
+    assert.match(
+      fs.readFileSync(path.join(dir, page), 'utf8'),
+      /adsbygoogle\.js\?client=ca-pub-1234567890123456/,
+      page
+    );
+  }
+  assert.match(fs.readFileSync(path.join(dir, 'ko', 'index.html'), 'utf8'), /광고 서비스는 쿠키/);
+  assert.match(fs.readFileSync(path.join(dir, 'ko', 'privacy', 'index.html'), 'utf8'), /mailto:hello@example\.com/);
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+test('형식이 잘못된 게시자 ID나 이메일은 빌드를 중단한다', () => {
+  assert.throws(() => buildWithConfig({ adsensePublisherId: 'ca-pub-123', contactEmail: '' }), /adsensePublisherId/);
+  assert.throws(() => buildWithConfig({ adsensePublisherId: '', contactEmail: 'not-an-email' }), /contactEmail/);
 });
