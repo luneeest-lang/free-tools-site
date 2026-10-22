@@ -3,16 +3,25 @@
   "title": "Loan Interest Calculator | Monthly Payment",
   "description": "Enter loan amount, interest rate, and term to see your monthly payment and total interest using equal monthly payments.",
   "h1": "Loan interest calculator",
-  "intro": "Enter the loan amount, annual interest rate, and repayment term to see your monthly payment and total interest. The calculation uses the equal-payment (amortized) method. At a 0% rate, the payment is simply the principal divided by the number of months.\n\nActual loan terms vary by lender. Treat these results as an estimate and confirm the final figures with your lender.",
+  "intro": "Use this loan interest calculator to find your monthly payment and total interest in one step. Enter the loan amount, annual interest rate, and repayment term. The calculation uses the equal-payment (amortized) method. At a 0% rate, the payment is simply the principal divided by the number of months.\n\nActual loan terms vary by lender. Treat these results as an estimate and confirm the final figures with your lender.",
   "howTo": [
     "Enter the loan amount.",
     "Enter the annual interest rate as a percentage. Example: 5.0",
     "Enter the repayment term in months. Example: 30 years is 360"
   ],
   "faq": [
-    { "q": "What is an equal-payment loan?", "a": "You pay the same amount each month. Early payments are mostly interest, and the principal share grows over time." },
-    { "q": "How is a 0% loan calculated?", "a": "There is no interest, so the monthly payment is the principal divided by the number of months." },
-    { "q": "Does this include early repayment fees?", "a": "No. Check your lender's terms for any early repayment fee." }
+    {
+      "q": "What is an equal-payment loan?",
+      "a": "You pay the same amount each month. Early payments are mostly interest, and the principal share grows over time."
+    },
+    {
+      "q": "How is a 0% loan calculated?",
+      "a": "There is no interest, so the monthly payment is the principal divided by the number of months."
+    },
+    {
+      "q": "Does this include early repayment fees?",
+      "a": "No. Check your lender's terms for any early repayment fee."
+    }
   ],
   "labels": {
     "principalLabel": "Loan amount",
@@ -25,5 +34,25 @@
     "totalInterestLabel": "Total interest",
     "totalPaymentLabel": "Total repayment",
     "errorInvalid": "Enter valid numbers for amount, rate, and term."
-  }
+  },
+  "formula": "This calculator uses the standard amortization formula, where every monthly payment is the same amount.\n\nMonthly payment = P × r × (1 + r)^n ÷ ((1 + r)^n − 1)\n\nHere P is the loan amount, r is the monthly interest rate (annual rate ÷ 12 ÷ 100), and n is the number of monthly payments. If the rate is 0%, the formula does not apply, so the payment is P ÷ n. Total repayment is the monthly payment times n, and total interest is total repayment minus P.",
+  "example": "Take a loan of 100,000,000 at a 5% annual rate over 360 months (30 years). The monthly payment is 536,822 and the total repayment is 193,255,920, so the total interest is 93,255,920.\n\nWith the same loan at 4%, the monthly payment drops to 477,415 and the total interest to 71,869,400. One percentage point of interest changes the total cost by more than 20 million over 30 years.",
+  "notes": [
+    "Early payments are mostly interest, and the share going to principal grows over time. This is how an amortized loan works, as described by the U.S. Consumer Financial Protection Bureau.",
+    "A longer term lowers the monthly payment but increases the total interest you pay over the life of the loan.",
+    "Amounts are rounded to whole currency units, so cents are not shown. The calculator suits currencies without small units, such as Korean won or Japanese yen. For dollars or euros, the monthly payment can differ from the exact figure by up to half a unit.",
+    "The calculator assumes a fixed interest rate for the whole term. It does not include fees, insurance, taxes, or early-repayment charges.",
+    "Results are estimates. Confirm the exact payment with your lender."
+  ],
+  "sources": [
+    {
+      "title": "CFPB: What is amortization and how could it affect my auto loan?",
+      "url": "https://www.consumerfinance.gov/ask-cfpb/what-is-amortization-and-how-could-it-affect-my-auto-loan-en-771/"
+    },
+    {
+      "title": "CFPB: How does paying down a mortgage work?",
+      "url": "https://www.consumerfinance.gov/ask-cfpb/how-does-paying-down-a-mortgage-work-en-1943/"
+    }
+  ],
+  "updated": "2026-10-22"
 }

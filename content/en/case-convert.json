@@ -3,16 +3,25 @@
   "title": "Case Converter | Uppercase, Lowercase, Title Case",
   "description": "Convert English text to uppercase, lowercase, title case, or sentence case in one click.",
   "h1": "Case converter",
-  "intro": "Change the capitalization of English titles and sentences. Title case capitalizes the first letter of each word. Sentence case capitalizes only the first letter.\n\nKorean text has no letter case, so it is left as it is.",
+  "intro": "Use this uppercase and lowercase converter to change the capitalization of English text in one click. Title case capitalizes the first letter of each word. Sentence case capitalizes only the first letter.\n\nKorean text has no letter case, so it is left as it is.",
   "howTo": [
     "Paste your text into the input box.",
     "Choose a conversion style.",
     "Copy the result from the output box."
   ],
   "faq": [
-    { "q": "Does title case skip small words like 'of' or 'the'?", "a": "No. Every word gets a capital first letter. Exception rules are not applied." },
-    { "q": "Does Korean text change?", "a": "No. Only English letters are converted." },
-    { "q": "Is my text saved?", "a": "No. Conversion happens entirely in your browser." }
+    {
+      "q": "Does title case skip small words like 'of' or 'the'?",
+      "a": "No. Every word gets a capital first letter. Exception rules are not applied."
+    },
+    {
+      "q": "Does Korean text change?",
+      "a": "No. Only English letters are converted."
+    },
+    {
+      "q": "Is my text saved?",
+      "a": "No. Conversion happens entirely in your browser."
+    }
   ],
   "labels": {
     "inputLabel": "Original text",
@@ -22,5 +31,13 @@
     "modeLower": "All lowercase",
     "modeTitle": "Title case",
     "modeSentence": "Sentence case"
-  }
+  },
+  "formula": "Uppercase and lowercase convert every English letter. Title case lowercases the text and then capitalizes the first letter of each word. Sentence case lowercases the whole text and capitalizes only the very first letter. Digits, symbols, and Korean characters are not changed.",
+  "example": "Entering \"hello World\" gives \"HELLO WORLD\" in uppercase, \"hello world\" in lowercase, \"Hello World\" in title case, and \"Hello world\" in sentence case.",
+  "notes": [
+    "Title case capitalizes every word, including small words such as \"of\" and \"the\". Style guide rules that keep them lowercase are not applied.",
+    "Proper nouns and acronyms such as iPhone or NASA may need to be fixed by hand after converting.",
+    "Sentence case changes only the first letter of the whole text, not the first letter of each sentence."
+  ],
+  "updated": "2026-10-22"
 }

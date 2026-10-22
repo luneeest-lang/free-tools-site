@@ -23,7 +23,7 @@
 </header>
 <main class="tool" data-category="text">
   <h1>Remove duplicate lines</h1>
-  <div class="intro"><p>Clean up line-based lists such as email addresses, keywords, or contacts. The first occurrence of each line is kept, and later copies are removed.</p>
+  <div class="intro"><p>Use this tool to remove duplicate lines from a list. The first occurrence of each line is kept and later copies are removed, which is handy for email lists, keywords, or contacts.</p>
 <p>With case-insensitive matching on, lines that differ only in capitalization count as duplicates. Blank lines are not checked for duplicates.</p></div>
   <form class="tool-form" id="tool-form">
     <div class="field">
@@ -50,7 +50,18 @@
     <h2>How to use</h2>
     <ol><li>Paste your line-based list into the input box.</li><li>Turn on case-insensitive matching if you need it.</li><li>Check the result and the number of removed lines.</li></ol>
   </section>
-  
+  <section class="formula">
+    <h2>How it works</h2>
+    <p>The text is split into lines and read from top to bottom. The first time a line appears it is kept, and any later identical line is removed. With case-insensitive matching on, upper and lower case letters are treated as the same when comparing. Blank lines are skipped when looking for duplicates.</p>
+  </section>
+  <section class="example">
+    <h2>Example</h2>
+    <p>Entering the lines apple, banana, apple, cherry, banana leaves apple, banana, and cherry, and the removed count shows 2. The lines &quot;Apple&quot; and &quot;apple&quot; count as different by default. With case ignored they count as the same, and only the first one, &quot;Apple&quot;, is kept.</p>
+  </section>
+  <section class="notes">
+    <h2>Good to know</h2>
+    <ul><li>Lines must match exactly, including spaces, to count as duplicates. A trailing space makes a line different, so run the line cleanup tool first if needed.</li><li>The original order is kept.</li><li>Spreadsheet data is compared by the whole line. To compare one column, copy only that column.</li></ul>
+  </section>
   
   <section class="faq">
     <h2>Frequently asked questions</h2>
@@ -58,7 +69,7 @@
 <details><summary>Are lines with different spaces duplicates?</summary><p>No. Lines must match exactly, including spaces, to count as duplicates.</p></details>
 <details><summary>Is my list saved?</summary><p>No. Everything runs in your browser.</p></details>
   </section>
-  
+  <p class="updated">Last updated: 2026-10-22</p>
 </main>
 <footer class="site-footer">
   <p>Values you enter are never stored or sent to a server. Advertising partners may use cookies.</p>

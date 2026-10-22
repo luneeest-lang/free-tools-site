@@ -3,16 +3,25 @@
   "title": "Date Difference Calculator | Days Between Two Dates",
   "description": "Enter a start and end date to get the number of days and weeks between them. Leap years are included.",
   "h1": "Date difference calculator",
-  "intro": "Find out how many days, or weeks and days, separate two dates. Useful for contract periods, countdowns, and counting vacation days.\n\nIf the end date comes before the start date, you will see a message instead of a result.",
+  "intro": "Use this date difference calculator to count the days between two dates, or to see the gap in weeks. It works for contract periods, countdowns, and vacation planning.\n\nIf the end date comes before the start date, you will see a message instead of a result.",
   "howTo": [
     "Pick a start date.",
     "Pick an end date.",
     "Read the days and weeks results."
   ],
   "faq": [
-    { "q": "Is the start or end date included?", "a": "Neither is counted as an extra day. The result is the number of days from the start date to the end date." },
-    { "q": "Are leap years handled?", "a": "Yes. Calculations use the real calendar, including February 29." },
-    { "q": "How are weeks and days calculated?", "a": "Weeks are the total days divided by 7, and the remainder is the leftover days." }
+    {
+      "q": "Is the start or end date included?",
+      "a": "Neither is counted as an extra day. The result is the number of days from the start date to the end date."
+    },
+    {
+      "q": "Are leap years handled?",
+      "a": "Yes. Calculations use the real calendar, including February 29."
+    },
+    {
+      "q": "How are weeks and days calculated?",
+      "a": "Weeks are the total days divided by 7, and the remainder is the leftover days."
+    }
   ],
   "labels": {
     "startLabel": "Start date",
@@ -22,5 +31,13 @@
     "resultLabel": "Result",
     "errorEndBeforeStart": "The end date is before the start date.",
     "errorInvalidDate": "Enter a valid date."
-  }
+  },
+  "formula": "Both dates are converted to the same reference time (midnight UTC) and the difference is divided into 24-hour days. This keeps time zones and daylight saving changes from affecting the result, so only calendar days are counted.\n\nWhole weeks are the total days divided by 7, rounded down. For example, 17 days is 2 whole weeks with 3 days left over. Leap years follow the real calendar, so February 29 is counted when it exists.",
+  "example": "From February 28, 2024 to March 1, 2024 is 2 days, because 2024 is a leap year and February 29 falls in between.\n\nFrom January 1, 2025 to January 18, 2025 is 17 days, which is 2 whole weeks and 3 days.",
+  "notes": [
+    "The result is the end date minus the start date, so neither endpoint is counted as an extra day. For an inclusive count that includes both the first and the last day, add 1. For example, January 1 to January 3 inclusive is 3 days.",
+    "To count down to a deadline, enter today's date as the start date and the target date as the end date.",
+    "An end date earlier than the start date shows a message instead of a negative number."
+  ],
+  "updated": "2026-10-22"
 }

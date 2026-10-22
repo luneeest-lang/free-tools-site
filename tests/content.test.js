@@ -262,3 +262,44 @@ test('금융과 건강 가이드는 공식 출처를 가진다', () => {
     }
   }
 });
+
+const EN_SOURCE_SLUGS = ['bmi', 'severance'];
+
+test('영어 도구 페이지에도 계산 방식, 예시, 주의사항, 수정일이 있다', () => {
+  for (const slug of SLUGS) {
+    const tool = load('en', slug);
+    assert.equal(typeof tool.formula, 'string', `en ${slug} formula`);
+    assert.equal(typeof tool.example, 'string', `en ${slug} example`);
+    assert.ok(Array.isArray(tool.notes) && tool.notes.length >= 2, `en ${slug} notes`);
+    assert.match(tool.updated, /^\d{4}-\d{2}-\d{2}$/, `en ${slug} updated`);
+  }
+});
+
+test('영어 계산 방식과 예시의 합계는 250자 이상이다', () => {
+  for (const slug of SLUGS) {
+    const tool = load('en', slug);
+    assert.ok(tool.formula.length + tool.example.length >= 250, `en ${slug} body length`);
+  }
+});
+
+test('영어 BMI와 퇴직금 페이지는 공식 출처 링크를 가진다', () => {
+  for (const slug of EN_SOURCE_SLUGS) {
+    const { sources } = load('en', slug);
+    assert.ok(Array.isArray(sources) && sources.length >= 2, `en ${slug} sources`);
+    for (const source of sources) {
+      assert.equal(typeof source.title, 'string');
+      assert.ok(source.url.startsWith('https://'), `en ${slug} source url`);
+    }
+  }
+});
+
+test('영어 BMI 출처에 WHO가, 퇴직금 출처에 고용노동부가 있다', () => {
+  assert.ok(load('en', 'bmi').sources.some((s) => s.url.includes('who.int')));
+  assert.ok(load('en', 'severance').sources.some((s) => s.url.includes('moel.go.kr')));
+});
+
+test('영어 퇴직금 페이지는 한국 기준과 원문이 한국어임을 밝힌다', () => {
+  const tool = load('en', 'severance');
+  assert.ok(tool.sources.some((s) => s.title.includes('in Korean')));
+  assert.ok(JSON.stringify(tool.notes).includes('Korea'));
+});

@@ -23,7 +23,7 @@
 </header>
 <main class="tool" data-category="calc">
   <h1>Loan interest calculator</h1>
-  <div class="intro"><p>Enter the loan amount, annual interest rate, and repayment term to see your monthly payment and total interest. The calculation uses the equal-payment (amortized) method. At a 0% rate, the payment is simply the principal divided by the number of months.</p>
+  <div class="intro"><p>Use this loan interest calculator to find your monthly payment and total interest in one step. Enter the loan amount, annual interest rate, and repayment term. The calculation uses the equal-payment (amortized) method. At a 0% rate, the payment is simply the principal divided by the number of months.</p>
 <p>Actual loan terms vary by lender. Treat these results as an estimate and confirm the final figures with your lender.</p></div>
   <form class="tool-form" id="tool-form">
     <div class="field">
@@ -67,7 +67,21 @@
     <h2>How to use</h2>
     <ol><li>Enter the loan amount.</li><li>Enter the annual interest rate as a percentage. Example: 5.0</li><li>Enter the repayment term in months. Example: 30 years is 360</li></ol>
   </section>
-  
+  <section class="formula">
+    <h2>How it works</h2>
+    <p>This calculator uses the standard amortization formula, where every monthly payment is the same amount.</p>
+<p>Monthly payment = P × r × (1 + r)^n ÷ ((1 + r)^n − 1)</p>
+<p>Here P is the loan amount, r is the monthly interest rate (annual rate ÷ 12 ÷ 100), and n is the number of monthly payments. If the rate is 0%, the formula does not apply, so the payment is P ÷ n. Total repayment is the monthly payment times n, and total interest is total repayment minus P.</p>
+  </section>
+  <section class="example">
+    <h2>Example</h2>
+    <p>Take a loan of 100,000,000 at a 5% annual rate over 360 months (30 years). The monthly payment is 536,822 and the total repayment is 193,255,920, so the total interest is 93,255,920.</p>
+<p>With the same loan at 4%, the monthly payment drops to 477,415 and the total interest to 71,869,400. One percentage point of interest changes the total cost by more than 20 million over 30 years.</p>
+  </section>
+  <section class="notes">
+    <h2>Good to know</h2>
+    <ul><li>Early payments are mostly interest, and the share going to principal grows over time. This is how an amortized loan works, as described by the U.S. Consumer Financial Protection Bureau.</li><li>A longer term lowers the monthly payment but increases the total interest you pay over the life of the loan.</li><li>Amounts are rounded to whole currency units, so cents are not shown. The calculator suits currencies without small units, such as Korean won or Japanese yen. For dollars or euros, the monthly payment can differ from the exact figure by up to half a unit.</li><li>The calculator assumes a fixed interest rate for the whole term. It does not include fees, insurance, taxes, or early-repayment charges.</li><li>Results are estimates. Confirm the exact payment with your lender.</li></ul>
+  </section>
   
   <section class="faq">
     <h2>Frequently asked questions</h2>
@@ -75,7 +89,11 @@
 <details><summary>How is a 0% loan calculated?</summary><p>There is no interest, so the monthly payment is the principal divided by the number of months.</p></details>
 <details><summary>Does this include early repayment fees?</summary><p>No. Check your lender&#39;s terms for any early repayment fee.</p></details>
   </section>
-  
+  <section class="sources">
+    <h2>Sources</h2>
+    <ul><li><a href="https://www.consumerfinance.gov/ask-cfpb/what-is-amortization-and-how-could-it-affect-my-auto-loan-en-771/" target="_blank" rel="noopener noreferrer">CFPB: What is amortization and how could it affect my auto loan?</a></li><li><a href="https://www.consumerfinance.gov/ask-cfpb/how-does-paying-down-a-mortgage-work-en-1943/" target="_blank" rel="noopener noreferrer">CFPB: How does paying down a mortgage work?</a></li></ul>
+  </section>
+  <p class="updated">Last updated: 2026-10-22</p>
 </main>
 <footer class="site-footer">
   <p>Values you enter are never stored or sent to a server. Advertising partners may use cookies.</p>

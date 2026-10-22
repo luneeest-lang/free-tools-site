@@ -23,7 +23,7 @@
 </header>
 <main class="tool" data-category="text">
   <h1>Line break and space cleanup</h1>
-  <div class="intro"><p>Text copied from PDFs or web pages often has extra spaces at line ends and repeated blank lines. This tool trims spaces at the start and end of each line, reduces repeated blank lines to one, and removes blank lines at the very start and end.</p>
+  <div class="intro"><p>Remove line breaks and extra spaces from copied text with this tool. Text copied from PDFs or web pages often has extra spaces at line ends and repeated blank lines. This tool trims spaces at the start and end of each line, reduces repeated blank lines to one, and removes blank lines at the very start and end.</p>
 <p>Spaces between words are left unchanged.</p>
 <p>Turn on &quot;Remove line breaks and join into one line&quot; to get a single line, with one space where each line break was.</p></div>
   <form class="tool-form" id="tool-form">
@@ -47,7 +47,19 @@
     <h2>How to use</h2>
     <ol><li>Paste the text you want to clean into the input box.</li><li>The cleaned text appears in the output box.</li><li>Copy the output for use.</li></ol>
   </section>
-  
+  <section class="formula">
+    <h2>How it works</h2>
+    <p>The tool trims spaces and tabs at the start and end of each line. Repeated blank lines become one, and blank lines at the very start and end of the text are removed. Spaces between words stay as they are, and different line break styles (Windows, Mac, Linux) are handled the same way.</p>
+<p>With the join option on, it trims each line, discards blank lines, and joins the remaining lines with a single space to make one line.</p>
+  </section>
+  <section class="example">
+    <h2>Example</h2>
+    <p>A line &quot;  Hello  &quot; followed by three blank lines and &quot;  World &quot; becomes &quot;Hello&quot;, one blank line, and &quot;World&quot;. With the join option on, &quot;line one&quot;, &quot;line two&quot;, a blank line, and &quot;line three&quot; become &quot;line one line two line three&quot;.</p>
+  </section>
+  <section class="notes">
+    <h2>Good to know</h2>
+    <ul><li>By default one blank line is kept to separate paragraphs. Use the join option to remove every line break.</li><li>The join option puts one space between the old lines. Check the result if the text had words split across lines.</li><li>It works well for text copied from PDFs and web pages.</li></ul>
+  </section>
   
   <section class="faq">
     <h2>Frequently asked questions</h2>
@@ -55,7 +67,7 @@
 <details><summary>Can I remove all blank lines and line breaks?</summary><p>Yes. Turn on &quot;Remove line breaks and join into one line&quot; to get a single line. Without it, one blank line is kept to separate paragraphs.</p></details>
 <details><summary>Is my text saved?</summary><p>No. Everything is processed in your browser.</p></details>
   </section>
-  
+  <p class="updated">Last updated: 2026-10-22</p>
 </main>
 <footer class="site-footer">
   <p>Values you enter are never stored or sent to a server. Advertising partners may use cookies.</p>

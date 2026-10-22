@@ -3,7 +3,7 @@
   "title": "BMI Calculator | Body Mass Index from Height and Weight",
   "description": "Enter your height and weight to get your BMI and weight category. Adult reference only, not a medical diagnosis.",
   "h1": "BMI calculator",
-  "intro": "Calculate your body mass index (BMI) from height and weight. BMI is weight in kilograms divided by height in meters squared. It is a rough reference for whether weight is in a typical range for height.\n\nMuscle mass and body shape affect the result, so BMI should not be used as a medical diagnosis on its own.",
+  "intro": "Use this BMI calculator to find your body mass index from your height and weight. BMI is your weight in kilograms divided by your height in meters squared. It is a rough reference for whether your weight is in a typical range for your height.\n\nMuscle mass and body shape affect the result, so BMI should not be used as a medical diagnosis on its own.",
   "howTo": [
     "Enter your height in centimeters.",
     "Enter your weight in kilograms.",
@@ -39,5 +39,29 @@
     "categoryObese1": "Obese (class 1)",
     "categoryObese2": "Obese (class 2)",
     "categoryObese3": "Obese (class 3)"
-  }
+  },
+  "formula": "BMI = weight (kg) ÷ height (m) ÷ height (m). For example, a height of 170 cm is 1.7 m, so a weight of 65 kg gives 65 ÷ 1.7 ÷ 1.7 = 22.5. The result is rounded to one decimal place.\n\nThis page classifies adults using the World Health Organization categories: below 18.5 is underweight, 18.5 to 24.9 is normal, 25 to 29.9 is overweight, and 30 or above is obese.",
+  "example": "A person who is 170 cm tall and weighs 65 kg has a BMI of 22.5, which is in the normal range. At the same height, 75 kg gives a BMI of 26.0, which is in the overweight range, and 90 kg gives 31.1, which is in the obese range.",
+  "notes": [
+    "BMI is a screening tool, not a diagnosis. The CDC says it does not measure body fat directly and should be considered together with other factors such as blood pressure, cholesterol levels, and a physical exam.",
+    "The WHO calls BMI a rough guide because it may not correspond to the same degree of fatness in different people. Waist circumference is another common measure.",
+    "Age, sex, ethnicity, and muscle mass can change how BMI relates to body fat.",
+    "The Korean Society for the Study of Obesity classes a BMI of 23 or above as pre-obese and 25 or above as obese, and the Korea Disease Control and Prevention Agency also defines adult obesity as 25 or above. The Korean version of this calculator uses that scale, so the same number can get a different label there.",
+    "These categories are for adults. Children and teenagers are assessed with age- and sex-specific charts. This calculator is not a substitute for medical advice."
+  ],
+  "sources": [
+    {
+      "title": "WHO: Obesity and overweight (fact sheet)",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight"
+    },
+    {
+      "title": "CDC: Adult BMI categories",
+      "url": "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
+    },
+    {
+      "title": "CDC: About body mass index (BMI)",
+      "url": "https://www.cdc.gov/bmi/about/index.html"
+    }
+  ],
+  "updated": "2026-10-22"
 }

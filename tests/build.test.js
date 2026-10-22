@@ -149,8 +149,18 @@ test('출처가 없는 도구는 참고 자료 섹션을 만들지 않는다', (
   assert.doesNotMatch(read('ko/char-count/index.html'), /<section class="sources">/);
 });
 
-test('영어 페이지는 아직 확장 섹션 없이도 정상 생성된다', () => {
-  assert.doesNotMatch(read('en/loan-calculator/index.html'), /<section class="formula">/);
+test('영어 도구 페이지에도 확장 콘텐츠 섹션이 렌더링된다', () => {
+  const page = read('en/loan-calculator/index.html');
+  assert.match(page, /<section class="formula">/);
+  assert.match(page, /<section class="example">/);
+  assert.match(page, /<section class="notes">/);
+  assert.match(page, /class="updated"[^>]*>Last updated: 2026-10-22/);
+});
+
+test('영어 BMI와 퇴직금 페이지는 출처 섹션이 있고 텍스트 도구는 없다', () => {
+  assert.match(read('en/bmi/index.html'), /<section class="sources">/);
+  assert.match(read('en/severance/index.html'), /<section class="sources">/);
+  assert.doesNotMatch(read('en/char-count/index.html'), /<section class="sources">/);
 });
 
 test('BMI 스크립트는 한국어 페이지에서 한국 기준을 쓴다', () => {

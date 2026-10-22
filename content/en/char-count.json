@@ -3,16 +3,25 @@
   "title": "Character Counter | With and Without Spaces, Word Count",
   "description": "Paste your text to count characters with and without spaces, words, and lines instantly.",
   "h1": "Character counter",
-  "intro": "Check text that has a length limit, such as a bio, a post, or a message. It shows the character count both with and without spaces.\n\nWords are counted by splitting on spaces, so the number may differ slightly from other word counters for languages without spaces.",
+  "intro": "Use this character counter and word counter to check text that has a length limit, such as a bio, a post, a cover letter, or a message. It shows the character count both with and without spaces, along with words and lines.\n\nWords are counted by splitting on spaces, so the number may differ slightly from other word counters for languages without spaces.",
   "howTo": [
     "Paste or type your text into the box.",
     "Read the character counts, word count, and line count.",
     "Edit the text and check the numbers again as needed."
   ],
   "faq": [
-    { "q": "Are spaces counted as characters?", "a": "Both are shown. Check the count with spaces and the count without spaces." },
-    { "q": "How are emoji counted?", "a": "Counts are per code unit, so one emoji may count as two characters." },
-    { "q": "Is my text saved anywhere?", "a": "No. Everything runs in your browser only." }
+    {
+      "q": "Are spaces counted as characters?",
+      "a": "Both are shown. Check the count with spaces and the count without spaces."
+    },
+    {
+      "q": "How are emoji counted?",
+      "a": "Counts are per code unit, so one emoji may count as two characters."
+    },
+    {
+      "q": "Is my text saved anywhere?",
+      "a": "No. Everything runs in your browser only."
+    }
   ],
   "labels": {
     "inputLabel": "Your text",
@@ -20,5 +29,14 @@
     "charsNoSpacesLabel": "Characters (without spaces)",
     "wordsLabel": "Words",
     "linesLabel": "Lines"
-  }
+  },
+  "formula": "The tool counts every character in the text to get the total with spaces. It then removes all spaces, tabs, and line breaks and counts again to get the total without spaces. The word count is the number of groups of characters separated by spaces or line breaks, and the line count is the number of lines separated by line breaks.",
+  "example": "The text \"hello world\" has 11 characters with spaces, 10 without spaces, 2 words, and 1 line. The text \"one two\" followed by a line break and \"three\" has 13 characters with spaces, 11 without spaces, 3 words, and 2 lines.",
+  "notes": [
+    "In the total with spaces, each line break counts as one character.",
+    "Some emoji and special characters are counted as two characters.",
+    "The tool counts characters, not bytes. Systems that limit text by bytes will give different numbers, because many non-English characters use more than one byte.",
+    "If a form has its own character limit, compare with the number shown on that form, because systems differ in how they count line breaks and special characters."
+  ],
+  "updated": "2026-10-22"
 }
