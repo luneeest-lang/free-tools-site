@@ -7,7 +7,7 @@
   "howTo": [
     "Pick a start date.",
     "Pick an end date.",
-    "Read the days and weeks results."
+    "Read the total days, weeks, and leftover days."
   ],
   "faq": [
     {
@@ -30,9 +30,10 @@
     "weeksLabel": "Weeks",
     "resultLabel": "Result",
     "errorEndBeforeStart": "The end date is before the start date.",
-    "errorInvalidDate": "Enter a valid date."
+    "errorInvalidDate": "Enter a valid date.",
+    "remainderLabel": "Leftover days"
   },
-  "formula": "Both dates are converted to the same reference time (midnight UTC) and the difference is divided into 24-hour days. This keeps time zones and daylight saving changes from affecting the result, so only calendar days are counted.\n\nWhole weeks are the total days divided by 7, rounded down. For example, 17 days is 2 whole weeks with 3 days left over. Leap years follow the real calendar, so February 29 is counted when it exists.",
+  "formula": "Both dates are converted to the same reference time (midnight UTC) and the difference is divided into 24-hour days. This keeps time zones and daylight saving changes from affecting the result, so only calendar days are counted.\n\nWhole weeks are the total days divided by 7, rounded down. For example, 17 days is 2 whole weeks with 3 days left over. Leap years follow the real calendar, so February 29 is counted when it exists.\n\nThe calculator shows the total days, the whole weeks, and the leftover days together.",
   "example": "From February 28, 2024 to March 1, 2024 is 2 days, because 2024 is a leap year and February 29 falls in between.\n\nFrom January 1, 2025 to January 18, 2025 is 17 days, which is 2 whole weeks and 3 days.",
   "notes": [
     "The result is the end date minus the start date, so neither endpoint is counted as an extra day. For an inclusive count that includes both the first and the last day, add 1. For example, January 1 to January 3 inclusive is 3 days.",

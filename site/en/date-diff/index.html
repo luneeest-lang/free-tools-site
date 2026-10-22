@@ -13,7 +13,7 @@
     <link rel="alternate" hreflang="ko" href="https://moatool.com/ko/date-diff/">
     <link rel="alternate" hreflang="en" href="https://moatool.com/en/date-diff/">
     <link rel="alternate" hreflang="x-default" href="https://moatool.com/ko/date-diff/">
-  <link rel="stylesheet" href="/assets/style.css?v=70995dd6">
+  <link rel="stylesheet" href="/assets/style.css?v=fcd2f94c">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4375672351563367" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -49,18 +49,23 @@
   <span class="output-label">Weeks</span>
   <output id="weeks"></output>
 </div>
+<div class="output">
+  <span class="output-label">Leftover days</span>
+  <output id="remainder"></output>
+</div>
     </div>
     <p class="error" data-error="errorEndBeforeStart" role="alert" hidden>The end date is before the start date.</p>
 <p class="error" data-error="errorInvalidDate" role="alert" hidden>Enter a valid date.</p>
   </form>
   <section class="howto">
     <h2>How to use</h2>
-    <ol><li>Pick a start date.</li><li>Pick an end date.</li><li>Read the days and weeks results.</li></ol>
+    <ol><li>Pick a start date.</li><li>Pick an end date.</li><li>Read the total days, weeks, and leftover days.</li></ol>
   </section>
   <section class="formula">
     <h2>How it works</h2>
     <p>Both dates are converted to the same reference time (midnight UTC) and the difference is divided into 24-hour days. This keeps time zones and daylight saving changes from affecting the result, so only calendar days are counted.</p>
 <p>Whole weeks are the total days divided by 7, rounded down. For example, 17 days is 2 whole weeks with 3 days left over. Leap years follow the real calendar, so February 29 is counted when it exists.</p>
+<p>The calculator shows the total days, the whole weeks, and the leftover days together.</p>
   </section>
   <section class="example">
     <h2>Example</h2>
@@ -84,9 +89,9 @@
   <p>Values you enter are never stored or sent to a server. Advertising partners may use cookies.</p>
   <p><a href="/en/privacy/">Privacy policy</a></p>
 </footer>
-<script type="application/json" id="tool-labels">{"startLabel":"Start date","endLabel":"End date","daysLabel":"Days","weeksLabel":"Weeks","resultLabel":"Result","errorEndBeforeStart":"The end date is before the start date.","errorInvalidDate":"Enter a valid date."}</script>
-<script src="/assets/logic/date.js?v=70995dd6"></script>
-<script src="/assets/common.js?v=70995dd6"></script>
-<script src="/assets/tools/date-diff.js?v=70995dd6" defer></script>
+<script type="application/json" id="tool-labels">{"startLabel":"Start date","endLabel":"End date","daysLabel":"Days","weeksLabel":"Weeks","resultLabel":"Result","errorEndBeforeStart":"The end date is before the start date.","errorInvalidDate":"Enter a valid date.","remainderLabel":"Leftover days"}</script>
+<script src="/assets/logic/date.js?v=fcd2f94c"></script>
+<script src="/assets/common.js?v=fcd2f94c"></script>
+<script src="/assets/tools/date-diff.js?v=fcd2f94c" defer></script>
 </body>
 </html>

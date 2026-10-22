@@ -13,7 +13,7 @@
     <link rel="alternate" hreflang="ko" href="https://moatool.com/ko/date-diff/">
     <link rel="alternate" hreflang="en" href="https://moatool.com/en/date-diff/">
     <link rel="alternate" hreflang="x-default" href="https://moatool.com/ko/date-diff/">
-  <link rel="stylesheet" href="/assets/style.css?v=70995dd6">
+  <link rel="stylesheet" href="/assets/style.css?v=fcd2f94c">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4375672351563367" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -49,23 +49,28 @@
   <span class="output-label">주수</span>
   <output id="weeks"></output>
 </div>
+<div class="output">
+  <span class="output-label">나머지 일수</span>
+  <output id="remainder"></output>
+</div>
     </div>
     <p class="error" data-error="errorEndBeforeStart" role="alert" hidden>종료 날짜가 시작 날짜보다 앞서 있습니다.</p>
 <p class="error" data-error="errorInvalidDate" role="alert" hidden>올바른 날짜를 입력해 주세요.</p>
   </form>
   <section class="howto">
     <h2>사용 방법</h2>
-    <ol><li>시작 날짜를 선택합니다.</li><li>종료 날짜를 선택합니다.</li><li>일수와 주수 결과를 확인합니다.</li></ol>
+    <ol><li>시작 날짜를 선택합니다.</li><li>종료 날짜를 선택합니다.</li><li>일수, 주수, 나머지 일수 결과를 확인합니다.</li></ol>
   </section>
   <section class="formula">
     <h2>계산·처리 방식</h2>
     <p>두 날짜를 같은 기준 시각(UTC 자정)으로 맞춘 뒤 차이를 하루(24시간) 단위로 나눕니다. 시간대나 서머타임의 영향 없이 날짜 수만 셉니다.</p>
 <p>주수는 총 일수를 7로 나눈 몫이고, 남는 일수는 나머지입니다. 윤년은 실제 달력을 기준으로 자동 반영되어 2월 29일이 있는 해도 정확합니다.</p>
+<p>계산기에는 총 일수, 주수, 나머지 일수가 함께 표시됩니다.</p>
   </section>
   <section class="example">
     <h2>예시</h2>
     <p>2024년 2월 28일부터 3월 1일까지는 2024년이 윤년이라 2월 29일이 있어서 2일입니다.</p>
-<p>2025년 1월 1일부터 1월 18일까지는 17일이며, 2주 3일에 해당합니다.</p>
+<p>2025년 1월 1일부터 1월 18일까지는 17일이며, 결과에는 주수 2, 나머지 일수 3으로 표시됩니다.</p>
   </section>
   <section class="notes">
     <h2>알아 두세요</h2>
@@ -76,17 +81,17 @@
     <h2>자주 묻는 질문</h2>
     <details><summary>시작일과 종료일이 모두 포함되나요?</summary><p>포함되지 않습니다. 종료일에서 시작일을 뺀 날짜 수를 보여 드립니다.</p></details>
 <details><summary>윤년도 계산되나요?</summary><p>네. 2월 29일이 있는 해도 실제 달력을 기준으로 계산합니다.</p></details>
-<details><summary>몇 주 며칠은 어떻게 나오나요?</summary><p>총 일수를 7로 나눈 몫이 주수, 나머지가 남은 일수입니다.</p></details>
+<details><summary>몇 주 며칠은 어떻게 나오나요?</summary><p>총 일수를 7로 나눈 몫이 주수이고, 나머지가 나머지 일수입니다. 예를 들어 17일은 2주와 나머지 3일로 표시됩니다.</p></details>
   </section>
-  <p class="updated">최종 수정일: 2026-10-19</p>
+  <p class="updated">최종 수정일: 2026-10-22</p>
 </main>
 <footer class="site-footer">
   <p>입력하신 값은 저장되거나 서버로 전송되지 않습니다. 광고 서비스는 쿠키를 사용할 수 있습니다.</p>
   <p><a href="/ko/guides/">가이드</a> · <a href="/ko/privacy/">개인정보처리방침</a></p>
 </footer>
-<script type="application/json" id="tool-labels">{"startLabel":"시작 날짜","endLabel":"종료 날짜","daysLabel":"일수","weeksLabel":"주수","resultLabel":"결과","errorEndBeforeStart":"종료 날짜가 시작 날짜보다 앞서 있습니다.","errorInvalidDate":"올바른 날짜를 입력해 주세요."}</script>
-<script src="/assets/logic/date.js?v=70995dd6"></script>
-<script src="/assets/common.js?v=70995dd6"></script>
-<script src="/assets/tools/date-diff.js?v=70995dd6" defer></script>
+<script type="application/json" id="tool-labels">{"startLabel":"시작 날짜","endLabel":"종료 날짜","daysLabel":"일수","weeksLabel":"주수","resultLabel":"결과","errorEndBeforeStart":"종료 날짜가 시작 날짜보다 앞서 있습니다.","errorInvalidDate":"올바른 날짜를 입력해 주세요.","remainderLabel":"나머지 일수"}</script>
+<script src="/assets/logic/date.js?v=fcd2f94c"></script>
+<script src="/assets/common.js?v=fcd2f94c"></script>
+<script src="/assets/tools/date-diff.js?v=fcd2f94c" defer></script>
 </body>
 </html>

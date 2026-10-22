@@ -1,6 +1,7 @@
 (function () {
   const form = document.getElementById('tool-form');
   const { monthlyPayment } = window.ToolLogic;
+  const decimals = document.documentElement.lang === 'ko' ? 0 : 2;
 
   function update() {
     const principal = ToolUI.num('principal');
@@ -24,11 +25,11 @@
       return;
     }
 
-    const result = monthlyPayment({ principal, annualRatePercent: rate, months });
+    const result = monthlyPayment({ principal, annualRatePercent: rate, months, decimals });
     ToolUI.clearErrors(form);
-    ToolUI.setOutput('payment', ToolUI.fmt(result.payment));
-    ToolUI.setOutput('totalInterest', ToolUI.fmt(result.totalInterest));
-    ToolUI.setOutput('totalPayment', ToolUI.fmt(result.totalPayment));
+    ToolUI.setOutput('payment', ToolUI.fmtMoney(result.payment, decimals));
+    ToolUI.setOutput('totalInterest', ToolUI.fmtMoney(result.totalInterest, decimals));
+    ToolUI.setOutput('totalPayment', ToolUI.fmtMoney(result.totalPayment, decimals));
   }
 
   ToolUI.bindAmount('principal');

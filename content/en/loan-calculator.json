@@ -36,11 +36,11 @@
     "errorInvalid": "Enter valid numbers for amount, rate, and term."
   },
   "formula": "This calculator uses the standard amortization formula, where every monthly payment is the same amount.\n\nMonthly payment = P × r × (1 + r)^n ÷ ((1 + r)^n − 1)\n\nHere P is the loan amount, r is the monthly interest rate (annual rate ÷ 12 ÷ 100), and n is the number of monthly payments. If the rate is 0%, the formula does not apply, so the payment is P ÷ n. Total repayment is the monthly payment times n, and total interest is total repayment minus P.",
-  "example": "Take a loan of 100,000,000 at a 5% annual rate over 360 months (30 years). The monthly payment is 536,822 and the total repayment is 193,255,920, so the total interest is 93,255,920.\n\nWith the same loan at 4%, the monthly payment drops to 477,415 and the total interest to 71,869,400. One percentage point of interest changes the total cost by more than 20 million over 30 years.",
+  "example": "Take a loan of 100,000 at a 5% annual rate over 360 months (30 years). The monthly payment is 536.82 and the total repayment is 193,255.20, so the total interest is 93,255.20.\n\nWith the same loan at 4%, the monthly payment drops to 477.42 and the total interest to 71,871.20. One percentage point of interest changes the total cost by more than 20,000 over 30 years.",
   "notes": [
     "Early payments are mostly interest, and the share going to principal grows over time. This is how an amortized loan works, as described by the U.S. Consumer Financial Protection Bureau.",
     "A longer term lowers the monthly payment but increases the total interest you pay over the life of the loan.",
-    "Amounts are rounded to whole currency units, so cents are not shown. The calculator suits currencies without small units, such as Korean won or Japanese yen. For dollars or euros, the monthly payment can differ from the exact figure by up to half a unit.",
+    "Amounts are shown to two decimal places. The monthly payment is rounded to the nearest cent, and the total repayment is that rounded payment times the number of months. Your lender may round differently, so the exact figures can differ by a few cents.",
     "The calculator assumes a fixed interest rate for the whole term. It does not include fees, insurance, taxes, or early-repayment charges.",
     "Results are estimates. Confirm the exact payment with your lender."
   ],

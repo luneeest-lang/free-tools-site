@@ -20,6 +20,7 @@ const TOOL_FORMS = {
     outputs: [
       { id: 'days', labelKey: 'daysLabel', primary: true },
       { id: 'weeks', labelKey: 'weeksLabel' },
+      { id: 'remainder', labelKey: 'remainderLabel' },
     ],
     errorKeys: ['errorEndBeforeStart', 'errorInvalidDate'],
   },

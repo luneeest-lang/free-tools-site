@@ -27,6 +27,13 @@
     return new Intl.NumberFormat(document.documentElement.lang).format(value);
   }
 
+  function fmtMoney(value, decimals) {
+    return new Intl.NumberFormat(document.documentElement.lang, {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    }).format(value);
+  }
+
   function setOutput(id, text) {
     document.getElementById(id).textContent = text;
   }
@@ -68,6 +75,7 @@
     num,
     isNumber,
     fmt,
+    fmtMoney,
     groupDigits,
     bindAmount,
     setOutput,

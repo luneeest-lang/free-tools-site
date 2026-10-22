@@ -1,13 +1,18 @@
-function monthlyPayment({ principal, annualRatePercent, months }) {
+function roundTo(value, decimals) {
+  const factor = 10 ** decimals;
+  return Math.round(value * factor) / factor;
+}
+
+function monthlyPayment({ principal, annualRatePercent, months, decimals = 0 }) {
   const monthlyRate = annualRatePercent / 100 / 12;
   const rawPayment =
     monthlyRate === 0
       ? principal / months
       : (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) /
         (Math.pow(1 + monthlyRate, months) - 1);
-  const payment = Math.round(rawPayment);
-  const totalPayment = payment * months;
-  return { payment, totalPayment, totalInterest: totalPayment - principal };
+  const payment = roundTo(rawPayment, decimals);
+  const totalPayment = monthlyRate === 0 ? roundTo(principal, decimals) : roundTo(payment * months, decimals);
+  return { payment, totalPayment, totalInterest: roundTo(totalPayment - principal, decimals) };
 }
 
 function severancePay({ wagesLast3Months, daysLast3Months, daysWorked }) {

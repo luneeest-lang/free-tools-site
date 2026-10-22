@@ -303,3 +303,9 @@ test('영어 퇴직금 페이지는 한국 기준과 원문이 한국어임을 �
   assert.ok(tool.sources.some((s) => s.title.includes('in Korean')));
   assert.ok(JSON.stringify(tool.notes).includes('Korea'));
 });
+
+test('날짜 차이 라벨에 나머지 일수 이름이 있다', () => {
+  for (const lang of LANGS) {
+    assert.ok('remainderLabel' in load(lang, 'date-diff').labels, `${lang} remainderLabel`);
+  }
+});

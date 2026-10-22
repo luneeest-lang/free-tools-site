@@ -300,3 +300,17 @@ test('가이드 글에 출처 링크와 수정일이 렌더링된다', () => {
   assert.match(page, /rel="noopener noreferrer"/);
   assert.match(page, /class="updated"/);
 });
+
+test('영어 대출 계산기는 소수점 둘째 자리까지 보여 주고 한국어는 정수로 보여 준다', () => {
+  const common = fs.readFileSync(path.join(ROOT, 'assets', 'common.js'), 'utf8');
+  const loan = fs.readFileSync(path.join(ROOT, 'assets', 'tools', 'loan-calculator.js'), 'utf8');
+  assert.match(common, /function fmtMoney/);
+  assert.match(loan, /documentElement\.lang === 'ko' \? 0 : 2/);
+  assert.match(loan, /fmtMoney/);
+  assert.match(loan, /decimals/);
+});
+
+test('날짜 차이 페이지에 나머지 일수 결과 칸이 있다', () => {
+  assert.match(read('ko/date-diff/index.html'), /<output id="remainder">/);
+  assert.match(read('en/date-diff/index.html'), /<output id="remainder">/);
+});

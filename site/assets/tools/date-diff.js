@@ -27,6 +27,7 @@
     ToolUI.clearErrors(form);
     ToolUI.setOutput('days', ToolUI.fmt(result.days));
     ToolUI.setOutput('weeks', ToolUI.fmt(result.weeks));
+    ToolUI.setOutput('remainder', ToolUI.fmt(result.remainderDays));
   }
 
   form.addEventListener('input', update);
