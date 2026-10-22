@@ -227,6 +227,10 @@ function buildSite({ rootDir, outDir, origin = SITE_ORIGIN, config = loadConfig(
     fs.cpSync(assetsDir, path.join(outDir, 'assets'), { recursive: true });
   }
   fs.cpSync(path.join(rootDir, 'src', 'logic'), path.join(outDir, 'assets', 'logic'), { recursive: true });
+  const faviconIco = path.join(rootDir, 'assets', 'favicon.ico');
+  if (fs.existsSync(faviconIco)) {
+    fs.copyFileSync(faviconIco, path.join(outDir, 'favicon.ico'));
+  }
 
   writePage(outDir, 'sitemap.xml', sitemapXml(origin, sitemapEntries));
   writePage(outDir, 'robots.txt', robotsTxt(origin));

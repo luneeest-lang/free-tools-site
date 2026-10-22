@@ -314,3 +314,25 @@ test('날짜 차이 페이지에 나머지 일수 결과 칸이 있다', () => {
   assert.match(read('ko/date-diff/index.html'), /<output id="remainder">/);
   assert.match(read('en/date-diff/index.html'), /<output id="remainder">/);
 });
+
+test('모든 페이지 head에 파비콘 링크가 있다', () => {
+  for (const page of ['index.html', 'ko/index.html', 'en/bmi/index.html', 'ko/guides/bmi/index.html', 'ko/privacy/index.html']) {
+    const html = read(page);
+    assert.match(html, /<link rel="icon" href="\/assets\/favicon\.svg\?v=[0-9a-f]{8}" type="image\/svg\+xml">/, page);
+    assert.match(html, /<link rel="icon" href="\/favicon\.ico" sizes="48x48">/, page);
+    assert.match(html, /<link rel="apple-touch-icon" href="\/assets\/apple-touch-icon\.png\?v=[0-9a-f]{8}">/, page);
+  }
+});
+
+test('파비콘 파일이 올바른 형식으로 생성된다', () => {
+  const svg = read('assets/favicon.svg');
+  assert.match(svg, /<svg[^>]*viewBox="0 0 64 64"/);
+  const ico = fs.readFileSync(path.join(outDir, 'favicon.ico'));
+  assert.deepEqual([...ico.subarray(0, 4)], [0, 0, 1, 0]);
+  assert.equal(ico[6], 48);
+  assert.equal(ico[7], 48);
+  const png = fs.readFileSync(path.join(outDir, 'assets', 'apple-touch-icon.png'));
+  assert.deepEqual([...png.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
+  assert.equal(png.readUInt32BE(16), 180);
+  assert.equal(png.readUInt32BE(20), 180);
+});

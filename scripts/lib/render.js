@@ -30,6 +30,13 @@ function setSiteConfig(config) {
   };
 }
 
+function iconTags() {
+  return `
+  <link rel="icon" href="${asset('/assets/favicon.svg')}" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="${asset('/assets/apple-touch-icon.png')}">`;
+}
+
 function verificationTag() {
   if (!siteConfig.naverVerification) return '';
   return `\n  <meta name="naver-site-verification" content="${escapeHtml(siteConfig.naverVerification)}" />`;
@@ -78,7 +85,7 @@ function head({ lang, title, description, origin, alternates }) {
   <link rel="canonical" href="${escapeHtml(origin + alternates[lang])}">
     ${hreflangs}
     <link rel="alternate" hreflang="x-default" href="${escapeHtml(origin + alternates.ko)}">
-  <link rel="stylesheet" href="${asset('/assets/style.css')}">${adsenseTag()}
+  <link rel="stylesheet" href="${asset('/assets/style.css')}">${iconTags()}${adsenseTag()}
 </head>`;
 }
 
@@ -415,7 +422,7 @@ function renderRootIndex({ ui, origin }) {
   <meta name="description" content="${escapeHtml(ui.homeDescription)}">
   <link rel="alternate" hreflang="ko" href="${escapeHtml(origin)}/ko/">
   <link rel="alternate" hreflang="en" href="${escapeHtml(origin)}/en/">
-  <link rel="stylesheet" href="${asset('/assets/style.css')}">${adsenseTag()}
+  <link rel="stylesheet" href="${asset('/assets/style.css')}">${iconTags()}${adsenseTag()}
   <script>
     if (navigator.language && navigator.language.indexOf('ko') === 0) {
       location.replace('/ko/');
