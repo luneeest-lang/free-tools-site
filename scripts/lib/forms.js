@@ -37,15 +37,19 @@ const TOOL_FORMS = {
   },
   severance: {
     inputs: [
+      { id: 'hireDate', labelKey: 'hireDateLabel', type: 'date' },
+      { id: 'leaveDate', labelKey: 'leaveDateLabel', type: 'date' },
       { id: 'wages', labelKey: 'wagesLabel', type: 'text', inputmode: 'decimal', unitKey: 'unitWon' },
-      { id: 'daysLast3', labelKey: 'daysLast3Label', type: 'text', inputmode: 'numeric', unitKey: 'unitDays' },
-      { id: 'daysWorked', labelKey: 'daysWorkedLabel', type: 'text', inputmode: 'numeric', unitKey: 'unitDays' },
+      { id: 'annualBonus', labelKey: 'annualBonusLabel', type: 'text', inputmode: 'decimal', unitKey: 'unitWon' },
+      { id: 'annualLeavePay', labelKey: 'annualLeavePayLabel', type: 'text', inputmode: 'decimal', unitKey: 'unitWon' },
     ],
     outputs: [
       { id: 'severance', labelKey: 'resultLabel', primary: true },
       { id: 'dailyWage', labelKey: 'dailyWageLabel' },
+      { id: 'daysWorked', labelKey: 'daysWorkedResultLabel' },
+      { id: 'period', labelKey: 'periodLabel' },
     ],
-    errorKeys: ['errorInvalid'],
+    errorKeys: ['errorInvalid', 'errorDateOrder', 'noticeUnderOneYear'],
   },
   'char-count': {
     inputs: [{ id: 'text', labelKey: 'inputLabel', type: 'textarea' }],

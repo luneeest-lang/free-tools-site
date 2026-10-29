@@ -346,3 +346,12 @@ test('소개 페이지는 운영 원칙, 검증 방식, 면책을 다룬다', ()
     assert.ok(en.toLowerCase().includes(word.toLowerCase()), `en about mentions ${word}`);
   }
 });
+
+test('퇴직금 라벨에 날짜, 상여금, 연차수당, 1년 미만 안내가 있다', () => {
+  for (const lang of LANGS) {
+    const { labels } = load(lang, 'severance');
+    for (const key of ['hireDateLabel', 'leaveDateLabel', 'annualBonusLabel', 'annualLeavePayLabel', 'daysWorkedResultLabel', 'periodLabel', 'errorDateOrder', 'noticeUnderOneYear']) {
+      assert.ok(key in labels, `${lang} severance label ${key}`);
+    }
+  }
+});

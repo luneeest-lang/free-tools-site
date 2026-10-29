@@ -377,3 +377,17 @@ test('푸터에 소개 링크가 있고 사이트맵에 소개 주소가 있다'
   assert.match(read('sitemap.xml'), /<loc>https:\/\/moatool\.com\/ko\/about\/<\/loc>/);
   assert.match(read('sitemap.xml'), /<loc>https:\/\/moatool\.com\/en\/about\/<\/loc>/);
 });
+
+test('퇴직금 계산기는 입사일과 퇴직일, 상여금, 연차수당을 입력받는다', () => {
+  for (const lang of ['ko', 'en']) {
+    const page = read(`${lang}/severance/index.html`);
+    for (const id of ['hireDate', 'leaveDate', 'wages', 'annualBonus', 'annualLeavePay']) {
+      assert.match(page, new RegExp(`id="${id}"`), `${lang} ${id}`);
+    }
+    for (const id of ['severance', 'dailyWage', 'daysWorked', 'period']) {
+      assert.match(page, new RegExp(`<output id="${id}">`), `${lang} output ${id}`);
+    }
+    assert.doesNotMatch(page, /id="daysLast3"/, `${lang} old input removed`);
+    assert.match(page, /type="date"/);
+  }
+});

@@ -8,15 +8,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
   <title>Severance Pay Calculator | Korean Rules, Estimate</title>
-  <meta name="description" content="Enter recent three-month wages and days worked for an estimate of Korean severance pay under the Labor Standards Act.">
+  <meta name="description" content="Enter your start and leaving dates, recent wages, bonuses, and leave pay for an estimate of Korean severance pay.">
   <link rel="canonical" href="https://moatool.com/en/severance/">
     <link rel="alternate" hreflang="ko" href="https://moatool.com/ko/severance/">
     <link rel="alternate" hreflang="en" href="https://moatool.com/en/severance/">
     <link rel="alternate" hreflang="x-default" href="https://moatool.com/ko/severance/">
-  <link rel="stylesheet" href="/assets/style.css?v=0077366b">
-  <link rel="icon" href="/assets/favicon.svg?v=0077366b" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/style.css?v=397b8886">
+  <link rel="icon" href="/assets/favicon.svg?v=397b8886" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=0077366b">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=397b8886">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4375672351563367" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -27,28 +27,42 @@
 </header>
 <main class="tool" data-category="calc">
   <h1>Severance pay calculator</h1>
-  <div class="intro"><p>This Korean severance pay calculator (퇴직금) estimates the amount you may receive when you leave a job in South Korea. Enter your total wages for the last three months, the number of days in that period, and your total days worked. This calculator follows Korean severance pay rules: average daily wage times 30 days, scaled by days worked over 365.</p>
-<p>Bonuses, paid leave allowance, and company rules can change the actual amount. Use this as an estimate only.</p></div>
+  <div class="intro"><p>This Korean severance pay calculator (퇴직금) works out your days employed and the average wage period from your start and leaving dates. It then adds bonuses and unused annual leave pay the way the Korean Ministry of Employment and Labor describes, and shows your average daily wage and estimated severance pay. This calculator follows Korean severance pay rules.</p>
+<p>The actual amount depends on your company rules and pay details. Use this as an estimate only.</p></div>
   <form class="tool-form" id="tool-form">
     <div class="field">
-  <label for="wages">Total wages, last 3 months</label>
+  <label for="hireDate">Start date</label>
+  <div class="field-row">
+    <input id="hireDate" name="hireDate" type="date">
+    
+  </div>
+</div>
+<div class="field">
+  <label for="leaveDate">Leaving date (the day after your last working day)</label>
+  <div class="field-row">
+    <input id="leaveDate" name="leaveDate" type="date">
+    
+  </div>
+</div>
+<div class="field">
+  <label for="wages">Total wages, last 3 months (base pay and allowances)</label>
   <div class="field-row">
     <input id="wages" name="wages" type="text" inputmode="decimal">
     <span class="unit">KRW</span>
   </div>
 </div>
 <div class="field">
-  <label for="daysLast3">Days in those 3 months</label>
+  <label for="annualBonus">Bonuses paid in the last 12 months (optional)</label>
   <div class="field-row">
-    <input id="daysLast3" name="daysLast3" type="text" inputmode="numeric">
-    <span class="unit">days</span>
+    <input id="annualBonus" name="annualBonus" type="text" inputmode="decimal">
+    <span class="unit">KRW</span>
   </div>
 </div>
 <div class="field">
-  <label for="daysWorked">Total days worked</label>
+  <label for="annualLeavePay">Unused annual leave pay (optional, leave accrued in the previous year)</label>
   <div class="field-row">
-    <input id="daysWorked" name="daysWorked" type="text" inputmode="numeric">
-    <span class="unit">days</span>
+    <input id="annualLeavePay" name="annualLeavePay" type="text" inputmode="decimal">
+    <span class="unit">KRW</span>
   </div>
 </div>
     <div class="results" aria-live="polite">
@@ -60,47 +74,59 @@
   <span class="output-label">Average daily wage</span>
   <output id="dailyWage"></output>
 </div>
+<div class="output">
+  <span class="output-label">Days employed</span>
+  <output id="daysWorked"></output>
+</div>
+<div class="output">
+  <span class="output-label">Average wage period</span>
+  <output id="period"></output>
+</div>
     </div>
-    <p class="error" data-error="errorInvalid" role="alert" hidden>Enter all values as numbers greater than zero.</p>
+    <p class="error" data-error="errorInvalid" role="alert" hidden>Enter wages, bonuses, and leave pay as numbers of 0 or more.</p>
+<p class="error" data-error="errorDateOrder" role="alert" hidden>The leaving date must be after the start date.</p>
+<p class="error" data-error="noticeUnderOneYear" role="alert" hidden>With less than one year of service, statutory severance pay does not apply (Ministry of Employment and Labor).</p>
   </form>
   <section class="howto">
     <h2>How to use</h2>
-    <ol><li>Enter your total wages for the last three months.</li><li>Enter the number of days in those three months, usually about 90.</li><li>Enter your total days worked, from your start date to your end date.</li></ol>
+    <ol><li>Pick your start date.</li><li>Pick your leaving date, which is the day after your last working day.</li><li>Enter the total wages (base pay and allowances) you received during the average wage period shown on screen.</li><li>If you received bonuses or unused annual leave pay, enter them. Otherwise leave them blank.</li></ol>
   </section>
   <section class="formula">
     <h2>How it works</h2>
     <p>The Korean Ministry of Employment and Labor gives this formula:</p>
-<p>Severance pay = average daily wage × 30 days × (total days worked ÷ 365)</p>
-<p>The average daily wage is your total wages for the three months before you leave, divided by the total number of calendar days in those three months. If that figure is lower than your ordinary wage (통상임금), the ordinary wage is used instead.</p>
+<p>Severance pay = average daily wage × 30 days × (days employed ÷ 365)</p>
+<p>The average daily wage is your total wages for the three months before your leaving date, divided by the calendar days in those months. For example, if you leave on July 16, the period is April 16 to July 15. Bonuses paid in the 12 months before you leave, and unused annual leave pay for leave accrued in the previous year, are each added at 3/12.</p>
+<p>If the result is lower than your ordinary wage (통상임금), the ordinary wage is used instead.</p>
   </section>
   <section class="example">
     <h2>Example</h2>
-    <p>Suppose your total wages for the last three months were 9,000,000 and those months had 90 days. Your average daily wage is 9,000,000 ÷ 90 = 100,000. After exactly one year (365 days), severance pay is 100,000 × 30 × (365 ÷ 365) = 3,000,000. After two years (730 days), it is 6,000,000.</p>
+    <p>If you started on July 16, 2023 and leave on July 16, 2026 (last working day July 15), you were employed for 1,096 days, and the average wage period is April 16 to July 15, 2026, which is 91 days.</p>
+<p>With wages of 9,000,000 in that period, the average daily wage is about 98,901 and the estimated severance pay is 8,909,228. Adding 4,000,000 in bonuses and 1,200,000 in leave pay contributes 1,000,000 and 300,000 (3/12 of each), so the average daily wage becomes about 113,187 and the estimated severance pay 10,196,116.</p>
   </section>
   <section class="notes">
     <h2>Good to know</h2>
-    <ul><li>This calculator follows Korean law, the Employee Retirement Benefit Security Act. It does not apply to jobs outside Korea.</li><li>According to the Ministry, workers with less than one year of continuous service, and workers who are scheduled to work fewer than 15 hours a week on average over four weeks, are excluded.</li><li>Employers must pay within 14 days of the date the payment becomes due, unless both sides agree to extend the deadline. The right to claim expires if it is not exercised for three years from the day after you leave.</li><li>The calculator does not compare the result with your ordinary wage. If your ordinary wage is higher than the average wage, your actual severance pay can be higher.</li><li>Taxes are not included. How bonuses and paid leave allowance are counted depends on your company rules and the Ministry guidance, and if you are enrolled in a company pension plan, payment may work differently.</li><li>This is general information, not legal advice. For your exact amount, check with the Ministry of Employment and Labor, the Korea Workers&#39; Compensation and Welfare Service, or your employer.</li></ul>
+    <ul><li>This calculator follows Korean law, the Employee Retirement Benefit Security Act. It does not apply to jobs outside Korea.</li><li>Your leaving date is the day after your last working day. The Ministry&#39;s own calculator asks for it the same way.</li><li>If the same day three months earlier does not exist (for example, leaving on May 31), the period starts on the last day of that month. We could not confirm this rule in official sources, so the period may differ from the Ministry&#39;s calculator by one to three days. Check the period shown on screen.</li><li>Unused leave pay that first becomes payable because you leave is not included. Enter only unused pay for leave accrued in the previous year.</li><li>Workers with less than one year of service, or scheduled for fewer than 15 hours a week on average, are excluded. This calculator does not check working hours.</li><li>Periods excluded from the average wage, such as parental leave, are not handled here. Use the Ministry&#39;s calculator in that case.</li><li>Taxes are not included, and the result is not compared with your ordinary wage. This is general information, not legal advice.</li></ul>
   </section>
   
   <section class="faq">
     <h2>Frequently asked questions</h2>
     <details><summary>When is severance pay owed?</summary><p>Under Korean law it is generally owed after at least one year of continuous service, when you leave the job.</p></details>
-<details><summary>How is the average daily wage calculated?</summary><p>Total wages for the last three months divided by the number of days in that period.</p></details>
+<details><summary>How is the average daily wage calculated?</summary><p>Take your total wages for the three months before your leaving date, add 3/12 of your bonuses and unused annual leave pay, and divide by the number of calendar days in those three months.</p></details>
 <details><summary>Why can my actual payment differ?</summary><p>Bonus treatment, tax deductions, and company rules can all change the final amount.</p></details>
   </section>
   <section class="sources">
     <h2>Sources</h2>
-    <ul><li><a href="https://www.moel.go.kr/faq/faqView.do?seqRepeat=89" target="_blank" rel="noopener noreferrer">Ministry of Employment and Labor: severance pay and average wage formula (in Korean)</a></li><li><a href="https://www.moel.go.kr/faq/faqView.do?seqRepeat=118" target="_blank" rel="noopener noreferrer">Ministry of Employment and Labor: payment deadline and time limit to claim (in Korean)</a></li><li><a href="https://www.moel.go.kr/minwon/fastcounsel/fastcounselView.do?inetDcssMngId=202407240338354280219" target="_blank" rel="noopener noreferrer">Ministry of Employment and Labor: who is eligible for severance pay (in Korean)</a></li><li><a href="https://www.law.go.kr/법령/근로자퇴직급여보장법" target="_blank" rel="noopener noreferrer">National Law Information Center: Employee Retirement Benefit Security Act (in Korean)</a></li></ul>
+    <ul><li><a href="https://www.moel.go.kr/faq/faqView.do?seqRepeat=89" target="_blank" rel="noopener noreferrer">Ministry of Employment and Labor: severance pay and average wage formula (in Korean)</a></li><li><a href="https://www.moel.go.kr/retirementpayCal.do" target="_blank" rel="noopener noreferrer">Ministry of Employment and Labor: severance pay calculator and input guide (in Korean)</a></li><li><a href="https://www.moel.go.kr/minwon/fastcounsel/fastcounselView.do?inetDcssMngId=202104290955137991000" target="_blank" rel="noopener noreferrer">Ministry of Employment and Labor: 3/12 of annual leave pay in severance pay (in Korean)</a></li><li><a href="https://www.moel.go.kr/faq/faqView.do?seqRepeat=118" target="_blank" rel="noopener noreferrer">Ministry of Employment and Labor: payment deadline and time limit to claim (in Korean)</a></li><li><a href="https://www.moel.go.kr/minwon/fastcounsel/fastcounselView.do?inetDcssMngId=202407240338354280219" target="_blank" rel="noopener noreferrer">Ministry of Employment and Labor: who is eligible for severance pay (in Korean)</a></li><li><a href="https://www.law.go.kr/법령/근로자퇴직급여보장법" target="_blank" rel="noopener noreferrer">National Law Information Center: Employee Retirement Benefit Security Act (in Korean)</a></li></ul>
   </section>
-  <p class="updated">Last updated: 2026-10-22</p>
+  <p class="updated">Last updated: 2026-10-29</p>
 </main>
 <footer class="site-footer">
   <p>Values you enter are never stored or sent to a server. Advertising partners may use cookies.</p>
   <p><a href="/en/about/">About this site</a> · <a href="/en/privacy/">Privacy policy</a></p>
 </footer>
-<script type="application/json" id="tool-labels">{"wagesLabel":"Total wages, last 3 months","daysLast3Label":"Days in those 3 months","daysWorkedLabel":"Total days worked","unitWon":"KRW","unitDays":"days","resultLabel":"Estimated severance pay","dailyWageLabel":"Average daily wage","errorInvalid":"Enter all values as numbers greater than zero."}</script>
-<script src="/assets/logic/finance.js?v=0077366b"></script>
-<script src="/assets/common.js?v=0077366b"></script>
-<script src="/assets/tools/severance.js?v=0077366b" defer></script>
+<script type="application/json" id="tool-labels">{"hireDateLabel":"Start date","leaveDateLabel":"Leaving date (the day after your last working day)","wagesLabel":"Total wages, last 3 months (base pay and allowances)","annualBonusLabel":"Bonuses paid in the last 12 months (optional)","annualLeavePayLabel":"Unused annual leave pay (optional, leave accrued in the previous year)","unitWon":"KRW","resultLabel":"Estimated severance pay","dailyWageLabel":"Average daily wage","daysWorkedResultLabel":"Days employed","periodLabel":"Average wage period","periodDaysFormat":"{days} days","errorInvalid":"Enter wages, bonuses, and leave pay as numbers of 0 or more.","errorDateOrder":"The leaving date must be after the start date.","noticeUnderOneYear":"With less than one year of service, statutory severance pay does not apply (Ministry of Employment and Labor)."}</script>
+<script src="/assets/logic/finance.js?v=397b8886"></script>
+<script src="/assets/common.js?v=397b8886"></script>
+<script src="/assets/tools/severance.js?v=397b8886" defer></script>
 </body>
 </html>

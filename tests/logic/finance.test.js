@@ -45,3 +45,52 @@ test('금리 0%에서 나누어떨어지지 않아도 총 이자는 0이다', ()
   assert.equal(cents.payment, 333.33);
   assert.equal(cents.totalInterest, 0);
 });
+
+const { severancePeriod } = require('../../src/logic/finance');
+
+test('퇴직일 이전 3개월 산정 기간과 일수를 구한다', () => {
+  const r = severancePeriod({ hireDate: '2025-10-01', leaveDate: '2026-10-01' });
+  assert.equal(r.error, null);
+  assert.equal(r.periodStart, '2026-07-01');
+  assert.equal(r.periodEnd, '2026-09-30');
+  assert.equal(r.daysLast3Months, 92);
+  assert.equal(r.daysWorked, 365);
+});
+
+test('고용노동부 예시처럼 7월 16일 퇴직이면 4월 16일부터 7월 15일까지다', () => {
+  const r = severancePeriod({ hireDate: '2023-07-16', leaveDate: '2024-07-16' });
+  assert.equal(r.periodStart, '2024-04-16');
+  assert.equal(r.periodEnd, '2024-07-15');
+  assert.equal(r.daysLast3Months, 91);
+  assert.equal(r.daysWorked, 366);
+});
+
+test('3개월 전 같은 날이 없으면 그 달의 마지막 날로 맞춘다', () => {
+  const r = severancePeriod({ hireDate: '2020-01-01', leaveDate: '2026-05-31' });
+  assert.equal(r.periodStart, '2026-02-28');
+  assert.equal(r.periodEnd, '2026-05-30');
+  assert.equal(r.daysLast3Months, 92);
+});
+
+test('퇴직일이 입사일보다 늦지 않거나 날짜가 잘못되면 오류를 돌려준다', () => {
+  assert.equal(severancePeriod({ hireDate: '2026-05-01', leaveDate: '2026-05-01' }).error, 'leave_before_hire');
+  assert.equal(severancePeriod({ hireDate: '2026-13-01', leaveDate: '2026-05-01' }).error, 'invalid_date');
+});
+
+test('상여금과 연차수당은 3/12을 3개월 임금에 더한다', () => {
+  const r = severancePay({
+    wagesLast3Months: 9000000,
+    daysLast3Months: 92,
+    daysWorked: 365,
+    annualBonus: 4000000,
+    annualLeavePay: 1200000,
+  });
+  assert.equal(r.wageBase, 10300000);
+  assert.equal(r.severance, 3358696);
+  assert.equal(r.eligible, true);
+});
+
+test('근속 1년 미만이면 지급 대상이 아니라고 표시한다', () => {
+  const r = severancePay({ wagesLast3Months: 9000000, daysLast3Months: 90, daysWorked: 364 });
+  assert.equal(r.eligible, false);
+});
