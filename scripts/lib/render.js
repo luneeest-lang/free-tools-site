@@ -516,15 +516,25 @@ ${footer(ui, lang)}
 }
 
 function renderRootIndex({ ui, origin }) {
+  const title = `${ui.siteName} | ${ui.home}`;
   return `<!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">${verificationTag()}
-  <title>${escapeHtml(ui.siteName)}</title>
+  <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(ui.homeDescription)}">
+  <link rel="canonical" href="${escapeHtml(origin)}/">
   <link rel="alternate" hreflang="ko" href="${escapeHtml(origin)}/ko/">
-  <link rel="alternate" hreflang="en" href="${escapeHtml(origin)}/en/">
+  <link rel="alternate" hreflang="en" href="${escapeHtml(origin)}/en/">${openGraphTags({
+    lang: 'ko',
+    title,
+    description: ui.homeDescription,
+    url: `${origin}/`,
+    origin,
+    siteName: ui.siteName,
+    type: 'website',
+  })}
   <link rel="stylesheet" href="${asset('/assets/style.css')}">${iconTags()}${adsenseTag()}
   <script>
     if (navigator.language && navigator.language.indexOf('ko') === 0) {
