@@ -94,3 +94,49 @@ test('근속 1년 미만이면 지급 대상이 아니라고 표시한다', () =
   const r = severancePay({ wagesLast3Months: 9000000, daysLast3Months: 90, daysWorked: 364 });
   assert.equal(r.eligible, false);
 });
+
+const { loanSchedule } = require('../../src/logic/finance');
+
+test('원리금균등 상환표의 합계는 기존 월 상환액 계산과 같다', () => {
+  const s = loanSchedule({ principal: 100000000, annualRatePercent: 5, months: 360, method: 'equalPayment' });
+  assert.equal(s.rows.length, 360);
+  assert.equal(s.firstPayment, 536822);
+  assert.equal(s.lastPayment, 536822);
+  assert.equal(s.totalPayment, 193255920);
+  assert.equal(s.totalInterest, 93255920);
+  assert.equal(s.rows[0].interest, 416667);
+  assert.equal(s.rows[0].principal, 120155);
+  assert.equal(s.rows[359].balance, 0);
+});
+
+test('원금균등 상환은 첫 달이 가장 크고 점점 줄어든다', () => {
+  const s = loanSchedule({ principal: 100000000, annualRatePercent: 3, months: 60, method: 'equalPrincipal' });
+  assert.equal(s.firstPayment, 1916667);
+  assert.equal(s.lastPayment, 1670833);
+  assert.equal(s.totalInterest, 7625000);
+  assert.equal(s.totalPayment, 107625000);
+  assert.equal(s.rows[59].balance, 0);
+});
+
+test('만기일시 상환은 매달 이자만 내고 마지막 달에 원금을 갚는다', () => {
+  const s = loanSchedule({ principal: 100000000, annualRatePercent: 3, months: 60, method: 'bullet' });
+  assert.equal(s.firstPayment, 250000);
+  assert.equal(s.lastPayment, 100250000);
+  assert.equal(s.totalInterest, 15000000);
+  assert.equal(s.rows[58].balance, 100000000);
+  assert.equal(s.rows[59].balance, 0);
+});
+
+test('상환표도 소수점 둘째 자리 옵션을 따른다', () => {
+  const s = loanSchedule({ principal: 100000, annualRatePercent: 5, months: 360, method: 'equalPayment', decimals: 2 });
+  assert.equal(s.firstPayment, 536.82);
+  assert.equal(s.totalInterest, 93255.2);
+});
+
+test('금리 0%에서는 어떤 방식이든 이자가 0이다', () => {
+  for (const method of ['equalPayment', 'equalPrincipal', 'bullet']) {
+    const s = loanSchedule({ principal: 1200, annualRatePercent: 0, months: 12, method });
+    assert.equal(s.totalInterest, 0, method);
+    assert.equal(s.totalPayment, 1200, method);
+  }
+});

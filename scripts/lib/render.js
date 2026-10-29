@@ -199,6 +199,21 @@ function renderReferences(tool, ui) {
   return parts.join('\n  ');
 }
 
+function renderSchedule(labels) {
+  const columns = ['colMonth', 'colPayment', 'colPrincipal', 'colInterest', 'colBalance']
+    .map((key) => `<th scope="col">${escapeHtml(labels[key])}</th>`)
+    .join('');
+  return `<details class="schedule" id="schedule">
+    <summary>${escapeHtml(labels.scheduleLabel)}</summary>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>${columns}</tr></thead>
+        <tbody id="schedule-body"></tbody>
+      </table>
+    </div>
+  </details>`;
+}
+
 function renderRelatedGuide(relatedGuide, ui) {
   if (!relatedGuide) return '';
   return `<section class="related-guide">
@@ -231,6 +246,7 @@ ${header({ lang, ui, alternates: alternates.paths })}
     </div>
     ${renderErrors(form.errorKeys, labels)}
   </form>
+  ${form.schedule ? renderSchedule(labels) : ''}
   <section class="howto">
     <h2>${escapeHtml(ui.howToHeading)}</h2>
     <ol>${tool.howTo.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>

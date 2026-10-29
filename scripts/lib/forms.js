@@ -4,13 +4,25 @@ const TOOL_FORMS = {
       { id: 'principal', labelKey: 'principalLabel', type: 'text', inputmode: 'decimal', unitKey: 'unitWon' },
       { id: 'rate', labelKey: 'rateLabel', type: 'text', inputmode: 'decimal', unitKey: 'unitPercent' },
       { id: 'months', labelKey: 'monthsLabel', type: 'text', inputmode: 'numeric', unitKey: 'unitMonths' },
+      {
+        id: 'method',
+        labelKey: 'methodLabel',
+        type: 'select',
+        options: [
+          { value: 'equalPayment', labelKey: 'methodEqualPayment' },
+          { value: 'equalPrincipal', labelKey: 'methodEqualPrincipal' },
+          { value: 'bullet', labelKey: 'methodBullet' },
+        ],
+      },
     ],
     outputs: [
       { id: 'payment', labelKey: 'paymentLabel', primary: true },
+      { id: 'lastPayment', labelKey: 'lastPaymentLabel' },
       { id: 'totalInterest', labelKey: 'totalInterestLabel' },
       { id: 'totalPayment', labelKey: 'totalPaymentLabel' },
     ],
     errorKeys: ['errorInvalid'],
+    schedule: true,
   },
   'date-diff': {
     inputs: [

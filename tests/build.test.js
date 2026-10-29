@@ -142,7 +142,7 @@ test('한국어 도구 페이지에 확장 콘텐츠 섹션이 렌더링된다',
   assert.match(page, /<section class="notes">/);
   assert.match(page, /<section class="sources">/);
   assert.match(page, /rel="noopener noreferrer"/);
-  assert.match(page, /class="updated"[^>]*>[^<]*2026-10-19/);
+  assert.match(page, /class="updated"[^>]*>[^<]*2026-10-29/);
 });
 
 test('출처가 없는 도구는 참고 자료 섹션을 만들지 않는다', () => {
@@ -154,7 +154,7 @@ test('영어 도구 페이지에도 확장 콘텐츠 섹션이 렌더링된다',
   assert.match(page, /<section class="formula">/);
   assert.match(page, /<section class="example">/);
   assert.match(page, /<section class="notes">/);
-  assert.match(page, /class="updated"[^>]*>Last updated: 2026-10-22/);
+  assert.match(page, /class="updated"[^>]*>Last updated: 2026-10-29/);
 });
 
 test('영어 BMI와 퇴직금 페이지는 출처 섹션이 있고 텍스트 도구는 없다', () => {
@@ -389,5 +389,18 @@ test('퇴직금 계산기는 입사일과 퇴직일, 상여금, 연차수당을 
     }
     assert.doesNotMatch(page, /id="daysLast3"/, `${lang} old input removed`);
     assert.match(page, /type="date"/);
+  }
+});
+
+test('대출 계산기에 상환 방식 선택과 월별 상환표가 있다', () => {
+  for (const lang of ['ko', 'en']) {
+    const page = read(`${lang}/loan-calculator/index.html`);
+    assert.match(page, /<select id="method"/, lang);
+    for (const value of ['equalPayment', 'equalPrincipal', 'bullet']) {
+      assert.match(page, new RegExp(`<option value="${value}"`), `${lang} ${value}`);
+    }
+    assert.match(page, /<output id="lastPayment">/, lang);
+    assert.match(page, /<details class="schedule"/, lang);
+    assert.match(page, /<tbody id="schedule-body">/, lang);
   }
 });

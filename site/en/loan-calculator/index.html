@@ -7,16 +7,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
-  <title>Loan Interest Calculator | Monthly Payment</title>
-  <meta name="description" content="Enter loan amount, interest rate, and term to see your monthly payment and total interest using equal monthly payments.">
+  <title>Loan Calculator | Amortization Schedule, 3 Repayment Methods</title>
+  <meta name="description" content="Enter a loan amount, rate, and term to compare equal payments, equal principal, and interest-only repayment, with a monthly schedule.">
   <link rel="canonical" href="https://moatool.com/en/loan-calculator/">
     <link rel="alternate" hreflang="ko" href="https://moatool.com/ko/loan-calculator/">
     <link rel="alternate" hreflang="en" href="https://moatool.com/en/loan-calculator/">
     <link rel="alternate" hreflang="x-default" href="https://moatool.com/ko/loan-calculator/">
-  <link rel="stylesheet" href="/assets/style.css?v=397b8886">
-  <link rel="icon" href="/assets/favicon.svg?v=397b8886" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/style.css?v=44f1d74c">
+  <link rel="icon" href="/assets/favicon.svg?v=44f1d74c" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=397b8886">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=44f1d74c">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4375672351563367" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -27,7 +27,7 @@
 </header>
 <main class="tool" data-category="calc">
   <h1>Loan interest calculator</h1>
-  <div class="intro"><p>Use this loan interest calculator to find your monthly payment and total interest in one step. Enter the loan amount, annual interest rate, and repayment term. The calculation uses the equal-payment (amortized) method. At a 0% rate, the payment is simply the principal divided by the number of months.</p>
+  <div class="intro"><p>Use this loan interest calculator to compare monthly payments and total interest across three repayment methods: equal payments (amortized), equal principal, and interest-only with the principal repaid at maturity. A monthly amortization schedule shows how much of each payment goes to principal and interest.</p>
 <p>Actual loan terms vary by lender. Treat these results as an estimate and confirm the final figures with your lender.</p></div>
   <form class="tool-form" id="tool-form">
     <div class="field">
@@ -51,10 +51,18 @@
     <span class="unit">months</span>
   </div>
 </div>
+<div class="field">
+  <label for="method">Repayment method</label>
+  <select id="method" name="method"><option value="equalPayment">Equal payments (amortized)</option><option value="equalPrincipal">Equal principal</option><option value="bullet">Interest-only, principal at maturity</option></select>
+</div>
     <div class="results" aria-live="polite">
       <div class="output output-primary">
-  <span class="output-label">Monthly payment</span>
+  <span class="output-label">First payment</span>
   <output id="payment"></output>
+</div>
+<div class="output">
+  <span class="output-label">Last payment</span>
+  <output id="lastPayment"></output>
 </div>
 <div class="output">
   <span class="output-label">Total interest</span>
@@ -67,24 +75,35 @@
     </div>
     <p class="error" data-error="errorInvalid" role="alert" hidden>Enter valid numbers for amount, rate, and term.</p>
   </form>
+  <details class="schedule" id="schedule">
+    <summary>Show the monthly schedule</summary>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Month</th><th scope="col">Payment</th><th scope="col">Principal</th><th scope="col">Interest</th><th scope="col">Balance</th></tr></thead>
+        <tbody id="schedule-body"></tbody>
+      </table>
+    </div>
+  </details>
   <section class="howto">
     <h2>How to use</h2>
-    <ol><li>Enter the loan amount.</li><li>Enter the annual interest rate as a percentage. Example: 5.0</li><li>Enter the repayment term in months. Example: 30 years is 360</li></ol>
+    <ol><li>Enter the loan amount.</li><li>Enter the annual interest rate as a percentage. Example: 5.0</li><li>Enter the repayment term in months. Example: 30 years is 360</li><li>Choose a repayment method and open the monthly schedule to see principal and interest for each payment.</li></ol>
   </section>
   <section class="formula">
     <h2>How it works</h2>
-    <p>This calculator uses the standard amortization formula, where every monthly payment is the same amount.</p>
-<p>Monthly payment = P × r × (1 + r)^n ÷ ((1 + r)^n − 1)</p>
-<p>Here P is the loan amount, r is the monthly interest rate (annual rate ÷ 12 ÷ 100), and n is the number of monthly payments. If the rate is 0%, the formula does not apply, so the payment is P ÷ n. Total repayment is the monthly payment times n, and total interest is total repayment minus P.</p>
+    <p>The three methods work as follows, where r is the monthly rate (annual rate ÷ 12 ÷ 100) and n is the number of months.</p>
+<p>Equal payments: every payment is the same. Monthly payment = P × r × (1 + r)^n ÷ ((1 + r)^n − 1).</p>
+<p>Equal principal: you repay P ÷ n of principal each month plus interest on the remaining balance, so the first payment is the largest and payments shrink over time.</p>
+<p>Interest-only: you pay P × r of interest each month and repay the whole principal in the last month.</p>
+<p>At a 0% rate there is no interest.</p>
   </section>
   <section class="example">
     <h2>Example</h2>
-    <p>Take a loan of 100,000 at a 5% annual rate over 360 months (30 years). The monthly payment is 536.82 and the total repayment is 193,255.20, so the total interest is 93,255.20.</p>
-<p>With the same loan at 4%, the monthly payment drops to 477.42 and the total interest to 71,871.20. One percentage point of interest changes the total cost by more than 20,000 over 30 years.</p>
+    <p>Take a loan of 100,000 at 5% over 360 months with equal payments. The monthly payment is 536.82 and the total interest is 93,255.20.</p>
+<p>For 100,000 at 3% over 60 months: equal payments cost 1,796.87 a month; equal principal starts at 1,916.67 and falls to 1,670.83 in the last month; interest-only costs 250.00 a month and 100,250.00 in the last month.</p>
   </section>
   <section class="notes">
     <h2>Good to know</h2>
-    <ul><li>Early payments are mostly interest, and the share going to principal grows over time. This is how an amortized loan works, as described by the U.S. Consumer Financial Protection Bureau.</li><li>A longer term lowers the monthly payment but increases the total interest you pay over the life of the loan.</li><li>Amounts are shown to two decimal places. The monthly payment is rounded to the nearest cent, and the total repayment is that rounded payment times the number of months. Your lender may round differently, so the exact figures can differ by a few cents.</li><li>The calculator assumes a fixed interest rate for the whole term. It does not include fees, insurance, taxes, or early-repayment charges.</li><li>Results are estimates. Confirm the exact payment with your lender.</li></ul>
+    <ul><li>Early payments on an equal-payment loan are mostly interest, and the share going to principal grows over time, as the U.S. Consumer Financial Protection Bureau describes.</li><li>Interest-only repayment has the lowest monthly payments but the highest total interest, because the full principal stays outstanding until the end.</li><li>Amounts are shown to two decimal places. The last equal-payment row absorbs rounding differences, and equal-principal rows are rounded one by one, so a column total can differ from the summary by a few cents.</li><li>The calculator assumes a fixed interest rate for the whole term. It does not include fees, insurance, taxes, or early-repayment charges.</li><li>Results are estimates. Confirm the exact payment with your lender.</li></ul>
   </section>
   
   <section class="faq">
@@ -97,15 +116,15 @@
     <h2>Sources</h2>
     <ul><li><a href="https://www.consumerfinance.gov/ask-cfpb/what-is-amortization-and-how-could-it-affect-my-auto-loan-en-771/" target="_blank" rel="noopener noreferrer">CFPB: What is amortization and how could it affect my auto loan?</a></li><li><a href="https://www.consumerfinance.gov/ask-cfpb/how-does-paying-down-a-mortgage-work-en-1943/" target="_blank" rel="noopener noreferrer">CFPB: How does paying down a mortgage work?</a></li></ul>
   </section>
-  <p class="updated">Last updated: 2026-10-22</p>
+  <p class="updated">Last updated: 2026-10-29</p>
 </main>
 <footer class="site-footer">
   <p>Values you enter are never stored or sent to a server. Advertising partners may use cookies.</p>
   <p><a href="/en/about/">About this site</a> · <a href="/en/privacy/">Privacy policy</a></p>
 </footer>
-<script type="application/json" id="tool-labels">{"principalLabel":"Loan amount","rateLabel":"Annual interest rate","monthsLabel":"Repayment term","unitWon":"","unitPercent":"%","unitMonths":"months","paymentLabel":"Monthly payment","totalInterestLabel":"Total interest","totalPaymentLabel":"Total repayment","errorInvalid":"Enter valid numbers for amount, rate, and term."}</script>
-<script src="/assets/logic/finance.js?v=397b8886"></script>
-<script src="/assets/common.js?v=397b8886"></script>
-<script src="/assets/tools/loan-calculator.js?v=397b8886" defer></script>
+<script type="application/json" id="tool-labels">{"principalLabel":"Loan amount","rateLabel":"Annual interest rate","monthsLabel":"Repayment term","unitWon":"","unitPercent":"%","unitMonths":"months","paymentLabel":"First payment","totalInterestLabel":"Total interest","totalPaymentLabel":"Total repayment","errorInvalid":"Enter valid numbers for amount, rate, and term.","lastPaymentLabel":"Last payment","methodLabel":"Repayment method","methodEqualPayment":"Equal payments (amortized)","methodEqualPrincipal":"Equal principal","methodBullet":"Interest-only, principal at maturity","scheduleLabel":"Show the monthly schedule","colMonth":"Month","colPayment":"Payment","colPrincipal":"Principal","colInterest":"Interest","colBalance":"Balance"}</script>
+<script src="/assets/logic/finance.js?v=44f1d74c"></script>
+<script src="/assets/common.js?v=44f1d74c"></script>
+<script src="/assets/tools/loan-calculator.js?v=44f1d74c" defer></script>
 </body>
 </html>

@@ -355,3 +355,12 @@ test('퇴직금 라벨에 날짜, 상여금, 연차수당, 1년 미만 안내가
     }
   }
 });
+
+test('대출 라벨에 상환 방식과 상환표 항목이 있다', () => {
+  for (const lang of LANGS) {
+    const { labels } = load(lang, 'loan-calculator');
+    for (const key of ['methodLabel', 'methodEqualPayment', 'methodEqualPrincipal', 'methodBullet', 'lastPaymentLabel', 'scheduleLabel', 'colMonth', 'colPayment', 'colPrincipal', 'colInterest', 'colBalance']) {
+      assert.ok(key in labels, `${lang} loan label ${key}`);
+    }
+  }
+});

@@ -385,6 +385,53 @@ textarea {
   margin: 0;
 }
 
+.schedule {
+  margin-top: 16px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+
+.schedule summary {
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.table-wrap {
+  margin-top: 12px;
+  max-height: 420px;
+  overflow: auto;
+}
+
+.schedule table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.schedule th,
+.schedule td {
+  padding: 6px 8px;
+  text-align: right;
+  white-space: nowrap;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.schedule th:first-child,
+.schedule td:first-child {
+  text-align: center;
+}
+
+.schedule thead th {
+  position: sticky;
+  top: 0;
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
 .notes li,
 .sources li,
 .privacy li {
@@ -463,5 +510,18 @@ textarea {
 
   .tool-form {
     padding: 20px 16px;
+  }
+
+  .schedule {
+    padding: 14px 10px;
+  }
+
+  .schedule table {
+    font-size: 12px;
+  }
+
+  .schedule th,
+  .schedule td {
+    padding: 6px 4px;
   }
 }
