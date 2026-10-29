@@ -3,7 +3,7 @@
   "title": "Korean Age Calculator | International, Year, Counting Age",
   "description": "Find your Korean age in all three systems: international age (man-nai), year age (yeon-nai), and traditional counting age (se-neun-nai).",
   "h1": "Korean age calculator",
-  "intro": "Korea has used three ways of counting age. Enter your date of birth to see all three: international age (만 나이), year age (연 나이), and the traditional counting age (세는 나이), plus the days left until your next birthday.\n\nSince June 28, 2023, Korean laws and official documents use international age unless a specific law says otherwise. Some laws, such as the Juvenile Protection Act and the Military Service Act, still use year age.",
+  "intro": "Korea has used three ways of counting age. Enter your date of birth to see all three: international age (만 나이), year age (연 나이), and the traditional counting age (세는 나이), plus the days left until your next birthday.\n\nSince June 28, 2023, Korean laws and official documents use international age unless a specific law says otherwise. Some laws use year age instead. The Juvenile Protection Act, for example, stops treating people as minors from January 1 of the year they turn 19.",
   "howTo": [
     "Pick your date of birth.",
     "Check the reference date. It starts as today.",

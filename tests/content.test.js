@@ -210,8 +210,8 @@ test('개인정보처리방침 외부 링크는 https 주소다', () => {
   }
 });
 
-const GUIDE_SLUGS = ['severance', 'loan-repayment-methods', 'bmi', 'char-count'];
-const GUIDE_SOURCE_SLUGS = ['severance', 'loan-repayment-methods', 'bmi'];
+const GUIDE_SLUGS = ['severance', 'loan-repayment-methods', 'weekly-holiday-pay', 'korean-age', 'bmi', 'char-count'];
+const GUIDE_SOURCE_SLUGS = ['severance', 'loan-repayment-methods', 'weekly-holiday-pay', 'korean-age', 'bmi'];
 
 function loadGuide(slug) {
   return JSON.parse(fs.readFileSync(path.join(ROOT, 'ko', 'guides', `${slug}.json`), 'utf8'));
@@ -373,7 +373,7 @@ test('대출 라벨에 상환 방식과 상환표 항목이 있다', () => {
   }
 });
 
-const EN_GUIDE_SLUGS = ['korean-severance-pay', 'korean-bmi-categories'];
+const EN_GUIDE_SLUGS = ['korean-severance-pay', 'korean-age-explained', 'korean-bmi-categories'];
 
 function loadEnGuide(slug) {
   return JSON.parse(fs.readFileSync(path.join(ROOT, 'en', 'guides', `${slug}.json`), 'utf8'));

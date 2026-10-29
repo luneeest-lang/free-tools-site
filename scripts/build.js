@@ -34,8 +34,8 @@ const SLUGS = [
 ];
 const LANGS = ['ko', 'en'];
 const GUIDE_SLUGS = {
-  ko: ['severance', 'loan-repayment-methods', 'bmi', 'char-count'],
-  en: ['korean-severance-pay', 'korean-bmi-categories'],
+  ko: ['severance', 'loan-repayment-methods', 'weekly-holiday-pay', 'korean-age', 'bmi', 'char-count'],
+  en: ['korean-severance-pay', 'korean-age-explained', 'korean-bmi-categories'],
 };
 
 function listFiles(dir) {

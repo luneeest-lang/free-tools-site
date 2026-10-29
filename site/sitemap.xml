@@ -170,6 +170,15 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/loan-repayment-methods/"/>
   </url>
   <url>
+    <loc>https://moatool.com/ko/guides/weekly-holiday-pay/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/weekly-holiday-pay/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/ko/guides/korean-age/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/korean-age/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/guides/korean-age-explained/"/>
+  </url>
+  <url>
     <loc>https://moatool.com/ko/guides/bmi/</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/bmi/"/>
   </url>
@@ -181,6 +190,11 @@
     <loc>https://moatool.com/en/guides/korean-severance-pay/</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/severance/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/guides/korean-severance-pay/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/en/guides/korean-age-explained/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/korean-age/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/guides/korean-age-explained/"/>
   </url>
   <url>
     <loc>https://moatool.com/en/guides/korean-bmi-categories/</loc>

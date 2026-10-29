@@ -58,9 +58,9 @@ test('계산기 페이지에 폼 입력 칸이 있다', () => {
   assert.match(page, /id="months"/);
 });
 
-test('페이지 수는 43 (루트 1, 언어 홈 2, 도구 28, 개인정보 2, 소개 2, 가이드 목록 2, 가이드 6)', () => {
+test('페이지 수는 46 (루트 1, 언어 홈 2, 도구 28, 개인정보 2, 소개 2, 가이드 목록 2, 가이드 9)', () => {
   const result = buildSite({ rootDir: ROOT, outDir: fs.mkdtempSync(path.join(os.tmpdir(), 'site-count-')) });
-  assert.equal(result.pages, 43);
+  assert.equal(result.pages, 46);
 });
 
 test('로직 파일이 site/assets/logic에 복사된다', () => {
@@ -509,4 +509,13 @@ test('기준일 입력은 공유 링크에서 빠진다', () => {
   assert.match(read('ko/discharge-date/index.html'), /<input id="on" name="on" type="date" data-no-share>/);
   assert.match(read('ko/korean-age/index.html'), /<input id="on" name="on" type="date" data-no-share>/);
   assert.match(read('ko/discharge-date/index.html'), /<input id="enlist" name="enlist" type="date">/);
+});
+
+test('새 가이드가 도구와 연결되고 만 나이 가이드는 두 언어가 짝을 이룬다', () => {
+  assert.match(read('ko/hourly-wage/index.html'), /href="\/ko\/guides\/weekly-holiday-pay\/"/);
+  assert.match(read('ko/korean-age/index.html'), /href="\/ko\/guides\/korean-age\/"/);
+  assert.match(read('en/korean-age/index.html'), /href="\/en\/guides\/korean-age-explained\/"/);
+  assert.match(read('ko/guides/weekly-holiday-pay/index.html'), /class="cta" href="\/ko\/hourly-wage\/"/);
+  assert.match(read('ko/guides/korean-age/index.html'), /hreflang="en" href="https:\/\/moatool\.com\/en\/guides\/korean-age-explained\/"/);
+  assert.match(read('en/guides/korean-age-explained/index.html'), /class="lang-switch" href="\/ko\/guides\/korean-age\/"/);
 });
