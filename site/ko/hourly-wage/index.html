@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="naver-site-verification" content="039452e4a2ed6ef92166e9a02eaa07735279ac95" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+  <title>시급 월급 계산기 | 주휴수당 포함 2027 최저임금 환산</title>
+  <meta name="description" content="시급을 월급으로, 월급을 시급으로 바꿉니다. 주 근무시간에 따라 주휴수당과 월 환산 시간(주 40시간이면 209시간)을 자동으로 계산합니다.">
+  <link rel="canonical" href="https://moatool.com/ko/hourly-wage/">
+    <link rel="alternate" hreflang="ko" href="https://moatool.com/ko/hourly-wage/">
+    <link rel="alternate" hreflang="en" href="https://moatool.com/en/hourly-wage/">
+    <link rel="alternate" hreflang="x-default" href="https://moatool.com/ko/hourly-wage/">
+  <link rel="stylesheet" href="/assets/style.css?v=8b42a3f0">
+  <link rel="icon" href="/assets/favicon.svg?v=8b42a3f0" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=8b42a3f0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4375672351563367" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/ko/">무료 도구</a>
+  <nav class="site-nav" aria-label="주 메뉴"><a href="/ko/">도구</a><a href="/ko/guides/">가이드</a><a href="/ko/about/">소개</a></nav>
+  <a class="lang-switch" href="/en/hourly-wage/" hreflang="en" lang="en">English</a>
+</header>
+<main class="tool" data-category="calc">
+  <h1>시급 월급 계산기</h1>
+  <div class="intro"><p>시급을 넣으면 주휴수당을 포함한 월급을, 월급을 넣으면 시급을 계산합니다. 주 근무시간에 맞춰 주휴시간과 월 환산 시간을 자동으로 구하므로 아르바이트, 단시간 근로, 정규직 모두 쓸 수 있습니다.</p>
+<p>2027년 최저임금은 시간급 10,700원이며, 주 40시간 근무 기준 월 환산액은 2,236,300원입니다(고용노동부 고시).</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="mode">계산 방향</label>
+  <select id="mode" name="mode"><option value="hourlyToMonthly">시급 → 월급</option><option value="monthlyToHourly">월급 → 시급</option></select>
+</div>
+<div class="field">
+  <label for="amount">시급 또는 월급</label>
+  <div class="field-row">
+    <input id="amount" name="amount" type="text" inputmode="decimal">
+    <span class="unit">원</span>
+  </div>
+</div>
+<div class="field">
+  <label for="weeklyHours">1주 소정근로시간</label>
+  <div class="field-row">
+    <input id="weeklyHours" name="weeklyHours" type="text" inputmode="decimal">
+    <span class="unit">시간</span>
+  </div>
+</div>
+<div class="field field-check">
+  <input id="includeHoliday" name="includeHoliday" type="checkbox" checked>
+  <label for="includeHoliday">주휴수당 포함 (주 15시간 이상)</label>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">환산 결과</span>
+  <output id="result"></output>
+</div>
+<div class="output">
+  <span class="output-label">1주 주휴수당</span>
+  <output id="weeklyHolidayPay"></output>
+</div>
+<div class="output">
+  <span class="output-label">월 환산 시간</span>
+  <output id="monthlyHours"></output>
+</div>
+<div class="output">
+  <span class="output-label">연봉 환산 (월급 × 12)</span>
+  <output id="annual"></output>
+</div>
+    </div>
+    <p class="error" data-error="errorInvalidAmount" role="alert" hidden>금액을 0보다 큰 숫자로 입력해 주세요.</p>
+<p class="error" data-error="errorInvalidHours" role="alert" hidden>1주 소정근로시간은 0보다 크고 40 이하로 입력해 주세요.</p>
+  </form>
+  <div class="share">
+    <button type="button" class="copy-btn" data-share data-label="결과 링크 복사" data-copied="링크를 복사했습니다">결과 링크 복사</button>
+    <p class="share-hint">입력한 값이 링크에 담깁니다. 링크를 받은 사람도 같은 결과를 볼 수 있습니다.</p>
+  </div>
+  
+  <section class="howto">
+    <h2>사용 방법</h2>
+    <ol><li>시급→월급 또는 월급→시급 중 계산 방향을 고릅니다.</li><li>시급 또는 월급을 원 단위로 입력합니다.</li><li>1주 소정근로시간을 입력합니다. 주 5일 하루 8시간이면 40입니다.</li><li>주휴수당을 빼고 보려면 &quot;주휴수당 포함&quot;을 끕니다.</li></ol>
+  </section>
+  <section class="formula">
+    <h2>계산·처리 방식</h2>
+    <p>주휴시간 = 1주 소정근로시간 ÷ 40 × 8 (1주 소정근로시간이 15시간 이상일 때만)</p>
+<p>월 환산 시간 = (1주 소정근로시간 + 주휴시간) × 365 ÷ 7 ÷ 12, 소수점은 반올림합니다. 주 40시간이면 (40 + 8) × 4.345 ≈ 208.6이므로 209시간입니다.</p>
+<p>월급 = 시급 × 월 환산 시간, 시급 = 월급 ÷ 월 환산 시간(원 단위 반올림)입니다. 1주 주휴수당은 시급 × 주휴시간입니다.</p>
+  </section>
+  <section class="example">
+    <h2>예시</h2>
+    <p>2027년 최저임금 시급 10,700원으로 주 40시간 일하면 월 환산 시간은 209시간이고 월급은 10,700 × 209 = 2,236,300원입니다. 1주 주휴수당은 10,700 × 8 = 85,600원입니다.</p>
+<p>같은 시급으로 주 20시간 일하면 주휴시간은 4시간, 월 환산 시간은 (20 + 4) × 4.345 ≈ 104시간이므로 월급은 1,112,800원입니다. 주 14시간이면 주휴수당이 없어 월 환산 시간은 약 61시간입니다.</p>
+  </section>
+  <section class="notes">
+    <h2>알아 두세요</h2>
+    <ul><li>주휴수당은 1주 소정근로일을 개근해야 받을 수 있습니다. 결근한 주에는 주휴수당이 생기지 않을 수 있습니다.</li><li>1주 소정근로시간 15시간 이상 여부는 4주 동안을 평균해 판단합니다.</li><li>이 계산기는 세금과 4대 보험료를 빼기 전 금액을 보여 줍니다. 실제 받는 금액은 공제 후 금액입니다.</li><li>연장·야간·휴일근로 가산수당은 포함하지 않습니다. 월 환산 시간을 정수로 반올림하는 방식은 회사마다 다를 수 있습니다.</li></ul>
+  </section>
+  
+  <section class="faq">
+    <h2>자주 묻는 질문</h2>
+    <details><summary>주 40시간인데 왜 209시간인가요?</summary><p>주 40시간에 유급 주휴 8시간을 더한 48시간에, 한 달 평균 주 수(365 ÷ 7 ÷ 12 ≈ 4.345)를 곱하면 약 208.6시간이고 이를 반올림한 값이 209시간입니다. 고용노동부도 월 환산액을 209시간 기준으로 안내합니다.</p></details>
+<details><summary>주 15시간 미만이면 주휴수당이 없나요?</summary><p>네. 근로기준법은 4주 동안을 평균하여 1주 소정근로시간이 15시간 미만인 근로자에게 주휴일 규정을 적용하지 않습니다. 이 계산기도 15시간 미만이면 주휴시간을 0으로 계산합니다.</p></details>
+<details><summary>연장근로나 야간근로 수당도 계산되나요?</summary><p>아니요. 이 계산기는 1주 소정근로시간 40시간 이내의 기본급만 계산합니다. 연장·야간·휴일근로 가산수당은 따로 계산해야 합니다.</p></details>
+  </section>
+  <section class="sources">
+    <h2>참고 자료</h2>
+    <ul><li><a href="https://www.moel.go.kr/news/enews/report/enewsView.do?news_seq=19744" target="_blank" rel="noopener noreferrer">고용노동부: 2027년도 적용 최저임금 시간급 10,700원 (보도자료)</a></li><li><a href="https://www.law.go.kr/법령/근로기준법" target="_blank" rel="noopener noreferrer">국가법령정보센터: 근로기준법 (제18조, 제55조)</a></li></ul>
+  </section>
+  <p class="updated">최종 수정일: 2026-10-29</p>
+</main>
+<footer class="site-footer">
+  <p>입력하신 값은 저장되거나 서버로 전송되지 않습니다. 광고 서비스는 쿠키를 사용할 수 있습니다.</p>
+  <p><a href="/ko/guides/">가이드</a> · <a href="/ko/about/">사이트 소개</a> · <a href="/ko/privacy/">개인정보처리방침</a></p>
+</footer>
+<script type="application/json" id="tool-labels">{"modeLabel":"계산 방향","modeHourlyToMonthly":"시급 → 월급","modeMonthlyToHourly":"월급 → 시급","amountLabel":"시급 또는 월급","weeklyHoursLabel":"1주 소정근로시간","includeHolidayLabel":"주휴수당 포함 (주 15시간 이상)","unitWon":"원","unitHours":"시간","wonFormat":"{n}원","monthlyPrefix":"월급","hourlyPrefix":"시급","resultLabel":"환산 결과","weeklyHolidayPayLabel":"1주 주휴수당","monthlyHoursLabel":"월 환산 시간","annualLabel":"연봉 환산 (월급 × 12)","errorInvalidAmount":"금액을 0보다 큰 숫자로 입력해 주세요.","errorInvalidHours":"1주 소정근로시간은 0보다 크고 40 이하로 입력해 주세요.","hoursFormat":"{n}시간"}</script>
+<script src="/assets/logic/finance.js?v=8b42a3f0"></script>
+<script src="/assets/common.js?v=8b42a3f0"></script>
+<script src="/assets/tools/hourly-wage.js?v=8b42a3f0" defer></script>
+</body>
+</html>

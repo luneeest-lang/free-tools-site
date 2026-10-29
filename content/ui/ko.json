@@ -27,5 +27,8 @@
   "aboutLink": "사이트 소개",
   "navLabel": "주 메뉴",
   "copyLabel": "결과 복사",
-  "copiedLabel": "복사했습니다"
+  "copiedLabel": "복사했습니다",
+  "shareLabel": "결과 링크 복사",
+  "sharedLabel": "링크를 복사했습니다",
+  "shareHint": "입력한 값이 링크에 담깁니다. 링크를 받은 사람도 같은 결과를 볼 수 있습니다."
 }

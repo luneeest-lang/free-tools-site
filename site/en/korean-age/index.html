@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="naver-site-verification" content="039452e4a2ed6ef92166e9a02eaa07735279ac95" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+  <title>Korean Age Calculator | International, Year, Counting Age</title>
+  <meta name="description" content="Find your Korean age in all three systems: international age (man-nai), year age (yeon-nai), and traditional counting age (se-neun-nai).">
+  <link rel="canonical" href="https://moatool.com/en/korean-age/">
+    <link rel="alternate" hreflang="ko" href="https://moatool.com/ko/korean-age/">
+    <link rel="alternate" hreflang="en" href="https://moatool.com/en/korean-age/">
+    <link rel="alternate" hreflang="x-default" href="https://moatool.com/ko/korean-age/">
+  <link rel="stylesheet" href="/assets/style.css?v=8b42a3f0">
+  <link rel="icon" href="/assets/favicon.svg?v=8b42a3f0" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=8b42a3f0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4375672351563367" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/en/">Toolbox</a>
+  <nav class="site-nav" aria-label="Main menu"><a href="/en/">Tools</a><a href="/en/guides/">Guides</a><a href="/en/about/">About</a></nav>
+  <a class="lang-switch" href="/ko/korean-age/" hreflang="ko" lang="ko">한국어</a>
+</header>
+<main class="tool" data-category="calc">
+  <h1>Korean age calculator</h1>
+  <div class="intro"><p>Korea has used three ways of counting age. Enter your date of birth to see all three: international age (만 나이), year age (연 나이), and the traditional counting age (세는 나이), plus the days left until your next birthday.</p>
+<p>Since June 28, 2023, Korean laws and official documents use international age unless a specific law says otherwise. Some laws, such as the Juvenile Protection Act and the Military Service Act, still use year age.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="birth">Date of birth</label>
+  <div class="field-row">
+    <input id="birth" name="birth" type="date">
+    
+  </div>
+</div>
+<div class="field">
+  <label for="on">Reference date</label>
+  <div class="field-row">
+    <input id="on" name="on" type="date" data-no-share>
+    
+  </div>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">International age (만 나이)</span>
+  <output id="manAge"></output>
+</div>
+<div class="output">
+  <span class="output-label">Year age (연 나이)</span>
+  <output id="yearAge"></output>
+</div>
+<div class="output">
+  <span class="output-label">Counting age (세는 나이)</span>
+  <output id="countingAge"></output>
+</div>
+<div class="output">
+  <span class="output-label">Next birthday in</span>
+  <output id="daysToBirthday"></output>
+</div>
+    </div>
+    <p class="error" data-error="errorInvalidDate" role="alert" hidden>Enter a valid date.</p>
+<p class="error" data-error="errorBirthAfterBase" role="alert" hidden>The date of birth is after the reference date.</p>
+  </form>
+  <div class="share">
+    <button type="button" class="copy-btn" data-share data-label="Copy result link" data-copied="Link copied">Copy result link</button>
+    <p class="share-hint">The link contains the values you entered, so anyone you send it to sees the same result.</p>
+  </div>
+  
+  <section class="howto">
+    <h2>How to use</h2>
+    <ol><li>Pick your date of birth.</li><li>Check the reference date. It starts as today.</li><li>Read your international age, year age, counting age, and days to your next birthday.</li></ol>
+  </section>
+  <section class="formula">
+    <h2>How it works</h2>
+    <p>International age = reference year − birth year, minus 1 if this year&#39;s birthday has not yet arrived. The Korean Civil Act (Article 158) and the Framework Act on Administration (Article 7-2) count age this way, including the day of birth.</p>
+<p>Year age = reference year − birth year, regardless of birthday, so everyone born in the same year has the same year age. Counting age = year age + 1.</p>
+<p>For people born on February 29, the birthday is treated as March 1 in common years.</p>
+  </section>
+  <section class="example">
+    <h2>Example</h2>
+    <p>Someone born on May 10, 2000 is, on May 9, 2026, 25 in international age, 26 in year age, and 27 in counting age, with 1 day to the next birthday. On May 10 they turn 26.</p>
+<p>Someone born on February 29, 2000 is 24 through February 28, 2025 and turns 25 on March 1, 2025. In the leap year 2028 they turn 28 on February 29.</p>
+  </section>
+  <section class="notes">
+    <h2>Good to know</h2>
+    <ul><li>Since June 28, 2023, ages in Korean laws, contracts, and official documents mean international age unless a law says otherwise.</li><li>Some rules, such as the age for buying alcohol and tobacco or for military service, use year age. Check the rule that applies to you.</li><li>Results are for reference only.</li></ul>
+  </section>
+  
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>What is international age?</summary><p>You are 0 at birth and gain a year on each birthday. This is the age used in most countries, and the default in Korean law since June 2023.</p></details>
+<details><summary>What is the traditional Korean counting age?</summary><p>You are 1 at birth and everyone gains a year on January 1. It equals year age plus one. It is still heard in everyday conversation but is no longer used in law.</p></details>
+<details><summary>When does someone born on February 29 get older?</summary><p>In common years there is no February 29, so this calculator moves the birthday to March 1, following the Korean Civil Act rule that a year ending in a missing day ends on the last day of that month.</p></details>
+  </section>
+  <section class="sources">
+    <h2>Sources</h2>
+    <ul><li><a href="https://www.law.go.kr/법령/민법" target="_blank" rel="noopener noreferrer">National Law Information Center: Civil Act, Articles 158 and 160 (in Korean)</a></li><li><a href="https://www.law.go.kr/법령/행정기본법" target="_blank" rel="noopener noreferrer">National Law Information Center: Framework Act on Administration, Article 7-2 (in Korean)</a></li></ul>
+  </section>
+  <p class="updated">Last updated: 2026-10-29</p>
+</main>
+<footer class="site-footer">
+  <p>Values you enter are never stored or sent to a server. Advertising partners may use cookies.</p>
+  <p><a href="/en/guides/">Guides</a> · <a href="/en/about/">About this site</a> · <a href="/en/privacy/">Privacy policy</a></p>
+</footer>
+<script type="application/json" id="tool-labels">{"birthLabel":"Date of birth","onLabel":"Reference date","manAgeLabel":"International age (만 나이)","yearAgeLabel":"Year age (연 나이)","countingAgeLabel":"Counting age (세는 나이)","daysToBirthdayLabel":"Next birthday in","ageFormat":"{n}","daysFormat":"{n} days","birthdayToday":"Today is your birthday","errorInvalidDate":"Enter a valid date.","errorBirthAfterBase":"The date of birth is after the reference date.","dayFormatOne":"{n} day"}</script>
+<script src="/assets/logic/date.js?v=8b42a3f0"></script>
+<script src="/assets/common.js?v=8b42a3f0"></script>
+<script src="/assets/tools/korean-age.js?v=8b42a3f0" defer></script>
+</body>
+</html>

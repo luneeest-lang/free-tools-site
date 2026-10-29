@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="naver-site-verification" content="039452e4a2ed6ef92166e9a02eaa07735279ac95" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+  <title>퍼센트 계산기 | 비율, 증감률, 할인율 계산</title>
+  <meta name="description" content="A의 B%, A는 B의 몇 %, A에서 B로 몇 % 증감했는지, A에서 B% 늘리거나 줄인 값을 바로 계산합니다. 할인율, 상승률 계산에 쓰세요.">
+  <link rel="canonical" href="https://moatool.com/ko/percent/">
+    <link rel="alternate" hreflang="ko" href="https://moatool.com/ko/percent/">
+    <link rel="alternate" hreflang="en" href="https://moatool.com/en/percent/">
+    <link rel="alternate" hreflang="x-default" href="https://moatool.com/ko/percent/">
+  <link rel="stylesheet" href="/assets/style.css?v=8b42a3f0">
+  <link rel="icon" href="/assets/favicon.svg?v=8b42a3f0" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=8b42a3f0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4375672351563367" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/ko/">무료 도구</a>
+  <nav class="site-nav" aria-label="주 메뉴"><a href="/ko/">도구</a><a href="/ko/guides/">가이드</a><a href="/ko/about/">소개</a></nav>
+  <a class="lang-switch" href="/en/percent/" hreflang="en" lang="en">English</a>
+</header>
+<main class="tool" data-category="calc">
+  <h1>퍼센트 계산기</h1>
+  <div class="intro"><p>퍼센트 계산 네 가지를 한곳에서 할 수 있습니다. 할인된 가격, 시험 점수 비율, 매출 증감률, 가격 인상 후 금액처럼 자주 쓰는 계산을 고르고 숫자 두 개만 넣으세요.</p>
+<p>음수와 소수도 입력할 수 있습니다.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="mode">계산 종류</label>
+  <select id="mode" name="mode"><option value="percentOf">A의 B%는? (예: 200의 15%)</option><option value="whatPercent">A는 B의 몇 %? (예: 30은 200의 몇 %)</option><option value="change">A에서 B로 변하면 몇 % 증감? (증감률)</option><option value="applyChange">A에서 B% 늘리면(줄이면)? (줄일 때는 B에 음수)</option></select>
+</div>
+<div class="field">
+  <label for="a">값 A</label>
+  <div class="field-row">
+    <input id="a" name="a" type="text" inputmode="decimal">
+    
+  </div>
+</div>
+<div class="field">
+  <label for="b">값 B</label>
+  <div class="field-row">
+    <input id="b" name="b" type="text" inputmode="decimal">
+    
+  </div>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">결과</span>
+  <output id="result"></output>
+</div>
+    </div>
+    <p class="error" data-error="errorInvalid" role="alert" hidden>숫자를 입력해 주세요.</p>
+<p class="error" data-error="errorDivideByZero" role="alert" hidden>0으로 나눌 수 없습니다. 기준이 되는 값을 0이 아닌 수로 입력해 주세요.</p>
+  </form>
+  <div class="share">
+    <button type="button" class="copy-btn" data-share data-label="결과 링크 복사" data-copied="링크를 복사했습니다">결과 링크 복사</button>
+    <p class="share-hint">입력한 값이 링크에 담깁니다. 링크를 받은 사람도 같은 결과를 볼 수 있습니다.</p>
+  </div>
+  
+  <section class="howto">
+    <h2>사용 방법</h2>
+    <ol><li>계산 종류를 고릅니다.</li><li>값 A와 값 B를 입력합니다. 계산 종류 이름에 A와 B가 어디에 들어가는지 적혀 있습니다.</li><li>결과를 확인합니다. 증감률은 늘었으면 +, 줄었으면 −로 표시합니다.</li></ol>
+  </section>
+  <section class="formula">
+    <h2>계산·처리 방식</h2>
+    <p>A의 B% = A × B ÷ 100</p>
+<p>A는 B의 몇 % = A ÷ B × 100</p>
+<p>A에서 B로의 증감률 = (B − A) ÷ A × 100. 결과가 양수면 증가, 음수면 감소입니다.</p>
+<p>A에서 B% 늘린 값 = A × (1 + B ÷ 100). 줄일 때는 B에 음수를 넣습니다.</p>
+  </section>
+  <section class="example">
+    <h2>예시</h2>
+    <p>200의 15%는 30입니다. 30은 200의 15%입니다. 매출이 200에서 250으로 늘면 증감률은 +25%, 200에서 150으로 줄면 −25%입니다.</p>
+<p>50,000원짜리 상품을 30% 할인하면 A에 50,000, B에 −30을 넣어 35,000원이 나옵니다. 반대로 35,000원에서 원래 가격으로 돌아가려면 30%가 아니라 약 42.86%를 올려야 합니다.</p>
+  </section>
+  <section class="notes">
+    <h2>알아 두세요</h2>
+    <ul><li>증감률(%)과 퍼센트포인트(%p)는 다릅니다. 비율끼리의 차이는 퍼센트포인트로 말합니다.</li><li>같은 비율로 올렸다 내리면 원래 값으로 돌아오지 않습니다. 10% 올린 뒤 10% 내리면 원래보다 1% 작습니다.</li></ul>
+  </section>
+  
+  <section class="faq">
+    <h2>자주 묻는 질문</h2>
+    <details><summary>30% 할인된 가격은 어떻게 구하나요?</summary><p>&quot;A에서 B% 늘리면(줄이면)?&quot;을 고르고 A에 원래 가격, B에 −30을 넣으세요. 50,000원이면 35,000원이 나옵니다.</p></details>
+<details><summary>증감률과 퍼센트포인트는 다른가요?</summary><p>다릅니다. 금리가 2%에서 3%로 오르면 퍼센트포인트로는 1%p 올랐지만 증감률로는 50% 오른 것입니다. 이 계산기의 증감률은 (B − A) ÷ A × 100입니다.</p></details>
+<details><summary>결과가 소수로 길게 나와요.</summary><p>결과는 소수점 넷째 자리까지 반올림해 보여 드립니다.</p></details>
+  </section>
+  <p class="updated">최종 수정일: 2026-10-29</p>
+</main>
+<footer class="site-footer">
+  <p>입력하신 값은 저장되거나 서버로 전송되지 않습니다. 광고 서비스는 쿠키를 사용할 수 있습니다.</p>
+  <p><a href="/ko/guides/">가이드</a> · <a href="/ko/about/">사이트 소개</a> · <a href="/ko/privacy/">개인정보처리방침</a></p>
+</footer>
+<script type="application/json" id="tool-labels">{"modeLabel":"계산 종류","modePercentOf":"A의 B%는? (예: 200의 15%)","modeWhatPercent":"A는 B의 몇 %? (예: 30은 200의 몇 %)","modeChange":"A에서 B로 변하면 몇 % 증감? (증감률)","modeApplyChange":"A에서 B% 늘리면(줄이면)? (줄일 때는 B에 음수)","aLabel":"값 A","bLabel":"값 B","resultLabel":"결과","errorInvalid":"숫자를 입력해 주세요.","errorDivideByZero":"0으로 나눌 수 없습니다. 기준이 되는 값을 0이 아닌 수로 입력해 주세요."}</script>
+<script src="/assets/logic/units.js?v=8b42a3f0"></script>
+<script src="/assets/common.js?v=8b42a3f0"></script>
+<script src="/assets/tools/percent.js?v=8b42a3f0" defer></script>
+</body>
+</html>

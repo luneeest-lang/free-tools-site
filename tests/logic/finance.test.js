@@ -140,3 +140,44 @@ test('금리 0%에서는 어떤 방식이든 이자가 0이다', () => {
     assert.equal(s.totalPayment, 1200, method);
   }
 });
+
+const { convertWage } = require('../../src/logic/finance');
+
+test('주 40시간 시급 10,700원은 월 209시간, 월급 2,236,300원', () => {
+  const r = convertWage({ mode: 'hourlyToMonthly', amount: 10700, weeklyHours: 40, includeHoliday: true });
+  assert.equal(r.error, null);
+  assert.equal(r.holidayHours, 8);
+  assert.equal(r.monthlyHours, 209);
+  assert.equal(r.monthly, 2236300);
+  assert.equal(r.weeklyHolidayPay, 85600);
+  assert.equal(r.annual, 26835600);
+});
+
+test('주휴시간은 주 소정근로시간에 비례하고 15시간 미만이면 없다', () => {
+  const r20 = convertWage({ mode: 'hourlyToMonthly', amount: 10700, weeklyHours: 20, includeHoliday: true });
+  assert.equal(r20.holidayHours, 4);
+  assert.equal(r20.monthlyHours, 104);
+  assert.equal(r20.monthly, 1112800);
+  const r14 = convertWage({ mode: 'hourlyToMonthly', amount: 10700, weeklyHours: 14, includeHoliday: true });
+  assert.equal(r14.holidayHours, 0);
+  assert.equal(r14.monthlyHours, 61);
+});
+
+test('주휴수당을 빼면 근로시간만으로 월 시간을 센다', () => {
+  const r = convertWage({ mode: 'hourlyToMonthly', amount: 10700, weeklyHours: 40, includeHoliday: false });
+  assert.equal(r.holidayHours, 0);
+  assert.equal(r.monthlyHours, 174);
+});
+
+test('월급을 시급으로 바꾼다', () => {
+  const r = convertWage({ mode: 'monthlyToHourly', amount: 2236300, weeklyHours: 40, includeHoliday: true });
+  assert.equal(r.hourly, 10700);
+  assert.equal(r.monthly, 2236300);
+  assert.equal(convertWage({ mode: 'monthlyToHourly', amount: 2000000, weeklyHours: 40, includeHoliday: true }).hourly, 9569);
+});
+
+test('시간이나 금액이 올바르지 않으면 오류', () => {
+  assert.equal(convertWage({ mode: 'hourlyToMonthly', amount: 10700, weeklyHours: 41, includeHoliday: true }).error, 'invalid_hours');
+  assert.equal(convertWage({ mode: 'hourlyToMonthly', amount: 10700, weeklyHours: 0, includeHoliday: true }).error, 'invalid_hours');
+  assert.equal(convertWage({ mode: 'hourlyToMonthly', amount: 0, weeklyHours: 40, includeHoliday: true }).error, 'invalid_amount');
+});

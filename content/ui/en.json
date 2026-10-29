@@ -27,5 +27,8 @@
   "aboutLink": "About this site",
   "navLabel": "Main menu",
   "copyLabel": "Copy result",
-  "copiedLabel": "Copied"
+  "copiedLabel": "Copied",
+  "shareLabel": "Copy result link",
+  "sharedLabel": "Link copied",
+  "shareHint": "The link contains the values you entered, so anyone you send it to sees the same result."
 }

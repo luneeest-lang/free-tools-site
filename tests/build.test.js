@@ -58,9 +58,9 @@ test('계산기 페이지에 폼 입력 칸이 있다', () => {
   assert.match(page, /id="months"/);
 });
 
-test('페이지 수는 33 (루트 1, 언어 홈 2, 도구 18, 개인정보 2, 소개 2, 가이드 목록 2, 가이드 6)', () => {
+test('페이지 수는 43 (루트 1, 언어 홈 2, 도구 28, 개인정보 2, 소개 2, 가이드 목록 2, 가이드 6)', () => {
   const result = buildSite({ rootDir: ROOT, outDir: fs.mkdtempSync(path.join(os.tmpdir(), 'site-count-')) });
-  assert.equal(result.pages, 33);
+  assert.equal(result.pages, 43);
 });
 
 test('로직 파일이 site/assets/logic에 복사된다', () => {
@@ -468,5 +468,45 @@ test('텍스트 변환 결과에는 복사 버튼이 있고 계산기에는 없�
     }
   }
   assert.match(read('ko/case-convert/index.html'), /data-copied="복사했습니다"/);
-  assert.doesNotMatch(read('ko/bmi/index.html'), /class="copy-btn"/);
+  assert.doesNotMatch(read('ko/bmi/index.html'), /data-copy=/);
+});
+
+test('새 계산기 5개가 두 언어로 생성되고 알맞은 로직 파일을 불러온다', () => {
+  const logic = {
+    'hourly-wage': 'finance',
+    'korean-age': 'date',
+    'discharge-date': 'date',
+    pyeong: 'units',
+    percent: 'units',
+  };
+  for (const [slug, file] of Object.entries(logic)) {
+    for (const lang of ['ko', 'en']) {
+      const page = read(`${lang}/${slug}/index.html`);
+      assert.match(page, new RegExp(`/assets/logic/${file}\.js`), `${lang}/${slug}`);
+      assert.match(page, new RegExp(`/assets/tools/${slug}\.js`), `${lang}/${slug}`);
+      assert.match(read(`${lang}/index.html`), new RegExp(`href="/${lang}/${slug}/"`));
+    }
+  }
+  assert.ok(fs.existsSync(path.join(outDir, 'assets', 'logic', 'units.js')));
+});
+
+test('시급 계산기는 주휴수당 포함이 기본으로 켜져 있다', () => {
+  assert.match(read('ko/hourly-wage/index.html'), /<input id="includeHoliday" name="includeHoliday" type="checkbox" checked>/);
+  assert.match(read('ko/line-cleanup/index.html'), /<input id="joinLines" name="joinLines" type="checkbox">/);
+});
+
+test('계산기에는 결과 링크 복사 버튼이 있고 텍스트 도구에는 없다', () => {
+  for (const slug of ['loan-calculator', 'date-add', 'discharge-date', 'percent']) {
+    const page = read(`ko/${slug}/index.html`);
+    assert.match(page, /data-share/, slug);
+    assert.match(page, /class="share-hint"/, slug);
+  }
+  assert.match(read('ko/date-add/index.html'), /data-copied="링크를 복사했습니다"/);
+  assert.doesNotMatch(read('ko/char-count/index.html'), /data-share/);
+});
+
+test('기준일 입력은 공유 링크에서 빠진다', () => {
+  assert.match(read('ko/discharge-date/index.html'), /<input id="on" name="on" type="date" data-no-share>/);
+  assert.match(read('ko/korean-age/index.html'), /<input id="on" name="on" type="date" data-no-share>/);
+  assert.match(read('ko/discharge-date/index.html'), /<input id="enlist" name="enlist" type="date">/);
 });

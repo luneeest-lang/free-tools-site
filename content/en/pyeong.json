@@ -1,0 +1,43 @@
+{
+  "slug": "pyeong",
+  "title": "Pyeong to Square Meters Converter | Korean Area Unit",
+  "description": "Convert pyeong, the Korean unit of floor area, to square meters and back. 1 pyeong is about 3.3058 m², or about 35.58 square feet.",
+  "h1": "Pyeong to square meters converter",
+  "intro": "Pyeong (평) is the traditional Korean unit of floor area, still widely used when people talk about apartments and offices in Korea. Official documents use square meters. This converter switches between the two.\n\nOne pyeong is exactly 400/121 square meters, about 3.3058 m².",
+  "howTo": [
+    "Choose pyeong → m² or m² → pyeong.",
+    "Enter the area. Decimals are allowed.",
+    "Read the result, rounded to two decimal places."
+  ],
+  "faq": [
+    {
+      "q": "How big is one pyeong?",
+      "a": "A pyeong is a square 6 ja on each side, and one ja is 10/33 of a meter. So one pyeong is (60/33)² = 400/121 m², about 3.3058 m²."
+    },
+    {
+      "q": "How many pyeong is an 84 m² apartment?",
+      "a": "84 × 121 ÷ 400 = 25.41 pyeong of exclusive area. Listings often quote a larger \"pyeong type\" that includes shared areas."
+    },
+    {
+      "q": "How many square feet is a pyeong?",
+      "a": "About 35.58 square feet, since one square meter is about 10.764 square feet."
+    }
+  ],
+  "labels": {
+    "modeLabel": "Direction",
+    "modePyeongToSqm": "Pyeong → square meters (m²)",
+    "modeSqmToPyeong": "Square meters (m²) → pyeong",
+    "valueLabel": "Area",
+    "resultLabel": "Result",
+    "errorInvalid": "Enter an area greater than 0.",
+    "sqmFormat": "{n} m²",
+    "pyeongFormat": "{n} pyeong"
+  },
+  "formula": "One pyeong is the area of a square 6 ja on each side. One ja is 10/33 m, so one pyeong = (6 × 10/33)² = 400/121 m² ≈ 3.305785 m².\n\nPyeong → m²: pyeong × 400 ÷ 121.\n\nm² → pyeong: m² × 121 ÷ 400, the same as multiplying by about 0.3025.\n\nResults are rounded to two decimal places.",
+  "example": "Thirty pyeong is 30 × 400 ÷ 121 ≈ 99.17 m². An apartment with 84 m² of exclusive area is 84 × 121 ÷ 400 = 25.41 pyeong, and 59 m² is about 17.85 pyeong.\n\nFor a quick estimate, multiply pyeong by 3.3 or square meters by 0.3, but the error grows with larger areas.",
+  "notes": [
+    "Korean apartment \"pyeong types\" usually describe supply area, which includes shared spaces, so they are larger than the exclusive area converted to pyeong.",
+    "Contracts and official records in Korea state area in square meters. Use those figures when signing anything."
+  ],
+  "updated": "2026-10-29"
+}

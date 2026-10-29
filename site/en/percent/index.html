@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="naver-site-verification" content="039452e4a2ed6ef92166e9a02eaa07735279ac95" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+  <title>Percentage Calculator | Percent Of, Change, and Discounts</title>
+  <meta name="description" content="Four percentage calculations in one place: B% of A, what percent A is of B, percent change from A to B, and A increased or decreased by B%.">
+  <link rel="canonical" href="https://moatool.com/en/percent/">
+    <link rel="alternate" hreflang="ko" href="https://moatool.com/ko/percent/">
+    <link rel="alternate" hreflang="en" href="https://moatool.com/en/percent/">
+    <link rel="alternate" hreflang="x-default" href="https://moatool.com/ko/percent/">
+  <link rel="stylesheet" href="/assets/style.css?v=8b42a3f0">
+  <link rel="icon" href="/assets/favicon.svg?v=8b42a3f0" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=8b42a3f0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4375672351563367" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/en/">Toolbox</a>
+  <nav class="site-nav" aria-label="Main menu"><a href="/en/">Tools</a><a href="/en/guides/">Guides</a><a href="/en/about/">About</a></nav>
+  <a class="lang-switch" href="/ko/percent/" hreflang="ko" lang="ko">한국어</a>
+</header>
+<main class="tool" data-category="calc">
+  <h1>Percentage calculator</h1>
+  <div class="intro"><p>Do the four most common percentage calculations in one place: a share of a number, what percent one number is of another, percent change, and a number increased or decreased by a percentage. Use it for discounts, test scores, price changes, and growth rates.</p>
+<p>Negative numbers and decimals are allowed.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="mode">Calculation</label>
+  <select id="mode" name="mode"><option value="percentOf">B% of A (e.g. 15% of 200)</option><option value="whatPercent">A is what percent of B? (e.g. 30 of 200)</option><option value="change">Percent change from A to B</option><option value="applyChange">A increased by B% (use a negative B to decrease)</option></select>
+</div>
+<div class="field">
+  <label for="a">Value A</label>
+  <div class="field-row">
+    <input id="a" name="a" type="text" inputmode="decimal">
+    
+  </div>
+</div>
+<div class="field">
+  <label for="b">Value B</label>
+  <div class="field-row">
+    <input id="b" name="b" type="text" inputmode="decimal">
+    
+  </div>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">Result</span>
+  <output id="result"></output>
+</div>
+    </div>
+    <p class="error" data-error="errorInvalid" role="alert" hidden>Enter numbers.</p>
+<p class="error" data-error="errorDivideByZero" role="alert" hidden>Cannot divide by zero. Enter a non-zero base value.</p>
+  </form>
+  <div class="share">
+    <button type="button" class="copy-btn" data-share data-label="Copy result link" data-copied="Link copied">Copy result link</button>
+    <p class="share-hint">The link contains the values you entered, so anyone you send it to sees the same result.</p>
+  </div>
+  
+  <section class="howto">
+    <h2>How to use</h2>
+    <ol><li>Choose the type of calculation.</li><li>Enter values A and B. Each option shows where A and B go.</li><li>Read the result. Percent change shows + for an increase and − for a decrease.</li></ol>
+  </section>
+  <section class="formula">
+    <h2>How it works</h2>
+    <p>B% of A = A × B ÷ 100.</p>
+<p>A as a percent of B = A ÷ B × 100.</p>
+<p>Percent change from A to B = (B − A) ÷ A × 100. A positive result is an increase and a negative result is a decrease.</p>
+<p>A increased by B% = A × (1 + B ÷ 100). Use a negative B to decrease.</p>
+  </section>
+  <section class="example">
+    <h2>Example</h2>
+    <p>15% of 200 is 30, and 30 is 15% of 200. Sales rising from 200 to 250 is a change of +25%, and falling from 200 to 150 is −25%.</p>
+<p>A 30% discount on a price of 50 gives 35. Going back from 35 to 50 takes an increase of about 42.86%, not 30%.</p>
+  </section>
+  <section class="notes">
+    <h2>Good to know</h2>
+    <ul><li>Percent change and percentage points are different. Use percentage points for the difference between two rates.</li><li>Raising and then lowering by the same percentage does not return the original value. Up 10% then down 10% leaves you 1% below where you started.</li></ul>
+  </section>
+  
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>How do I calculate a 30% discount?</summary><p>Choose &quot;A increased by B%&quot; and enter the original price as A and −30 as B. A price of 50 becomes 35.</p></details>
+<details><summary>What is the difference between percent change and percentage points?</summary><p>If a rate rises from 2% to 3%, it went up 1 percentage point but increased by 50%. This calculator&#39;s percent change is (B − A) ÷ A × 100.</p></details>
+<details><summary>How many decimals are shown?</summary><p>Results are rounded to at most four decimal places.</p></details>
+  </section>
+  <p class="updated">Last updated: 2026-10-29</p>
+</main>
+<footer class="site-footer">
+  <p>Values you enter are never stored or sent to a server. Advertising partners may use cookies.</p>
+  <p><a href="/en/guides/">Guides</a> · <a href="/en/about/">About this site</a> · <a href="/en/privacy/">Privacy policy</a></p>
+</footer>
+<script type="application/json" id="tool-labels">{"modeLabel":"Calculation","modePercentOf":"B% of A (e.g. 15% of 200)","modeWhatPercent":"A is what percent of B? (e.g. 30 of 200)","modeChange":"Percent change from A to B","modeApplyChange":"A increased by B% (use a negative B to decrease)","aLabel":"Value A","bLabel":"Value B","resultLabel":"Result","errorInvalid":"Enter numbers.","errorDivideByZero":"Cannot divide by zero. Enter a non-zero base value."}</script>
+<script src="/assets/logic/units.js?v=8b42a3f0"></script>
+<script src="/assets/common.js?v=8b42a3f0"></script>
+<script src="/assets/tools/percent.js?v=8b42a3f0" defer></script>
+</body>
+</html>

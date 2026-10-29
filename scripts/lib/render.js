@@ -9,6 +9,11 @@ const LOGIC_FILE = {
   severance: 'finance',
   'date-diff': 'date',
   'date-add': 'date',
+  'hourly-wage': 'finance',
+  'korean-age': 'date',
+  'discharge-date': 'date',
+  pyeong: 'units',
+  percent: 'units',
   bmi: 'health',
   'char-count': 'text',
   'case-convert': 'text',
@@ -115,7 +120,7 @@ function renderField(field, labels) {
   const label = escapeHtml(labels[field.labelKey]);
   if (field.type === 'checkbox') {
     return `<div class="field field-check">
-  <input id="${field.id}" name="${field.id}" type="checkbox">
+  <input id="${field.id}" name="${field.id}" type="checkbox"${field.checked ? ' checked' : ''}>
   <label for="${field.id}">${label}</label>
 </div>`;
   }
@@ -140,7 +145,7 @@ function renderField(field, labels) {
   return `<div class="field">
   <label for="${field.id}">${label}</label>
   <div class="field-row">
-    <input id="${field.id}" name="${field.id}" type="${type}"${inputmode}>
+    <input id="${field.id}" name="${field.id}" type="${type}"${inputmode}${field.noShare ? ' data-no-share' : ''}>
     ${unit}
   </div>
 </div>`;
@@ -218,6 +223,14 @@ function renderSchedule(labels) {
   </details>`;
 }
 
+// The share link keeps inputs after "#", which browsers never send to the server.
+function renderShare(ui) {
+  return `<div class="share">
+    <button type="button" class="copy-btn" data-share data-label="${escapeHtml(ui.shareLabel)}" data-copied="${escapeHtml(ui.sharedLabel)}">${escapeHtml(ui.shareLabel)}</button>
+    <p class="share-hint">${escapeHtml(ui.shareHint)}</p>
+  </div>`;
+}
+
 function renderRelatedGuide(relatedGuide, ui, lang) {
   if (!relatedGuide) return '';
   return `<section class="related-guide">
@@ -250,6 +263,7 @@ ${header({ lang, ui, alternates: alternates.paths })}
     </div>
     ${renderErrors(form.errorKeys, labels)}
   </form>
+  ${CALC_SLUGS.includes(tool.slug) ? renderShare(ui) : ''}
   ${form.schedule ? renderSchedule(labels) : ''}
   <section class="howto">
     <h2>${escapeHtml(ui.howToHeading)}</h2>

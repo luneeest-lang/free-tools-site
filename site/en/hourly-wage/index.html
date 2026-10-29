@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="naver-site-verification" content="039452e4a2ed6ef92166e9a02eaa07735279ac95" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+  <title>Korean Hourly to Monthly Wage | Weekly Holiday Pay</title>
+  <meta name="description" content="Convert an hourly wage to a monthly wage in Korea and back, including weekly holiday pay (juhyu sudang) and the 209-hour monthly standard.">
+  <link rel="canonical" href="https://moatool.com/en/hourly-wage/">
+    <link rel="alternate" hreflang="ko" href="https://moatool.com/ko/hourly-wage/">
+    <link rel="alternate" hreflang="en" href="https://moatool.com/en/hourly-wage/">
+    <link rel="alternate" hreflang="x-default" href="https://moatool.com/ko/hourly-wage/">
+  <link rel="stylesheet" href="/assets/style.css?v=8b42a3f0">
+  <link rel="icon" href="/assets/favicon.svg?v=8b42a3f0" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=8b42a3f0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4375672351563367" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/en/">Toolbox</a>
+  <nav class="site-nav" aria-label="Main menu"><a href="/en/">Tools</a><a href="/en/guides/">Guides</a><a href="/en/about/">About</a></nav>
+  <a class="lang-switch" href="/ko/hourly-wage/" hreflang="ko" lang="ko">한국어</a>
+</header>
+<main class="tool" data-category="calc">
+  <h1>Korean hourly and monthly wage calculator</h1>
+  <div class="intro"><p>Convert an hourly wage to a monthly wage under Korean labor rules, or a monthly wage back to an hourly rate. The calculator adds paid weekly holiday hours (주휴수당, juhyu sudang) based on your weekly contractual hours, so it works for part-time and full-time jobs.</p>
+<p>The 2027 Korean minimum wage is 10,700 won per hour. For a 40-hour week that is 2,236,300 won per month, according to the Ministry of Employment and Labor.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="mode">Direction</label>
+  <select id="mode" name="mode"><option value="hourlyToMonthly">Hourly → monthly</option><option value="monthlyToHourly">Monthly → hourly</option></select>
+</div>
+<div class="field">
+  <label for="amount">Hourly or monthly wage</label>
+  <div class="field-row">
+    <input id="amount" name="amount" type="text" inputmode="decimal">
+    <span class="unit">won</span>
+  </div>
+</div>
+<div class="field">
+  <label for="weeklyHours">Weekly contractual hours</label>
+  <div class="field-row">
+    <input id="weeklyHours" name="weeklyHours" type="text" inputmode="decimal">
+    <span class="unit">hours</span>
+  </div>
+</div>
+<div class="field field-check">
+  <input id="includeHoliday" name="includeHoliday" type="checkbox" checked>
+  <label for="includeHoliday">Include weekly holiday pay (15+ hours a week)</label>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">Result</span>
+  <output id="result"></output>
+</div>
+<div class="output">
+  <span class="output-label">Weekly holiday pay</span>
+  <output id="weeklyHolidayPay"></output>
+</div>
+<div class="output">
+  <span class="output-label">Monthly paid hours</span>
+  <output id="monthlyHours"></output>
+</div>
+<div class="output">
+  <span class="output-label">Annual (monthly × 12)</span>
+  <output id="annual"></output>
+</div>
+    </div>
+    <p class="error" data-error="errorInvalidAmount" role="alert" hidden>Enter an amount greater than 0.</p>
+<p class="error" data-error="errorInvalidHours" role="alert" hidden>Enter weekly hours greater than 0 and no more than 40.</p>
+  </form>
+  <div class="share">
+    <button type="button" class="copy-btn" data-share data-label="Copy result link" data-copied="Link copied">Copy result link</button>
+    <p class="share-hint">The link contains the values you entered, so anyone you send it to sees the same result.</p>
+  </div>
+  
+  <section class="howto">
+    <h2>How to use</h2>
+    <ol><li>Choose hourly → monthly or monthly → hourly.</li><li>Enter the hourly or monthly wage in won.</li><li>Enter your weekly contractual hours. Five 8-hour days is 40.</li><li>Turn off &quot;Include weekly holiday pay&quot; to see the amount without it.</li></ol>
+  </section>
+  <section class="formula">
+    <h2>How it works</h2>
+    <p>Weekly holiday hours = weekly contractual hours ÷ 40 × 8, only when weekly hours are 15 or more.</p>
+<p>Monthly paid hours = (weekly hours + holiday hours) × 365 ÷ 7 ÷ 12, rounded to a whole hour. For a 40-hour week that is (40 + 8) × 4.345 ≈ 208.6, or 209 hours.</p>
+<p>Monthly wage = hourly wage × monthly paid hours. Hourly wage = monthly wage ÷ monthly paid hours, rounded to the nearest won. Weekly holiday pay = hourly wage × holiday hours.</p>
+  </section>
+  <section class="example">
+    <h2>Example</h2>
+    <p>At the 2027 minimum wage of 10,700 won and 40 hours a week, monthly paid hours are 209 and the monthly wage is 10,700 × 209 = 2,236,300 won. Weekly holiday pay is 10,700 × 8 = 85,600 won.</p>
+<p>At the same rate for 20 hours a week, holiday hours are 4, monthly paid hours are about 104, and the monthly wage is 1,112,800 won. At 14 hours a week there is no holiday pay and monthly paid hours are about 61.</p>
+  </section>
+  <section class="notes">
+    <h2>Good to know</h2>
+    <ul><li>Weekly holiday pay requires full attendance on your scheduled working days that week.</li><li>Whether you reach 15 hours a week is judged on the average over four weeks.</li><li>Amounts are before income tax and social insurance deductions.</li><li>Overtime, night, and holiday premiums are not included, and employers may round monthly hours differently.</li></ul>
+  </section>
+  
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>Why is a 40-hour week 209 hours a month?</summary><p>Forty working hours plus 8 paid holiday hours is 48 hours a week. Multiplied by the average number of weeks in a month (365 ÷ 7 ÷ 12 ≈ 4.345), that is about 208.6, which rounds to 209. The Ministry of Employment and Labor uses 209 hours for the monthly minimum wage.</p></details>
+<details><summary>Do I get weekly holiday pay if I work under 15 hours?</summary><p>No. Under the Labor Standards Act, the paid weekly holiday rule does not apply to workers whose contractual hours average fewer than 15 a week over four weeks.</p></details>
+<details><summary>Does it include overtime or night pay?</summary><p>No. It covers base pay for up to 40 contractual hours a week. Overtime, night, and holiday work premiums are calculated separately.</p></details>
+  </section>
+  <section class="sources">
+    <h2>Sources</h2>
+    <ul><li><a href="https://www.moel.go.kr/news/enews/report/enewsView.do?news_seq=19744" target="_blank" rel="noopener noreferrer">Ministry of Employment and Labor: 2027 minimum wage of 10,700 won per hour (in Korean)</a></li><li><a href="https://www.law.go.kr/법령/근로기준법" target="_blank" rel="noopener noreferrer">National Law Information Center: Labor Standards Act, Articles 18 and 55 (in Korean)</a></li></ul>
+  </section>
+  <p class="updated">Last updated: 2026-10-29</p>
+</main>
+<footer class="site-footer">
+  <p>Values you enter are never stored or sent to a server. Advertising partners may use cookies.</p>
+  <p><a href="/en/guides/">Guides</a> · <a href="/en/about/">About this site</a> · <a href="/en/privacy/">Privacy policy</a></p>
+</footer>
+<script type="application/json" id="tool-labels">{"modeLabel":"Direction","modeHourlyToMonthly":"Hourly → monthly","modeMonthlyToHourly":"Monthly → hourly","amountLabel":"Hourly or monthly wage","weeklyHoursLabel":"Weekly contractual hours","includeHolidayLabel":"Include weekly holiday pay (15+ hours a week)","unitWon":"won","unitHours":"hours","wonFormat":"{n} won","monthlyPrefix":"Monthly","hourlyPrefix":"Hourly","resultLabel":"Result","weeklyHolidayPayLabel":"Weekly holiday pay","monthlyHoursLabel":"Monthly paid hours","annualLabel":"Annual (monthly × 12)","errorInvalidAmount":"Enter an amount greater than 0.","errorInvalidHours":"Enter weekly hours greater than 0 and no more than 40.","hoursFormat":"{n} hours"}</script>
+<script src="/assets/logic/finance.js?v=8b42a3f0"></script>
+<script src="/assets/common.js?v=8b42a3f0"></script>
+<script src="/assets/tools/hourly-wage.js?v=8b42a3f0" defer></script>
+</body>
+</html>

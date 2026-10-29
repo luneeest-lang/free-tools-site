@@ -56,6 +56,31 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/dedupe-lines/"/>
   </url>
   <url>
+    <loc>https://moatool.com/ko/hourly-wage/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/hourly-wage/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/hourly-wage/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/ko/korean-age/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/korean-age/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/korean-age/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/ko/discharge-date/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/discharge-date/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/discharge-date/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/ko/pyeong/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/pyeong/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/pyeong/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/ko/percent/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/percent/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/percent/"/>
+  </url>
+  <url>
     <loc>https://moatool.com/en/loan-calculator/</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/loan-calculator/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/loan-calculator/"/>
@@ -99,6 +124,31 @@
     <loc>https://moatool.com/en/dedupe-lines/</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/dedupe-lines/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/dedupe-lines/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/en/hourly-wage/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/hourly-wage/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/hourly-wage/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/en/korean-age/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/korean-age/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/korean-age/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/en/discharge-date/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/discharge-date/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/discharge-date/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/en/pyeong/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/pyeong/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/pyeong/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/en/percent/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/percent/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/percent/"/>
   </url>
   <url>
     <loc>https://moatool.com/ko/guides/</loc>

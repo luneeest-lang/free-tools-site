@@ -90,21 +90,78 @@
     return Promise.resolve();
   }
 
+  function flash(button) {
+    button.textContent = button.dataset.copied;
+    setTimeout(() => {
+      button.textContent = button.dataset.label;
+    }, 1500);
+  }
+
+  function formFields() {
+    const form = document.getElementById('tool-form');
+    return form ? [...form.querySelectorAll('input[id], select[id]')] : [];
+  }
+
+  // Share links carry inputs after "#", so they are never sent to the server.
+  function shareUrl() {
+    const params = new URLSearchParams();
+    for (const field of formFields()) {
+      // Reference dates default to the viewer's today instead of the sender's.
+      if ('noShare' in field.dataset) continue;
+      if (field.type === 'checkbox') {
+        params.set(field.id, field.checked ? '1' : '0');
+      } else if (field.value !== '') {
+        params.set(field.id, field.value);
+      }
+    }
+    return `${location.origin}${location.pathname}#${params}`;
+  }
+
+  function restoreFromHash() {
+    if (location.hash.length < 2) return false;
+    const params = new URLSearchParams(location.hash.slice(1));
+    let restored = false;
+    for (const field of formFields()) {
+      if (!params.has(field.id)) continue;
+      if (field.type === 'checkbox') {
+        field.checked = params.get(field.id) === '1';
+      } else {
+        field.value = params.get(field.id);
+      }
+      restored = true;
+    }
+    return restored;
+  }
+
+  function today() {
+    const now = new Date();
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+  }
+
+  function defaultToday(id) {
+    const el = document.getElementById(id);
+    if (!el.value) el.value = today();
+  }
+
   document.addEventListener('click', (event) => {
+    const share = event.target.closest('[data-share]');
+    if (share) {
+      copyText(shareUrl()).then(() => flash(share));
+      return;
+    }
     const button = event.target.closest('[data-copy]');
     if (!button) return;
     const text = document.getElementById(button.dataset.copy).textContent;
     if (!text) return;
-    copyText(text).then(() => {
-      button.textContent = button.dataset.copied;
-      setTimeout(() => {
-        button.textContent = button.dataset.label;
-      }, 1500);
-    });
+    copyText(text).then(() => flash(button));
   });
+
+  restoreFromHash();
 
   window.ToolUI = {
     label,
+    defaultToday,
     num,
     isNumber,
     fmt,

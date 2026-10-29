@@ -124,9 +124,116 @@ const TOOL_FORMS = {
     ],
     errorKeys: [],
   },
+  'hourly-wage': {
+    inputs: [
+      {
+        id: 'mode',
+        labelKey: 'modeLabel',
+        type: 'select',
+        options: [
+          { value: 'hourlyToMonthly', labelKey: 'modeHourlyToMonthly' },
+          { value: 'monthlyToHourly', labelKey: 'modeMonthlyToHourly' },
+        ],
+      },
+      { id: 'amount', labelKey: 'amountLabel', type: 'text', inputmode: 'decimal', unitKey: 'unitWon' },
+      { id: 'weeklyHours', labelKey: 'weeklyHoursLabel', type: 'text', inputmode: 'decimal', unitKey: 'unitHours' },
+      { id: 'includeHoliday', labelKey: 'includeHolidayLabel', type: 'checkbox', checked: true },
+    ],
+    outputs: [
+      { id: 'result', labelKey: 'resultLabel', primary: true },
+      { id: 'weeklyHolidayPay', labelKey: 'weeklyHolidayPayLabel' },
+      { id: 'monthlyHours', labelKey: 'monthlyHoursLabel' },
+      { id: 'annual', labelKey: 'annualLabel' },
+    ],
+    errorKeys: ['errorInvalidAmount', 'errorInvalidHours'],
+  },
+  'korean-age': {
+    inputs: [
+      { id: 'birth', labelKey: 'birthLabel', type: 'date' },
+      { id: 'on', labelKey: 'onLabel', type: 'date', noShare: true },
+    ],
+    outputs: [
+      { id: 'manAge', labelKey: 'manAgeLabel', primary: true },
+      { id: 'yearAge', labelKey: 'yearAgeLabel' },
+      { id: 'countingAge', labelKey: 'countingAgeLabel' },
+      { id: 'daysToBirthday', labelKey: 'daysToBirthdayLabel' },
+    ],
+    errorKeys: ['errorInvalidDate', 'errorBirthAfterBase'],
+  },
+  'discharge-date': {
+    inputs: [
+      { id: 'enlist', labelKey: 'enlistLabel', type: 'date' },
+      {
+        id: 'branch',
+        labelKey: 'branchLabel',
+        type: 'select',
+        options: [
+          { value: 'army', labelKey: 'branchArmy' },
+          { value: 'marine', labelKey: 'branchMarine' },
+          { value: 'navy', labelKey: 'branchNavy' },
+          { value: 'airforce', labelKey: 'branchAirforce' },
+          { value: 'social', labelKey: 'branchSocial' },
+        ],
+      },
+      { id: 'on', labelKey: 'onLabel', type: 'date', noShare: true },
+    ],
+    outputs: [
+      { id: 'discharge', labelKey: 'dischargeLabel', primary: true },
+      { id: 'remaining', labelKey: 'remainingLabel' },
+      { id: 'served', labelKey: 'servedLabel' },
+      { id: 'percent', labelKey: 'percentLabel' },
+    ],
+    errorKeys: ['errorInvalidDate'],
+  },
+  pyeong: {
+    inputs: [
+      {
+        id: 'mode',
+        labelKey: 'modeLabel',
+        type: 'select',
+        options: [
+          { value: 'pyeongToSqm', labelKey: 'modePyeongToSqm' },
+          { value: 'sqmToPyeong', labelKey: 'modeSqmToPyeong' },
+        ],
+      },
+      { id: 'value', labelKey: 'valueLabel', type: 'text', inputmode: 'decimal' },
+    ],
+    outputs: [{ id: 'result', labelKey: 'resultLabel', primary: true }],
+    errorKeys: ['errorInvalid'],
+  },
+  percent: {
+    inputs: [
+      {
+        id: 'mode',
+        labelKey: 'modeLabel',
+        type: 'select',
+        options: [
+          { value: 'percentOf', labelKey: 'modePercentOf' },
+          { value: 'whatPercent', labelKey: 'modeWhatPercent' },
+          { value: 'change', labelKey: 'modeChange' },
+          { value: 'applyChange', labelKey: 'modeApplyChange' },
+        ],
+      },
+      { id: 'a', labelKey: 'aLabel', type: 'text', inputmode: 'decimal' },
+      { id: 'b', labelKey: 'bLabel', type: 'text', inputmode: 'decimal' },
+    ],
+    outputs: [{ id: 'result', labelKey: 'resultLabel', primary: true }],
+    errorKeys: ['errorInvalid', 'errorDivideByZero'],
+  },
 };
 
-const CALC_SLUGS = ['loan-calculator', 'date-diff', 'date-add', 'bmi', 'severance'];
+const CALC_SLUGS = [
+  'loan-calculator',
+  'severance',
+  'hourly-wage',
+  'date-diff',
+  'date-add',
+  'korean-age',
+  'discharge-date',
+  'bmi',
+  'pyeong',
+  'percent',
+];
 const TEXT_SLUGS = ['char-count', 'case-convert', 'line-cleanup', 'dedupe-lines'];
 
 module.exports = { TOOL_FORMS, CALC_SLUGS, TEXT_SLUGS };

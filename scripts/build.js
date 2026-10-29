@@ -26,6 +26,11 @@ const SLUGS = [
   'case-convert',
   'line-cleanup',
   'dedupe-lines',
+  'hourly-wage',
+  'korean-age',
+  'discharge-date',
+  'pyeong',
+  'percent',
 ];
 const LANGS = ['ko', 'en'];
 const GUIDE_SLUGS = {

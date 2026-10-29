@@ -1,0 +1,45 @@
+{
+  "slug": "percent",
+  "title": "Percentage Calculator | Percent Of, Change, and Discounts",
+  "description": "Four percentage calculations in one place: B% of A, what percent A is of B, percent change from A to B, and A increased or decreased by B%.",
+  "h1": "Percentage calculator",
+  "intro": "Do the four most common percentage calculations in one place: a share of a number, what percent one number is of another, percent change, and a number increased or decreased by a percentage. Use it for discounts, test scores, price changes, and growth rates.\n\nNegative numbers and decimals are allowed.",
+  "howTo": [
+    "Choose the type of calculation.",
+    "Enter values A and B. Each option shows where A and B go.",
+    "Read the result. Percent change shows + for an increase and − for a decrease."
+  ],
+  "faq": [
+    {
+      "q": "How do I calculate a 30% discount?",
+      "a": "Choose \"A increased by B%\" and enter the original price as A and −30 as B. A price of 50 becomes 35."
+    },
+    {
+      "q": "What is the difference between percent change and percentage points?",
+      "a": "If a rate rises from 2% to 3%, it went up 1 percentage point but increased by 50%. This calculator's percent change is (B − A) ÷ A × 100."
+    },
+    {
+      "q": "How many decimals are shown?",
+      "a": "Results are rounded to at most four decimal places."
+    }
+  ],
+  "labels": {
+    "modeLabel": "Calculation",
+    "modePercentOf": "B% of A (e.g. 15% of 200)",
+    "modeWhatPercent": "A is what percent of B? (e.g. 30 of 200)",
+    "modeChange": "Percent change from A to B",
+    "modeApplyChange": "A increased by B% (use a negative B to decrease)",
+    "aLabel": "Value A",
+    "bLabel": "Value B",
+    "resultLabel": "Result",
+    "errorInvalid": "Enter numbers.",
+    "errorDivideByZero": "Cannot divide by zero. Enter a non-zero base value."
+  },
+  "formula": "B% of A = A × B ÷ 100.\n\nA as a percent of B = A ÷ B × 100.\n\nPercent change from A to B = (B − A) ÷ A × 100. A positive result is an increase and a negative result is a decrease.\n\nA increased by B% = A × (1 + B ÷ 100). Use a negative B to decrease.",
+  "example": "15% of 200 is 30, and 30 is 15% of 200. Sales rising from 200 to 250 is a change of +25%, and falling from 200 to 150 is −25%.\n\nA 30% discount on a price of 50 gives 35. Going back from 35 to 50 takes an increase of about 42.86%, not 30%.",
+  "notes": [
+    "Percent change and percentage points are different. Use percentage points for the difference between two rates.",
+    "Raising and then lowering by the same percentage does not return the original value. Up 10% then down 10% leaves you 1% below where you started."
+  ],
+  "updated": "2026-10-29"
+}

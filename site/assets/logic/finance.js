@@ -150,6 +150,42 @@ function severancePay({ wagesLast3Months, daysLast3Months, daysWorked, annualBon
   return { wageBase, averageDailyWage, severance, eligible: daysWorked >= 365 };
 }
 
-const api = { monthlyPayment, loanSchedule, severancePeriod, severancePay };
+// Weeks per month as MOEL uses it: 365 days ÷ 7 ÷ 12. A 40-hour week plus 8 paid
+// holiday hours gives 48 × 4.345 = 208.57, which MOEL rounds to 209 hours.
+const WEEKS_PER_MONTH = 365 / 7 / 12;
+
+function convertWage({ mode, amount, weeklyHours, includeHoliday }) {
+  if (!Number.isFinite(weeklyHours) || weeklyHours <= 0 || weeklyHours > 40) {
+    return { error: 'invalid_hours' };
+  }
+  if (!Number.isFinite(amount) || amount <= 0) {
+    return { error: 'invalid_amount' };
+  }
+  // Paid weekly holiday applies from 15 contractual hours a week, in proportion to a 40-hour week.
+  const holidayHours = includeHoliday && weeklyHours >= 15 ? (weeklyHours / 40) * 8 : 0;
+  const monthlyHours = Math.round((weeklyHours + holidayHours) * WEEKS_PER_MONTH);
+  let hourly;
+  let monthly;
+  if (mode === 'hourlyToMonthly') {
+    hourly = amount;
+    monthly = Math.round(hourly * monthlyHours);
+  } else if (mode === 'monthlyToHourly') {
+    monthly = amount;
+    hourly = Math.round(monthly / monthlyHours);
+  } else {
+    return { error: 'invalid_mode' };
+  }
+  return {
+    error: null,
+    hourly,
+    monthly,
+    annual: monthly * 12,
+    monthlyHours,
+    holidayHours,
+    weeklyHolidayPay: Math.round(hourly * holidayHours),
+  };
+}
+
+const api = { monthlyPayment, loanSchedule, severancePeriod, severancePay, convertWage };
 if (typeof module !== 'undefined') module.exports = api;
 if (typeof window !== 'undefined') window.ToolLogic = Object.assign(window.ToolLogic || {}, api);

@@ -3,13 +3,14 @@
   "title": "Privacy Policy | Toolbox",
   "description": "How this free tools site handles your input, cookies, advertising, and third-party services.",
   "h1": "Privacy policy",
-  "updated": "2026-10-20",
+  "updated": "2026-10-29",
   "sections": [
     {
       "heading": "1. Information we collect",
       "paragraphs": [
         "This site does not require sign-up or login, and it does not directly collect personal information such as your name or contact details.",
-        "Values you enter into the calculators and text tools are processed only inside your browser. They are never sent to a server and never stored."
+        "Values you enter into the calculators and text tools are processed only inside your browser. They are never sent to a server and never stored.",
+        "When you press \"Copy result link\" on a calculator, the values you entered are placed after the # in the link. Browsers never send that part to the server, but anyone who receives the link can see the values, so share it with care."
       ]
     },
     {

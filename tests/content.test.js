@@ -14,6 +14,11 @@ const SLUGS = [
   'case-convert',
   'line-cleanup',
   'dedupe-lines',
+  'hourly-wage',
+  'korean-age',
+  'discharge-date',
+  'pyeong',
+  'percent',
 ];
 const LANGS = ['ko', 'en'];
 const REQUIRED_KEYS = ['slug', 'title', 'description', 'h1', 'intro', 'howTo', 'faq', 'labels'];
@@ -48,7 +53,7 @@ function load(lang, slug) {
   return JSON.parse(fs.readFileSync(path.join(ROOT, lang, `${slug}.json`), 'utf8'));
 }
 
-test('9개 도구마다 한국어와 영어 파일이 있다', () => {
+test('14개 도구마다 한국어와 영어 파일이 있다', () => {
   for (const lang of LANGS) {
     for (const slug of SLUGS) {
       assert.ok(fs.existsSync(path.join(ROOT, lang, `${slug}.json`)), `${lang}/${slug}.json`);
