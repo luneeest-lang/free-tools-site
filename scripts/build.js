@@ -28,7 +28,10 @@ const SLUGS = [
   'dedupe-lines',
 ];
 const LANGS = ['ko', 'en'];
-const GUIDE_SLUGS = ['severance', 'loan-repayment-methods', 'bmi', 'char-count'];
+const GUIDE_SLUGS = {
+  ko: ['severance', 'loan-repayment-methods', 'bmi', 'char-count'],
+  en: ['korean-severance-pay', 'korean-bmi-categories'],
+};
 
 function listFiles(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -128,11 +131,26 @@ function buildSite({ rootDir, outDir, origin = SITE_ORIGIN, config = loadConfig(
   const tools = {};
   const privacy = {};
   const about = {};
-  const guideHub = readJson(path.join(rootDir, 'content', 'ko', 'guides', 'index.json'));
-  const guides = GUIDE_SLUGS.map((slug) => readJson(path.join(rootDir, 'content', 'ko', 'guides', `${slug}.json`)));
+  const guideHub = {};
+  const guides = {};
   const relatedByTool = {};
-  for (const guide of guides) {
-    relatedByTool[guide.toolSlug] = { slug: guide.slug, title: guide.h1 };
+  // An English guide may name a Korean guide as its `pair`; paired guides link via hreflang.
+  const guidePaths = { ko: {}, en: {} };
+  for (const lang of LANGS) {
+    const dir = path.join(rootDir, 'content', lang, 'guides');
+    guideHub[lang] = readJson(path.join(dir, 'index.json'));
+    guides[lang] = GUIDE_SLUGS[lang].map((slug) => readJson(path.join(dir, `${slug}.json`)));
+    relatedByTool[lang] = {};
+    for (const guide of guides[lang]) {
+      relatedByTool[lang][guide.toolSlug] = { slug: guide.slug, title: guide.h1 };
+      guidePaths[lang][guide.slug] = { [lang]: `/${lang}/guides/${guide.slug}/` };
+    }
+  }
+  for (const guide of guides.en) {
+    if (!guide.pair) continue;
+    const paths = { ko: `/ko/guides/${guide.pair}/`, en: `/en/guides/${guide.slug}/` };
+    guidePaths.en[guide.slug] = paths;
+    guidePaths.ko[guide.pair] = paths;
   }
   for (const lang of LANGS) {
     ui[lang] = readJson(path.join(rootDir, 'content', 'ui', `${lang}.json`));
@@ -161,7 +179,7 @@ function buildSite({ rootDir, outDir, origin = SITE_ORIGIN, config = loadConfig(
         tools: Object.values(tools[lang]),
         alternates: home,
         origin,
-        guides: lang === 'ko' ? guides : [],
+        guides: guides[lang],
       })
     );
     pages += 1;
@@ -180,7 +198,7 @@ function buildSite({ rootDir, outDir, origin = SITE_ORIGIN, config = loadConfig(
           ui: ui[lang],
           alternates,
           origin,
-          relatedGuide: lang === 'ko' ? relatedByTool[slug] : undefined,
+          relatedGuide: relatedByTool[lang][slug],
         })
       );
       pages += 1;
@@ -188,24 +206,28 @@ function buildSite({ rootDir, outDir, origin = SITE_ORIGIN, config = loadConfig(
     }
   }
 
-  const hubPaths = { paths: { ko: '/ko/guides/' } };
-  writePage(
-    outDir,
-    'ko/guides/index.html',
-    renderGuidesHub({ lang: 'ko', hub: guideHub, guides, ui: ui.ko, alternates: hubPaths, origin })
-  );
-  pages += 1;
-  sitemapEntries.push({ lang: 'ko', paths: hubPaths.paths });
-
-  for (const guide of guides) {
-    const guidePaths = { paths: { ko: `/ko/guides/${guide.slug}/` } };
+  const hubPaths = { paths: { ko: '/ko/guides/', en: '/en/guides/' } };
+  for (const lang of LANGS) {
     writePage(
       outDir,
-      `ko/guides/${guide.slug}/index.html`,
-      renderGuidePage({ lang: 'ko', guide, ui: ui.ko, alternates: guidePaths, origin })
+      `${lang}/guides/index.html`,
+      renderGuidesHub({ lang, hub: guideHub[lang], guides: guides[lang], ui: ui[lang], alternates: hubPaths, origin })
     );
     pages += 1;
-    sitemapEntries.push({ lang: 'ko', paths: guidePaths.paths });
+    sitemapEntries.push({ lang, paths: hubPaths.paths });
+  }
+
+  for (const lang of LANGS) {
+    for (const guide of guides[lang]) {
+      const alternates = { paths: guidePaths[lang][guide.slug] };
+      writePage(
+        outDir,
+        `${lang}/guides/${guide.slug}/index.html`,
+        renderGuidePage({ lang, guide, ui: ui[lang], alternates, origin })
+      );
+      pages += 1;
+      sitemapEntries.push({ lang, paths: alternates.paths });
+    }
   }
 
   const aboutPaths = { paths: { ko: '/ko/about/', en: '/en/about/' } };

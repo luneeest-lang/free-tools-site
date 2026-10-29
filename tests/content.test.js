@@ -367,3 +367,40 @@ test('대출 라벨에 상환 방식과 상환표 항목이 있다', () => {
     }
   }
 });
+
+const EN_GUIDE_SLUGS = ['korean-severance-pay', 'korean-bmi-categories'];
+
+function loadEnGuide(slug) {
+  return JSON.parse(fs.readFileSync(path.join(ROOT, 'en', 'guides', `${slug}.json`), 'utf8'));
+}
+
+test('영어 가이드 목록 콘텐츠가 있다', () => {
+  const hub = JSON.parse(fs.readFileSync(path.join(ROOT, 'en', 'guides', 'index.json'), 'utf8'));
+  for (const key of ['title', 'description', 'h1', 'intro']) {
+    assert.equal(typeof hub[key], 'string', `en hub ${key}`);
+  }
+  assert.ok(hub.title.length <= 60 && hub.description.length <= 160);
+});
+
+test('영어 가이드 글에 필수 항목과 충분한 분량, 공식 출처가 있다', () => {
+  const toolSlugs = new Set(SLUGS);
+  const koGuides = new Set(GUIDE_SLUGS);
+  for (const slug of EN_GUIDE_SLUGS) {
+    const guide = loadEnGuide(slug);
+    assert.equal(guide.slug, slug);
+    for (const key of ['title', 'description', 'h1', 'intro', 'ctaText']) {
+      assert.equal(typeof guide[key], 'string', `en ${slug} ${key}`);
+    }
+    assert.ok(toolSlugs.has(guide.toolSlug), `en ${slug} toolSlug`);
+    assert.ok(guide.title.length <= 60, `en ${slug} title length`);
+    assert.ok(guide.description.length <= 160, `en ${slug} description length`);
+    assert.match(guide.updated, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(guide.sections.length >= 4, `en ${slug} sections`);
+    assert.ok(guideText(guide).length >= 2500, `en ${slug} body length`);
+    assert.ok(guide.sources.length >= 2, `en ${slug} sources`);
+    for (const source of guide.sources) {
+      assert.ok(source.url.startsWith('https://'), `en ${slug} source url`);
+    }
+    if (guide.pair) assert.ok(koGuides.has(guide.pair), `en ${slug} pair`);
+  }
+});

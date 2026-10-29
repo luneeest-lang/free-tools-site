@@ -85,21 +85,21 @@ function head({ lang, title, description, origin, alternates }) {
   <meta name="description" content="${escapeHtml(description)}">
   <link rel="canonical" href="${escapeHtml(origin + alternates[lang])}">
     ${hreflangs}
-    <link rel="alternate" hreflang="x-default" href="${escapeHtml(origin + alternates.ko)}">
+    <link rel="alternate" hreflang="x-default" href="${escapeHtml(origin + (alternates.ko || alternates[lang]))}">
   <link rel="stylesheet" href="${asset('/assets/style.css')}">${iconTags()}${adsenseTag()}
 </head>`;
 }
 
-function header({ lang, ui, alternates }) {
+function header({ lang, ui, alternates, fallback }) {
   const other = lang === 'ko' ? 'en' : 'ko';
   const links = [[`/${lang}/`, ui.navTools]];
-  if (lang === 'ko') links.push(['/ko/guides/', ui.navGuides]);
+  links.push([`/${lang}/guides/`, ui.navGuides]);
   links.push([`/${lang}/about/`, ui.navAbout]);
   const nav = links.map(([href, label]) => `<a href="${href}">${escapeHtml(label)}</a>`).join('');
   return `<header class="site-header">
   <a class="site-name" href="/${lang}/">${escapeHtml(ui.siteName)}</a>
   <nav class="site-nav" aria-label="${escapeHtml(ui.navLabel)}">${nav}</nav>
-  <a class="lang-switch" href="${alternates[other] || `/${other}/`}" hreflang="${other}" lang="${other}">${escapeHtml(ui.languageSwitch)}</a>
+  <a class="lang-switch" href="${alternates[other] || fallback || `/${other}/`}" hreflang="${other}" lang="${other}">${escapeHtml(ui.languageSwitch)}</a>
 </header>`;
 }
 
@@ -107,7 +107,7 @@ function footer(ui, lang) {
   const text = siteConfig.adsenseClient ? `${ui.footer} ${ui.footerAds}` : ui.footer;
   return `<footer class="site-footer">
   <p>${escapeHtml(text)}</p>
-  <p>${lang === 'ko' ? `<a href="/ko/guides/">${escapeHtml(ui.guidesLink)}</a> · ` : ''}<a href="/${lang}/about/">${escapeHtml(ui.aboutLink)}</a> · <a href="/${lang}/privacy/">${escapeHtml(ui.privacyLink)}</a></p>
+  <p><a href="/${lang}/guides/">${escapeHtml(ui.guidesLink)}</a> · <a href="/${lang}/about/">${escapeHtml(ui.aboutLink)}</a> · <a href="/${lang}/privacy/">${escapeHtml(ui.privacyLink)}</a></p>
 </footer>`;
 }
 
@@ -218,11 +218,11 @@ function renderSchedule(labels) {
   </details>`;
 }
 
-function renderRelatedGuide(relatedGuide, ui) {
+function renderRelatedGuide(relatedGuide, ui, lang) {
   if (!relatedGuide) return '';
   return `<section class="related-guide">
     <h2>${escapeHtml(ui.relatedGuideHeading)}</h2>
-    <p><a href="/ko/guides/${escapeHtml(relatedGuide.slug)}/">${escapeHtml(relatedGuide.title)}</a></p>
+    <p><a href="/${lang}/guides/${escapeHtml(relatedGuide.slug)}/">${escapeHtml(relatedGuide.title)}</a></p>
   </section>`;
 }
 
@@ -256,7 +256,7 @@ ${header({ lang, ui, alternates: alternates.paths })}
     <ol>${tool.howTo.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>
   </section>
   ${renderExplanation(tool, ui)}
-  ${renderRelatedGuide(relatedGuide, ui)}
+  ${renderRelatedGuide(relatedGuide, ui, lang)}
   <section class="faq">
     <h2>${escapeHtml(ui.faqHeading)}</h2>
     ${tool.faq.map((item) => `<details><summary>${escapeHtml(item.q)}</summary><p>${escapeHtml(item.a)}</p></details>`).join('\n')}
@@ -273,10 +273,10 @@ ${footer(ui, lang)}
 `;
 }
 
-function guideCards(guides) {
+function guideCards(guides, lang) {
   return guides
     .map(
-      (guide) => `<a class="tool-card" href="/ko/guides/${escapeHtml(guide.slug)}/">
+      (guide) => `<a class="tool-card" href="/${lang}/guides/${escapeHtml(guide.slug)}/">
   <span class="tool-card-title">${escapeHtml(guide.h1)}</span>
   <span class="tool-card-desc">${escapeHtml(guide.description)}</span>
 </a>`
@@ -311,7 +311,7 @@ ${header({ lang, ui, alternates: alternates.paths })}
     guides.length
       ? `<section class="category category-guide" data-category="guide">
   <h2>${escapeHtml(ui.guidesHeading)}</h2>
-  <div class="grid">${guideCards(guides)}</div>
+  <div class="grid">${guideCards(guides, lang)}</div>
 </section>`
       : ''
   }
@@ -339,7 +339,7 @@ function renderTextSections(sections) {
 }
 
 function renderGuidePage({ lang, guide, ui, alternates, origin }) {
-  const cta = `<p><a class="cta" href="/ko/${escapeHtml(guide.toolSlug)}/">${escapeHtml(guide.ctaText)}</a></p>`;
+  const cta = `<p><a class="cta" href="/${lang}/${escapeHtml(guide.toolSlug)}/">${escapeHtml(guide.ctaText)}</a></p>`;
   return `${head({
     lang,
     title: guide.title,
@@ -348,7 +348,7 @@ function renderGuidePage({ lang, guide, ui, alternates, origin }) {
     alternates: alternates.paths,
   })}
 <body>
-${header({ lang, ui, alternates: alternates.paths })}
+${header({ lang, ui, alternates: alternates.paths, fallback: `/${lang === 'ko' ? 'en' : 'ko'}/guides/` })}
 <main class="guide" data-category="${categoryOf(guide.toolSlug)}">
   <h1>${escapeHtml(guide.h1)}</h1>
   <div class="intro">${paragraphs(guide.intro)}</div>
@@ -377,7 +377,7 @@ ${header({ lang, ui, alternates: alternates.paths })}
   <h1>${escapeHtml(hub.h1)}</h1>
   <p class="lead">${escapeHtml(hub.intro)}</p>
   <section class="category category-guide" data-category="guide">
-    <div class="grid">${guideCards(guides)}</div>
+    <div class="grid">${guideCards(guides, lang)}</div>
   </section>
 </main>
 ${footer(ui, lang)}

@@ -1,0 +1,93 @@
+{
+  "slug": "korean-bmi-categories",
+  "title": "Korean vs WHO BMI Categories: Why the Cut-offs Differ",
+  "description": "Why a BMI of 24 is normal under WHO categories but pre-obese in Korea. Compare the two scales and the research behind lower Asian cut-offs.",
+  "h1": "Korean vs WHO BMI categories",
+  "updated": "2026-10-29",
+  "toolSlug": "bmi",
+  "ctaText": "Check your BMI with the calculator",
+  "intro": "Body mass index (BMI) is calculated the same way everywhere: weight in kilograms divided by height in meters squared. What changes from country to country is how the result is labeled. A BMI of 24 is in the normal range on the World Health Organization (WHO) scale but counts as pre-obese in South Korea.\n\nThis guide compares the two scales, explains the research behind the lower Asian cut-offs, and shows what that means for your result. It is general information, not medical advice.",
+  "sections": [
+    {
+      "heading": "The WHO international scale",
+      "paragraphs": [
+        "The WHO defines overweight in adults as a BMI of 25 or higher and obesity as a BMI of 30 or higher. The U.S. Centers for Disease Control and Prevention (CDC) uses the same adult categories and splits obesity into three classes.",
+        "Most English-language health sites and calculators, including the English version of this site's BMI calculator, use this scale."
+      ],
+      "items": [
+        "Below 18.5: underweight",
+        "18.5 to under 25: healthy weight",
+        "25 to under 30: overweight",
+        "30 to under 35: class 1 obesity",
+        "35 to under 40: class 2 obesity",
+        "40 or higher: class 3 obesity"
+      ]
+    },
+    {
+      "heading": "The Korean scale",
+      "paragraphs": [
+        "The Korean Society for the Study of Obesity's clinical practice guideline (2022) classes an adult BMI of 23 or higher as pre-obese and 25 or higher as obese. The Korea Disease Control and Prevention Agency (KDCA) also defines adult obesity as a BMI of 25 or higher and divides it into three stages.",
+        "The Korean version of this site's BMI calculator uses this scale."
+      ],
+      "items": [
+        "Below 18.5: underweight",
+        "18.5 to under 23: normal",
+        "23 to under 25: pre-obese (overweight)",
+        "25 to 29.9: stage 1 obesity",
+        "30 to 34.9: stage 2 obesity",
+        "35 or higher: stage 3 (severe) obesity"
+      ]
+    },
+    {
+      "heading": "Why Asian cut-offs are lower",
+      "paragraphs": [
+        "The WHO convened an expert consultation on BMI in Asian populations, and its report was published in The Lancet in 2004. The experts reviewed evidence that Asian populations have different relationships between BMI, body fat percentage, and health risks than European populations.",
+        "They concluded that a substantial share of Asian people face a high risk of type 2 diabetes and cardiovascular disease at BMIs below the WHO overweight cut-off of 25. The BMI at which risk was observed varied from 22 to 25 across Asian populations.",
+        "Because the evidence did not point to one cut-off for all Asians, the consultation kept the WHO categories as the international standard. It proposed additional public health action points at BMIs of 23, 27.5, 32.5, and 37.5, and suggested that each country decide its own definitions of increased risk. Korea's 23 and 25 thresholds follow this approach."
+      ]
+    },
+    {
+      "heading": "Same number, different label",
+      "paragraphs": [
+        "Here is how a few BMI values are labeled on each scale. The math is identical; only the categories change.",
+        "If you are of Asian descent and get a result in the upper part of the WHO healthy range, it can be worth knowing that the same number may already count as elevated risk under Asian cut-offs."
+      ],
+      "items": [
+        "BMI 22.0: healthy weight (WHO), normal (Korea)",
+        "BMI 24.0: healthy weight (WHO), pre-obese (Korea)",
+        "BMI 27.0: overweight (WHO), stage 1 obesity (Korea)",
+        "BMI 31.0: class 1 obesity (WHO), stage 2 obesity (Korea)"
+      ]
+    },
+    {
+      "heading": "What BMI does not tell you",
+      "paragraphs": [
+        "BMI uses only height and weight. It cannot tell muscle from fat or show where fat is stored, so a muscular person can have a high BMI. The CDC describes BMI as a screening tool rather than a diagnosis.",
+        "Waist size adds information. KDCA defines abdominal obesity in Korean adults as a waist circumference of 90 cm or more for men and 85 cm or more for women, even when BMI is in the normal range.",
+        "Children and teenagers are assessed with age- and sex-specific growth charts, so neither adult scale applies to them. If you are concerned about your weight or health, talk to a doctor."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "WHO: Obesity and overweight (fact sheet)",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight"
+    },
+    {
+      "title": "WHO Expert Consultation: Appropriate body-mass index for Asian populations, The Lancet 2004 (PubMed)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14726171/"
+    },
+    {
+      "title": "CDC: Adult BMI categories",
+      "url": "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
+    },
+    {
+      "title": "Korean Society for the Study of Obesity: diagnosing obesity (in Korean)",
+      "url": "https://general.kosso.or.kr/html/?pmode=obesitydiagnosis"
+    },
+    {
+      "title": "Korea Disease Control and Prevention Agency: obesity (in Korean)",
+      "url": "https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=6694"
+    }
+  ]
+}

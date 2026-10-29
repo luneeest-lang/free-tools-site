@@ -103,10 +103,17 @@
   <url>
     <loc>https://moatool.com/ko/guides/</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/guides/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/en/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/guides/"/>
   </url>
   <url>
     <loc>https://moatool.com/ko/guides/severance/</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/severance/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/guides/korean-severance-pay/"/>
   </url>
   <url>
     <loc>https://moatool.com/ko/guides/loan-repayment-methods/</loc>
@@ -119,6 +126,15 @@
   <url>
     <loc>https://moatool.com/ko/guides/char-count/</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/char-count/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/en/guides/korean-severance-pay/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/severance/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/guides/korean-severance-pay/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/en/guides/korean-bmi-categories/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/guides/korean-bmi-categories/"/>
   </url>
   <url>
     <loc>https://moatool.com/ko/about/</loc>

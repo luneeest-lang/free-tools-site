@@ -58,9 +58,9 @@ test('계산기 페이지에 폼 입력 칸이 있다', () => {
   assert.match(page, /id="months"/);
 });
 
-test('페이지 수는 30 (루트 1, 언어 홈 2, 도구 18, 개인정보 2, 소개 2, 가이드 목록 1, 가이드 4)', () => {
+test('페이지 수는 33 (루트 1, 언어 홈 2, 도구 18, 개인정보 2, 소개 2, 가이드 목록 2, 가이드 6)', () => {
   const result = buildSite({ rootDir: ROOT, outDir: fs.mkdtempSync(path.join(os.tmpdir(), 'site-count-')) });
-  assert.equal(result.pages, 30);
+  assert.equal(result.pages, 33);
 });
 
 test('로직 파일이 site/assets/logic에 복사된다', () => {
@@ -255,16 +255,47 @@ test('형식이 잘못된 네이버 소유 확인 값은 빌드를 중단한다'
   );
 });
 
-test('가이드 목록과 글 페이지가 한국어로만 생성된다', () => {
+test('한국어 가이드 목록과 글 페이지가 생성된다', () => {
   assert.ok(fs.existsSync(path.join(outDir, 'ko', 'guides', 'index.html')));
-  for (const slug of ['severance', 'loan-repayment-methods', 'bmi', 'char-count']) {
+  for (const slug of ['loan-repayment-methods', 'bmi', 'char-count']) {
     const page = read(`ko/guides/${slug}/index.html`);
     assert.match(page, /<html lang="ko"/);
     assert.match(page, /<main class="guide"/);
     assert.doesNotMatch(page, /<link rel="alternate" hreflang="en"/);
-    assert.match(page, /class="lang-switch" href="\/en\/"/);
+    assert.match(page, /class="lang-switch" href="\/en\/guides\/"/);
   }
-  assert.ok(!fs.existsSync(path.join(outDir, 'en', 'guides')));
+});
+
+test('영어 가이드 목록과 글 페이지가 생성된다', () => {
+  const hub = read('en/guides/index.html');
+  assert.match(hub, /<html lang="en"/);
+  assert.match(hub, /href="\/en\/guides\/korean-severance-pay\/"/);
+  assert.match(hub, /href="\/en\/guides\/korean-bmi-categories\/"/);
+  assert.match(hub, /<link rel="alternate" hreflang="ko" href="https:\/\/moatool\.com\/ko\/guides\/">/);
+  for (const slug of ['korean-severance-pay', 'korean-bmi-categories']) {
+    const page = read(`en/guides/${slug}/index.html`);
+    assert.match(page, /<html lang="en"/);
+    assert.match(page, /<main class="guide"/);
+    assert.match(page, /<section class="sources">/);
+    assert.doesNotMatch(page, /undefined/);
+  }
+  assert.match(read('en/guides/korean-severance-pay/index.html'), /class="cta" href="\/en\/severance\/"/);
+  assert.match(read('en/guides/korean-bmi-categories/index.html'), /class="cta" href="\/en\/bmi\/"/);
+});
+
+test('짝이 있는 가이드는 hreflang과 언어 전환으로 서로 연결된다', () => {
+  const ko = read('ko/guides/severance/index.html');
+  const en = read('en/guides/korean-severance-pay/index.html');
+  assert.match(ko, /hreflang="en" href="https:\/\/moatool\.com\/en\/guides\/korean-severance-pay\/"/);
+  assert.match(ko, /class="lang-switch" href="\/en\/guides\/korean-severance-pay\/"/);
+  assert.match(en, /hreflang="ko" href="https:\/\/moatool\.com\/ko\/guides\/severance\/"/);
+  assert.match(en, /class="lang-switch" href="\/ko\/guides\/severance\/"/);
+});
+
+test('짝이 없는 영어 가이드는 x-default로 자기 주소를 쓴다', () => {
+  const page = read('en/guides/korean-bmi-categories/index.html');
+  assert.match(page, /hreflang="x-default" href="https:\/\/moatool\.com\/en\/guides\/korean-bmi-categories\/"/);
+  assert.match(page, /class="lang-switch" href="\/ko\/guides\/"/);
 });
 
 test('가이드 글에서 연결된 도구로 이동하는 링크가 있다', () => {
@@ -278,20 +309,26 @@ test('도구 페이지에서 관련 가이드로 이동하는 링크가 있다',
   assert.match(read('ko/bmi/index.html'), /href="\/ko\/guides\/bmi\/"/);
   assert.match(read('ko/char-count/index.html'), /href="\/ko\/guides\/char-count\/"/);
   assert.doesNotMatch(read('ko/date-diff/index.html'), /class="related-guide"/);
+  assert.match(read('en/severance/index.html'), /href="\/en\/guides\/korean-severance-pay\/"/);
+  assert.match(read('en/bmi/index.html'), /href="\/en\/guides\/korean-bmi-categories\/"/);
+  assert.doesNotMatch(read('en/loan-calculator/index.html'), /class="related-guide"/);
 });
 
-test('한국어 홈과 푸터에 가이드가 보이고 영어 페이지에는 없다', () => {
-  assert.match(read('ko/index.html'), /data-category="guide"/);
-  assert.match(read('ko/index.html'), /href="\/ko\/guides\/"/);
-  assert.doesNotMatch(read('en/index.html'), /guides/);
-  assert.doesNotMatch(read('en/severance/index.html'), /related-guide/);
+test('두 언어 홈과 푸터에 가이드가 보인다', () => {
+  for (const lang of ['ko', 'en']) {
+    const home = read(`${lang}/index.html`);
+    assert.match(home, /data-category="guide"/);
+    assert.match(home, new RegExp(`<footer[\\s\\S]*href="/${lang}/guides/"[\\s\\S]*</footer>`));
+  }
+  assert.match(read('en/index.html'), /href="\/en\/guides\/korean-severance-pay\/"/);
 });
 
-test('사이트맵에 가이드 주소가 들어가고 영어 연결은 없다', () => {
+test('사이트맵에 두 언어 가이드 주소가 들어간다', () => {
   const sitemap = read('sitemap.xml');
   assert.match(sitemap, /<loc>https:\/\/moatool\.com\/ko\/guides\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/moatool\.com\/ko\/guides\/severance\/<\/loc>/);
-  assert.doesNotMatch(sitemap, /en\/guides/);
+  assert.match(sitemap, /<loc>https:\/\/moatool\.com\/en\/guides\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/moatool\.com\/en\/guides\/korean-bmi-categories\/<\/loc>/);
 });
 
 test('가이드 글에 출처 링크와 수정일이 렌더링된다', () => {
@@ -363,11 +400,11 @@ test('모든 페이지 헤더에 메뉴가 있다', () => {
     assert.match(html, /<a href="\/ko\/guides\/">가이드<\/a>/, page);
     assert.match(html, /<a href="\/ko\/about\/">소개<\/a>/, page);
   }
-  for (const page of ['en/index.html', 'en/bmi/index.html', 'en/about/index.html']) {
+  for (const page of ['en/index.html', 'en/bmi/index.html', 'en/about/index.html', 'en/guides/index.html']) {
     const html = read(page);
     assert.match(html, /<a href="\/en\/">Tools<\/a>/, page);
+    assert.match(html, /<a href="\/en\/guides\/">Guides<\/a>/, page);
     assert.match(html, /<a href="\/en\/about\/">About<\/a>/, page);
-    assert.doesNotMatch(html, /guides/, page);
   }
 });
 

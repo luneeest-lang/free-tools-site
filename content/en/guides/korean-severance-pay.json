@@ -1,0 +1,100 @@
+{
+  "slug": "korean-severance-pay",
+  "pair": "severance",
+  "title": "Severance Pay in Korea: Who Gets It and How to Calculate",
+  "description": "How Korean severance pay works: who is eligible, the official formula, how average wage is calculated, and when it must be paid.",
+  "h1": "How severance pay works in Korea",
+  "updated": "2026-10-29",
+  "toolSlug": "severance",
+  "ctaText": "Calculate your Korean severance pay",
+  "intro": "In South Korea, most employees who leave a job after working there for at least a year are entitled to severance pay (퇴직금, toejikgeum). The rules come from Korean law, and they apply whether you are a Korean citizen or a foreign worker.\n\nThis guide explains the rules in plain English, based on guidance from Korea's Ministry of Employment and Labor (MOEL) and the text of the relevant laws. It is general information, not legal advice. Most official sources are in Korean, so each link below notes that.",
+  "sections": [
+    {
+      "heading": "Who is eligible",
+      "paragraphs": [
+        "Under the Employee Retirement Benefit Security Act, an employer must provide retirement benefits to employees who leave. MOEL explains that two groups are excluded:"
+      ],
+      "items": [
+        "Employees whose continuous service is shorter than one year.",
+        "Employees whose contractual working hours average fewer than 15 hours per week over a four-week period."
+      ]
+    },
+    {
+      "heading": "What that means in practice",
+      "paragraphs": [
+        "As a rule, you qualify if you have worked continuously for the same employer for at least one year and your contract sets an average of 15 hours or more per week. Contractual hours are the hours written in your employment contract, not the hours you actually worked.",
+        "Nationality does not matter. The Labor Standards Act prohibits employers from treating workers differently in working conditions because of nationality, so foreign employees are covered by the same severance rules."
+      ]
+    },
+    {
+      "heading": "The official formula",
+      "paragraphs": [
+        "MOEL gives the formula for statutory severance pay as:",
+        "Severance pay = average daily wage × 30 days × (total days of service ÷ 365)",
+        "In other words, you receive 30 days of average wages for every year of continuous service, prorated by days. One full year of service (365 days) gives 30 days of average wages, and two years (730 days) gives 60 days."
+      ]
+    },
+    {
+      "heading": "How the average daily wage is calculated",
+      "paragraphs": [
+        "The average daily wage is the total wages paid during the three calendar months before your leaving date, divided by the total number of calendar days in that period. The divisor is calendar days, not working days, so three consecutive months contain between 89 and 92 days.",
+        "MOEL's calculator treats the leaving date as the day after your last working day. For example, if your last day of work is July 15, the leaving date is July 16, and the three-month period runs from April 16 to July 15.",
+        "Two extra items are added to the three-month wage total. Bonuses count as 3/12 of the total bonuses paid in the 12 months before leaving. Unused annual leave pay counts as 3/12 of the allowance for leave that accrued in the year before you left. Leave allowance that first arises because you are leaving is not included.",
+        "If the average wage calculated this way is lower than your ordinary wage (통상임금, your regular fixed pay), the ordinary wage is used instead."
+      ]
+    },
+    {
+      "heading": "A worked example",
+      "paragraphs": [
+        "Suppose you were paid a total of 9,000,000 won in the three months before your leaving date, and that period has 90 days. Your average daily wage is 9,000,000 ÷ 90 = 100,000 won.",
+        "With exactly one year of service (365 days), severance pay is 100,000 × 30 × (365 ÷ 365) = 3,000,000 won. With 730 days it is 6,000,000 won, and with 1,095 days it is 9,000,000 won.",
+        "The severance calculator on this site follows the same method. Enter your hire date, leaving date, three-month wages, and any bonus or leave pay to see the amount and the dates it used."
+      ]
+    },
+    {
+      "heading": "When it must be paid, and how long you can claim",
+      "paragraphs": [
+        "The employer must pay severance within 14 days of the date the payment becomes due, which is when you leave. The deadline can be extended if both sides agree because of special circumstances.",
+        "The right to claim severance pay expires if it is not exercised within three years. MOEL counts the three years from the day after you leave."
+      ]
+    },
+    {
+      "heading": "Things that can change the amount",
+      "paragraphs": [
+        "The formula gives the amount before tax. Severance is taxed separately as retirement income, so the amount you actually receive will be lower.",
+        "If your employer runs a retirement pension plan (defined benefit or defined contribution) instead of the traditional severance system, the way benefits are paid can differ. Check your plan with your employer.",
+        "For an exact answer about your case, contact MOEL (call center 1350), the Korea Workers' Compensation and Welfare Service, or your employer's HR team."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Ministry of Employment and Labor: severance pay and average wage formula (in Korean)",
+      "url": "https://www.moel.go.kr/faq/faqView.do?seqRepeat=89"
+    },
+    {
+      "title": "Ministry of Employment and Labor: severance pay calculator and input guide (in Korean)",
+      "url": "https://www.moel.go.kr/retirementpayCal.do"
+    },
+    {
+      "title": "Ministry of Employment and Labor: who is eligible for severance pay (in Korean)",
+      "url": "https://www.moel.go.kr/minwon/fastcounsel/fastcounselView.do?inetDcssMngId=202407240338354280219"
+    },
+    {
+      "title": "Ministry of Employment and Labor: 3/12 of annual leave pay in severance pay (in Korean)",
+      "url": "https://www.moel.go.kr/minwon/fastcounsel/fastcounselView.do?inetDcssMngId=202104290955137991000"
+    },
+    {
+      "title": "Ministry of Employment and Labor: payment deadline and time limit to claim (in Korean)",
+      "url": "https://www.moel.go.kr/faq/faqView.do?seqRepeat=118"
+    },
+    {
+      "title": "National Law Information Center: Employee Retirement Benefit Security Act (in Korean)",
+      "url": "https://www.law.go.kr/법령/근로자퇴직급여보장법"
+    },
+    {
+      "title": "National Law Information Center: Labor Standards Act, Article 6 equal treatment (in Korean)",
+      "url": "https://www.law.go.kr/법령/근로기준법"
+    }
+  ]
+}
