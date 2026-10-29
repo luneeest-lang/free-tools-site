@@ -73,11 +73,37 @@ function paragraphs(text) {
     .join('\n');
 }
 
-function head({ lang, title, description, origin, alternates }) {
+// Open Graph tags drive link previews in KakaoTalk, Naver, and social apps.
+function openGraphTags({ lang, title, description, url, origin, siteName, type }) {
+  return `
+  <meta property="og:type" content="${type}">
+  <meta property="og:site_name" content="${escapeHtml(siteName)}">
+  <meta property="og:title" content="${escapeHtml(title)}">
+  <meta property="og:description" content="${escapeHtml(description)}">
+  <meta property="og:url" content="${escapeHtml(url)}">
+  <meta property="og:image" content="${escapeHtml(origin)}/assets/og-${lang}.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="${lang === 'ko' ? 'ko_KR' : 'en_US'}">
+  <meta name="twitter:card" content="summary_large_image">`;
+}
+
+function rssTag(rss) {
+  if (!rss) return '';
+  return `
+  <link rel="alternate" type="application/rss+xml" title="${escapeHtml(rss.title)}" href="${escapeHtml(rss.url)}">`;
+}
+
+function rssLink(lang, ui, origin) {
+  return { title: `${ui.siteName} ${ui.guidesHeading}`, url: `${origin}/${lang}/guides/rss.xml` };
+}
+
+function head({ lang, title, description, origin, alternates, siteName, type = 'website', rss }) {
   const hreflangs = ['ko', 'en']
     .filter((code) => alternates[code])
     .map((code) => `<link rel="alternate" hreflang="${code}" href="${escapeHtml(origin + alternates[code])}">`)
     .join('\n    ');
+  const url = origin + alternates[lang];
   return `<!doctype html>
 <html lang="${lang}">
 <head>
@@ -88,9 +114,9 @@ function head({ lang, title, description, origin, alternates }) {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}">
-  <link rel="canonical" href="${escapeHtml(origin + alternates[lang])}">
+  <link rel="canonical" href="${escapeHtml(url)}">
     ${hreflangs}
-    <link rel="alternate" hreflang="x-default" href="${escapeHtml(origin + (alternates.ko || alternates[lang]))}">
+    <link rel="alternate" hreflang="x-default" href="${escapeHtml(origin + (alternates.ko || alternates[lang]))}">${openGraphTags({ lang, title, description, url, origin, siteName, type })}${rssTag(rss)}
   <link rel="stylesheet" href="${asset('/assets/style.css')}">${iconTags()}${adsenseTag()}
 </head>`;
 }
@@ -250,6 +276,7 @@ function renderToolPage({ lang, tool, ui, alternates, origin, relatedGuide }) {
     description: tool.description,
     origin,
     alternates: alternates.paths,
+    siteName: ui.siteName,
   })}
 <body>
 ${header({ lang, ui, alternates: alternates.paths })}
@@ -313,7 +340,7 @@ function renderHome({ lang, ui, tools, alternates, origin, guides = [] }) {
 </section>`;
   const title = `${ui.siteName} | ${ui.home}`;
   const description = ui.homeDescription;
-  return `${head({ lang, title, description, origin, alternates: alternates.paths })}
+  return `${head({ lang, title, description, origin, alternates: alternates.paths, siteName: ui.siteName })}
 <body>
 ${header({ lang, ui, alternates: alternates.paths })}
 <main class="home">
@@ -360,6 +387,9 @@ function renderGuidePage({ lang, guide, ui, alternates, origin }) {
     description: guide.description,
     origin,
     alternates: alternates.paths,
+    siteName: ui.siteName,
+    type: 'article',
+    rss: rssLink(lang, ui, origin),
   })}
 <body>
 ${header({ lang, ui, alternates: alternates.paths, fallback: `/${lang === 'ko' ? 'en' : 'ko'}/guides/` })}
@@ -384,6 +414,8 @@ function renderGuidesHub({ lang, hub, guides, ui, alternates, origin }) {
     description: hub.description,
     origin,
     alternates: alternates.paths,
+    siteName: ui.siteName,
+    rss: rssLink(lang, ui, origin),
   })}
 <body>
 ${header({ lang, ui, alternates: alternates.paths })}
@@ -414,6 +446,7 @@ function renderAboutPage({ lang, page, ui, alternates, origin }) {
     description: page.description,
     origin,
     alternates: alternates.paths,
+    siteName: ui.siteName,
   })}
 <body>
 ${header({ lang, ui, alternates: alternates.paths })}
@@ -466,6 +499,7 @@ function renderPrivacyPage({ lang, page, ui, alternates, origin }) {
     description: page.description,
     origin,
     alternates: alternates.paths,
+    siteName: ui.siteName,
   })}
 <body>
 ${header({ lang, ui, alternates: alternates.paths })}

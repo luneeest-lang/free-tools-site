@@ -519,3 +519,50 @@ test('새 가이드가 도구와 연결되고 만 나이 가이드는 두 언어
   assert.match(read('ko/guides/korean-age/index.html'), /hreflang="en" href="https:\/\/moatool\.com\/en\/guides\/korean-age-explained\/"/);
   assert.match(read('en/guides/korean-age-explained/index.html'), /class="lang-switch" href="\/ko\/guides\/korean-age\/"/);
 });
+
+test('모든 언어 페이지에 공유 미리보기(Open Graph) 태그가 있다', () => {
+  const pages = {
+    'ko/index.html': 'https://moatool.com/ko/',
+    'ko/hourly-wage/index.html': 'https://moatool.com/ko/hourly-wage/',
+    'en/korean-age/index.html': 'https://moatool.com/en/korean-age/',
+    'ko/guides/weekly-holiday-pay/index.html': 'https://moatool.com/ko/guides/weekly-holiday-pay/',
+    'en/about/index.html': 'https://moatool.com/en/about/',
+  };
+  for (const [page, url] of Object.entries(pages)) {
+    const html = read(page);
+    const title = html.match(/<title>([^<]*)<\/title>/)[1];
+    assert.ok(html.includes(`<meta property="og:title" content="${title}">`), page);
+    assert.match(html, /<meta property="og:description" content="[^"]+">/, page);
+    assert.ok(html.includes(`<meta property="og:url" content="${url}">`), page);
+    assert.match(html, /<meta property="og:image" content="https:\/\/moatool\.com\/assets\/og-(ko|en)\.png">/, page);
+    assert.match(html, /<meta property="og:site_name" content="[^"]+">/, page);
+    assert.match(html, /<meta name="twitter:card" content="summary_large_image">/, page);
+  }
+  assert.match(read('ko/guides/weekly-holiday-pay/index.html'), /<meta property="og:type" content="article">/);
+  assert.match(read('ko/hourly-wage/index.html'), /<meta property="og:type" content="website">/);
+  assert.match(read('ko/index.html'), /<meta property="og:locale" content="ko_KR">/);
+  assert.match(read('en/index.html'), /<meta property="og:locale" content="en_US">/);
+  assert.match(read('en/index.html'), /og-en\.png/);
+});
+
+test('공유 미리보기 이미지는 1200x630 PNG다', () => {
+  for (const lang of ['ko', 'en']) {
+    const png = fs.readFileSync(path.join(outDir, 'assets', `og-${lang}.png`));
+    assert.equal(png.subarray(1, 4).toString('ascii'), 'PNG');
+    assert.equal(png.readUInt32BE(16), 1200);
+    assert.equal(png.readUInt32BE(20), 630);
+  }
+});
+
+test('가이드 RSS가 언어별로 생성되고 페이지에서 연결된다', () => {
+  const ko = read('ko/guides/rss.xml');
+  assert.match(ko, /^<\?xml version="1\.0" encoding="UTF-8"\?>\n<rss version="2\.0"/);
+  assert.match(ko, /<link>https:\/\/moatool\.com\/ko\/guides\/<\/link>/);
+  assert.match(ko, /<item>[\s\S]*<link>https:\/\/moatool\.com\/ko\/guides\/weekly-holiday-pay\/<\/link>[\s\S]*<\/item>/);
+  assert.match(ko, /<pubDate>[A-Z][a-z]{2}, \d{2} [A-Z][a-z]{2} \d{4} 00:00:00 \+0900<\/pubDate>/);
+  assert.equal((ko.match(/<item>/g) || []).length, 6);
+  assert.equal((read('en/guides/rss.xml').match(/<item>/g) || []).length, 3);
+  assert.match(read('ko/guides/index.html'), /<link rel="alternate" type="application\/rss\+xml" title="[^"]+" href="https:\/\/moatool\.com\/ko\/guides\/rss\.xml">/);
+  assert.match(read('ko/guides/severance/index.html'), /type="application\/rss\+xml"/);
+  assert.match(read('en/guides/index.html'), /href="https:\/\/moatool\.com\/en\/guides\/rss\.xml"/);
+});

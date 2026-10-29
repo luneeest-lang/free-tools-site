@@ -116,6 +116,47 @@ ${urls}
 `;
 }
 
+function xmlEscape(text) {
+  return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// RSS 2.0 wants RFC 822 dates; guides only record a day, so use midnight in Korea.
+function rfc822(ymd) {
+  const date = new Date(`${ymd}T00:00:00Z`);
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const day = String(date.getUTCDate()).padStart(2, '0');
+  return `${days[date.getUTCDay()]}, ${day} ${months[date.getUTCMonth()]} ${date.getUTCFullYear()} 00:00:00 +0900`;
+}
+
+function rssXml({ origin, lang, hub, guides }) {
+  const newest = guides.map((guide) => guide.updated).sort().pop();
+  const items = guides
+    .map((guide) => {
+      const link = `${origin}/${lang}/guides/${guide.slug}/`;
+      return `    <item>
+      <title>${xmlEscape(guide.h1)}</title>
+      <link>${link}</link>
+      <guid isPermaLink="true">${link}</guid>
+      <description>${xmlEscape(guide.description)}</description>
+      <pubDate>${rfc822(guide.updated)}</pubDate>
+    </item>`;
+    })
+    .join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>${xmlEscape(hub.title)}</title>
+    <link>${origin}/${lang}/guides/</link>
+    <description>${xmlEscape(hub.description)}</description>
+    <language>${lang}</language>
+    <lastBuildDate>${rfc822(newest)}</lastBuildDate>
+${items}
+  </channel>
+</rss>
+`;
+}
+
 function robotsTxt(origin) {
   return `User-agent: *
 Allow: /
@@ -275,6 +316,9 @@ function buildSite({ rootDir, outDir, origin = SITE_ORIGIN, config = loadConfig(
   }
 
   writePage(outDir, 'sitemap.xml', sitemapXml(origin, sitemapEntries));
+  for (const lang of LANGS) {
+    writePage(outDir, `${lang}/guides/rss.xml`, rssXml({ origin, lang, hub: guideHub[lang], guides: guides[lang] }));
+  }
   writePage(outDir, 'robots.txt', robotsTxt(origin));
 
   return { pages };

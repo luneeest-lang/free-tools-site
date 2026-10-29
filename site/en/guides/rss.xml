@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Guides | Toolbox</title>
+    <link>https://moatool.com/en/guides/</link>
+    <description>Plain-English guides to Korean severance pay, Korean age, and Korean versus WHO BMI categories, based on official sources.</description>
+    <language>en</language>
+    <lastBuildDate>Thu, 29 Oct 2026 00:00:00 +0900</lastBuildDate>
+    <item>
+      <title>How severance pay works in Korea</title>
+      <link>https://moatool.com/en/guides/korean-severance-pay/</link>
+      <guid isPermaLink="true">https://moatool.com/en/guides/korean-severance-pay/</guid>
+      <description>How Korean severance pay works: who is eligible, the official formula, how average wage is calculated, and when it must be paid.</description>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>Korean age explained</title>
+      <link>https://moatool.com/en/guides/korean-age-explained/</link>
+      <guid isPermaLink="true">https://moatool.com/en/guides/korean-age-explained/</guid>
+      <description>How Korean age works, why Korea switched to international age in 2023, and where year age is still used, such as buying alcohol and tobacco.</description>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>Korean vs WHO BMI categories</title>
+      <link>https://moatool.com/en/guides/korean-bmi-categories/</link>
+      <guid isPermaLink="true">https://moatool.com/en/guides/korean-bmi-categories/</guid>
+      <description>Why a BMI of 24 is normal under WHO categories but pre-obese in Korea. Compare the two scales and the research behind lower Asian cut-offs.</description>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 +0900</pubDate>
+    </item>
+  </channel>
+</rss>
