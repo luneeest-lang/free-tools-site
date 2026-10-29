@@ -130,8 +130,26 @@ main,
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 24px;
   padding-top: 16px;
   padding-bottom: 16px;
+}
+
+.site-nav {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+}
+
+.site-nav a {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  color: var(--text-primary);
 }
 
 .site-name {
@@ -321,13 +339,15 @@ textarea {
 
 .notes ul,
 .sources ul,
-.privacy ul {
+.privacy ul,
+.about ul {
   max-width: 680px;
   padding-left: 20px;
   color: var(--text-secondary);
 }
 
 .privacy p,
+.about p,
 .guide p,
 .guide-hub .lead {
   max-width: 680px;
@@ -434,6 +454,11 @@ textarea {
 @media (max-width: 767px) {
   h1 {
     font-size: 26px;
+  }
+
+  .site-nav {
+    order: 3;
+    flex-basis: 100%;
   }
 
   .tool-form {

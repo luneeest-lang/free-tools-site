@@ -91,8 +91,13 @@ function head({ lang, title, description, origin, alternates }) {
 
 function header({ lang, ui, alternates }) {
   const other = lang === 'ko' ? 'en' : 'ko';
+  const links = [[`/${lang}/`, ui.navTools]];
+  if (lang === 'ko') links.push(['/ko/guides/', ui.navGuides]);
+  links.push([`/${lang}/about/`, ui.navAbout]);
+  const nav = links.map(([href, label]) => `<a href="${href}">${escapeHtml(label)}</a>`).join('');
   return `<header class="site-header">
   <a class="site-name" href="/${lang}/">${escapeHtml(ui.siteName)}</a>
+  <nav class="site-nav" aria-label="${escapeHtml(ui.navLabel)}">${nav}</nav>
   <a class="lang-switch" href="${alternates[other] || `/${other}/`}" hreflang="${other}" lang="${other}">${escapeHtml(ui.languageSwitch)}</a>
 </header>`;
 }
@@ -101,7 +106,7 @@ function footer(ui, lang) {
   const text = siteConfig.adsenseClient ? `${ui.footer} ${ui.footerAds}` : ui.footer;
   return `<footer class="site-footer">
   <p>${escapeHtml(text)}</p>
-  <p>${lang === 'ko' ? `<a href="/ko/guides/">${escapeHtml(ui.guidesLink)}</a> · ` : ''}<a href="/${lang}/privacy/">${escapeHtml(ui.privacyLink)}</a></p>
+  <p>${lang === 'ko' ? `<a href="/ko/guides/">${escapeHtml(ui.guidesLink)}</a> · ` : ''}<a href="/${lang}/about/">${escapeHtml(ui.aboutLink)}</a> · <a href="/${lang}/privacy/">${escapeHtml(ui.privacyLink)}</a></p>
 </footer>`;
 }
 
@@ -361,6 +366,36 @@ ${footer(ui, lang)}
 `;
 }
 
+function renderAboutPage({ lang, page, ui, alternates, origin }) {
+  const contact = siteConfig.contactEmail
+    ? `<section class="contact">
+    <h2>${escapeHtml(page.contact.heading)}</h2>
+    <p>${escapeHtml(page.contact.text)}</p>
+    <p><a href="mailto:${escapeHtml(siteConfig.contactEmail)}">${escapeHtml(siteConfig.contactEmail)}</a></p>
+  </section>`
+    : '';
+  return `${head({
+    lang,
+    title: page.title,
+    description: page.description,
+    origin,
+    alternates: alternates.paths,
+  })}
+<body>
+${header({ lang, ui, alternates: alternates.paths })}
+<main class="about">
+  <h1>${escapeHtml(page.h1)}</h1>
+  <div class="intro">${paragraphs(page.intro)}</div>
+  ${renderTextSections(page.sections)}
+  ${contact}
+  <p class="updated">${escapeHtml(ui.updatedLabel)}: ${escapeHtml(page.updated)}</p>
+</main>
+${footer(ui, lang)}
+</body>
+</html>
+`;
+}
+
 function renderPrivacyPage({ lang, page, ui, alternates, origin }) {
   const sections = page.sections
     .map((section) => {
@@ -446,6 +481,7 @@ module.exports = {
   setSiteConfig,
   renderToolPage,
   renderHome,
+  renderAboutPage,
   renderGuidePage,
   renderGuidesHub,
   renderPrivacyPage,

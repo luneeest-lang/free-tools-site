@@ -20,5 +20,10 @@
   "privacyLink": "개인정보처리방침",
   "guidesHeading": "가이드",
   "guidesLink": "가이드",
-  "relatedGuideHeading": "관련 가이드"
+  "relatedGuideHeading": "관련 가이드",
+  "navTools": "도구",
+  "navGuides": "가이드",
+  "navAbout": "소개",
+  "aboutLink": "사이트 소개",
+  "navLabel": "주 메뉴"
 }

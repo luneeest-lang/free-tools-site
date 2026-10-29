@@ -58,9 +58,9 @@ test('계산기 페이지에 폼 입력 칸이 있다', () => {
   assert.match(page, /id="months"/);
 });
 
-test('페이지 수는 26 (루트 1, 언어 홈 2, 도구 16, 개인정보 2, 가이드 목록 1, 가이드 4)', () => {
+test('페이지 수는 28 (루트 1, 언어 홈 2, 도구 16, 개인정보 2, 소개 2, 가이드 목록 1, 가이드 4)', () => {
   const result = buildSite({ rootDir: ROOT, outDir: fs.mkdtempSync(path.join(os.tmpdir(), 'site-count-')) });
-  assert.equal(result.pages, 26);
+  assert.equal(result.pages, 28);
 });
 
 test('로직 파일이 site/assets/logic에 복사된다', () => {
@@ -335,4 +335,45 @@ test('파비콘 파일이 올바른 형식으로 생성된다', () => {
   assert.deepEqual([...png.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
   assert.equal(png.readUInt32BE(16), 180);
   assert.equal(png.readUInt32BE(20), 180);
+});
+
+test('소개 페이지가 두 언어로 생성되고 서로 연결된다', () => {
+  const ko = read('ko/about/index.html');
+  const en = read('en/about/index.html');
+  assert.match(ko, /<html lang="ko"/);
+  assert.match(en, /<html lang="en"/);
+  assert.match(ko, /<link rel="alternate" hreflang="en" href="https:\/\/moatool\.com\/en\/about\/">/);
+  assert.match(ko, /<main class="about">/);
+});
+
+test('소개 페이지에 문의 이메일이 설정에 따라 표시된다', () => {
+  const withMail = buildWithConfig({ adsensePublisherId: '', contactEmail: 'hello@example.com' });
+  assert.match(fs.readFileSync(path.join(withMail, 'ko', 'about', 'index.html'), 'utf8'), /mailto:hello@example\.com/);
+  fs.rmSync(withMail, { recursive: true, force: true });
+  const noMail = buildWithConfig({ adsensePublisherId: '', contactEmail: '' });
+  assert.doesNotMatch(fs.readFileSync(path.join(noMail, 'ko', 'about', 'index.html'), 'utf8'), /mailto:/);
+  fs.rmSync(noMail, { recursive: true, force: true });
+});
+
+test('모든 페이지 헤더에 메뉴가 있다', () => {
+  for (const page of ['ko/index.html', 'ko/bmi/index.html', 'ko/guides/severance/index.html', 'ko/privacy/index.html', 'ko/about/index.html']) {
+    const html = read(page);
+    assert.match(html, /<nav class="site-nav"/, page);
+    assert.match(html, /<a href="\/ko\/">도구<\/a>/, page);
+    assert.match(html, /<a href="\/ko\/guides\/">가이드<\/a>/, page);
+    assert.match(html, /<a href="\/ko\/about\/">소개<\/a>/, page);
+  }
+  for (const page of ['en/index.html', 'en/bmi/index.html', 'en/about/index.html']) {
+    const html = read(page);
+    assert.match(html, /<a href="\/en\/">Tools<\/a>/, page);
+    assert.match(html, /<a href="\/en\/about\/">About<\/a>/, page);
+    assert.doesNotMatch(html, /guides/, page);
+  }
+});
+
+test('푸터에 소개 링크가 있고 사이트맵에 소개 주소가 있다', () => {
+  assert.match(read('ko/bmi/index.html'), /<footer[\s\S]*href="\/ko\/about\/"[\s\S]*<\/footer>/);
+  assert.match(read('en/index.html'), /<footer[\s\S]*href="\/en\/about\/"[\s\S]*<\/footer>/);
+  assert.match(read('sitemap.xml'), /<loc>https:\/\/moatool\.com\/ko\/about\/<\/loc>/);
+  assert.match(read('sitemap.xml'), /<loc>https:\/\/moatool\.com\/en\/about\/<\/loc>/);
 });

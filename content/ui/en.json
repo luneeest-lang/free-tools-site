@@ -20,5 +20,10 @@
   "privacyLink": "Privacy policy",
   "guidesHeading": "Guides",
   "guidesLink": "Guides",
-  "relatedGuideHeading": "Related guide"
+  "relatedGuideHeading": "Related guide",
+  "navTools": "Tools",
+  "navGuides": "Guides",
+  "navAbout": "About",
+  "aboutLink": "About this site",
+  "navLabel": "Main menu"
 }

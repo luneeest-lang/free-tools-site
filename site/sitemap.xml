@@ -111,6 +111,16 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/guides/char-count/"/>
   </url>
   <url>
+    <loc>https://moatool.com/ko/about/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/about/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/about/"/>
+  </url>
+  <url>
     <loc>https://moatool.com/ko/privacy/</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/privacy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/privacy/"/>

@@ -33,6 +33,10 @@ const UI_KEYS = [
   'guidesHeading',
   'guidesLink',
   'relatedGuideHeading',
+  'navTools',
+  'navGuides',
+  'navAbout',
+  'aboutLink',
   'footerAds',
 ];
 const SOURCE_SLUGS = ['loan-calculator', 'bmi', 'severance'];
@@ -307,5 +311,38 @@ test('영어 퇴직금 페이지는 한국 기준과 원문이 한국어임을 �
 test('날짜 차이 라벨에 나머지 일수 이름이 있다', () => {
   for (const lang of LANGS) {
     assert.ok('remainderLabel' in load(lang, 'date-diff').labels, `${lang} remainderLabel`);
+  }
+});
+
+function loadAbout(lang) {
+  return JSON.parse(fs.readFileSync(path.join(ROOT, lang, 'about.json'), 'utf8'));
+}
+
+test('소개 페이지 콘텐츠가 두 언어로 있다', () => {
+  for (const lang of LANGS) {
+    const page = loadAbout(lang);
+    assert.equal(page.slug, 'about');
+    assert.ok(page.title.length <= 60, `${lang} about title length`);
+    assert.ok(page.description.length <= 160, `${lang} about description length`);
+    assert.match(page.updated, /^\d{4}-\d{2}-\d{2}$/);
+    assert.equal(typeof page.intro, 'string');
+    assert.ok(Array.isArray(page.sections) && page.sections.length >= 4, `${lang} about sections`);
+    for (const section of page.sections) {
+      assert.equal(typeof section.heading, 'string');
+      assert.ok(Array.isArray(section.paragraphs) && section.paragraphs.length >= 1);
+    }
+    assert.equal(typeof page.contact.heading, 'string');
+    assert.equal(typeof page.contact.text, 'string');
+  }
+});
+
+test('소개 페이지는 운영 원칙, 검증 방식, 면책을 다룬다', () => {
+  const ko = JSON.stringify(loadAbout('ko'));
+  for (const word of ['브라우저', '공식 자료', '전문가', '광고', '최종 수정일']) {
+    assert.ok(ko.includes(word), `ko about mentions ${word}`);
+  }
+  const en = JSON.stringify(loadAbout('en'));
+  for (const word of ['browser', 'official sources', 'professional advice', 'ads', 'last updated']) {
+    assert.ok(en.toLowerCase().includes(word.toLowerCase()), `en about mentions ${word}`);
   }
 });

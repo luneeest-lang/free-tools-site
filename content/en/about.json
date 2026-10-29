@@ -1,0 +1,47 @@
+{
+  "slug": "about",
+  "title": "About This Site and How We Check Our Tools | Toolbox",
+  "description": "Why these free calculators and text tools exist, how your input is handled, how results and explanations are checked, and what to keep in mind.",
+  "h1": "About this site",
+  "updated": "2026-10-29",
+  "intro": "moatool is a free collection of calculators and text tools for everyday and workplace tasks. Everything works right away, with no install or sign-up.\n\nThis page explains how the site is run and how we check the results and explanations.",
+  "sections": [
+    {
+      "heading": "What we offer",
+      "paragraphs": [
+        "Calculators for loans, Korean severance pay, date differences, and BMI, plus text tools such as a character counter and a line break cleaner. Each tool explains how it calculates, gives a worked example, and lists caveats so you can read the result correctly."
+      ]
+    },
+    {
+      "heading": "How we run the site",
+      "paragraphs": [
+        "The site follows these rules."
+      ],
+      "items": [
+        "Every tool is free and needs no account.",
+        "Values you enter are processed only in your browser. They are never sent to a server or stored.",
+        "The site may show Google AdSense ads to cover its costs. Ads are kept clearly separate from tool inputs and results.",
+        "See the privacy policy for details on how data is handled."
+      ]
+    },
+    {
+      "heading": "How we check results and explanations",
+      "paragraphs": [
+        "For topics where accuracy matters, such as money, employment, and health, we check official sources such as the Korean Ministry of Employment and Labor, the WHO, the CDC, and the U.S. Consumer Financial Protection Bureau, and list them at the bottom of each page. Figures and standards we could not confirm in official sources are left out.",
+        "The numbers in each example were produced by the tool itself. The calculation code is covered by automated tests, so every change is checked against the existing results.",
+        "Each page shows a last updated date. When a standard changes, we update the page and the date."
+      ]
+    },
+    {
+      "heading": "Things to keep in mind",
+      "paragraphs": [
+        "Results and explanations on this site are for reference only. Actual loan terms, severance pay, and health status depend on your situation.",
+        "Nothing on this site replaces professional advice from a lawyer, tax advisor, financial advisor, or doctor. Check with the relevant agency or a professional before making important decisions."
+      ]
+    }
+  ],
+  "contact": {
+    "heading": "Contact and corrections",
+    "text": "If you find a mistake in a result or explanation, or have a question, email us at the address below. We will check it, fix the page, and update its date."
+  }
+}
