@@ -8,7 +8,6 @@ const {
   renderGuidePage,
   renderGuidesHub,
   renderPrivacyPage,
-  renderRootIndex,
   setAssetVersion,
   setSiteConfig,
 } = require('./lib/render');
@@ -216,20 +215,23 @@ function buildSite({ rootDir, outDir, origin = SITE_ORIGIN, config = loadConfig(
 
   for (const lang of LANGS) {
     const home = homePaths();
-    writePage(
-      outDir,
-      `${lang}/index.html`,
-      renderHome({
-        lang,
-        ui: ui[lang],
-        tools: Object.values(tools[lang]),
-        alternates: home,
-        origin,
-        guides: guides[lang],
-      })
-    );
+    const html = renderHome({
+      lang,
+      ui: ui[lang],
+      tools: Object.values(tools[lang]),
+      alternates: home,
+      origin,
+      guides: guides[lang],
+    });
+    writePage(outDir, `${lang}/index.html`, html);
     pages += 1;
     sitemapEntries.push({ lang, paths: home.paths });
+    // GitHub Pages cannot redirect on the server, and search robots treat a script
+    // redirect as a warning, so the root serves the Korean home with /ko/ as canonical.
+    if (lang === 'ko') {
+      writePage(outDir, 'index.html', html);
+      pages += 1;
+    }
   }
 
   for (const lang of LANGS) {
@@ -298,8 +300,6 @@ function buildSite({ rootDir, outDir, origin = SITE_ORIGIN, config = loadConfig(
     sitemapEntries.push({ lang, paths: privacyPaths.paths });
   }
 
-  writePage(outDir, 'index.html', renderRootIndex({ ui: ui.ko, origin }));
-  pages += 1;
 
   if (config.adsensePublisherId) {
     writePage(outDir, 'ads.txt', `google.com, ${config.adsensePublisherId}, DIRECT, f08c47fec0942fa0\n`);

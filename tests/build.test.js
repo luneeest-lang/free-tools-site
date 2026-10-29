@@ -567,12 +567,14 @@ test('가이드 RSS가 언어별로 생성되고 페이지에서 연결된다', 
   assert.match(read('en/guides/index.html'), /href="https:\/\/moatool\.com\/en\/guides\/rss\.xml"/);
 });
 
-test('루트 안내 페이지에도 설명, canonical, 공유 미리보기 태그가 있다', () => {
+test('루트 주소는 이동 없이 한국어 홈을 보여 주고 대표 주소는 /ko/다', () => {
   const html = read('index.html');
   assert.match(html, /<html lang="ko">/);
-  assert.match(html, /<meta name="description" content="[^"]+">/);
-  assert.match(html, /<link rel="canonical" href="https:\/\/moatool\.com\/">/);
-  assert.match(html, /<meta property="og:url" content="https:\/\/moatool\.com\/">/);
+  assert.doesNotMatch(html, /location\.replace/);
+  assert.doesNotMatch(html, /http-equiv="refresh"/);
+  assert.match(html, /<main class="home">/);
+  assert.match(html, /href="\/ko\/hourly-wage\/"/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/moatool\.com\/ko\/">/);
+  assert.match(html, /<meta property="og:url" content="https:\/\/moatool\.com\/ko\/">/);
   assert.match(html, /<meta property="og:image" content="https:\/\/moatool\.com\/assets\/og-ko\.png">/);
-  assert.match(html, /<meta property="og:title" content="[^"]+">/);
 });
