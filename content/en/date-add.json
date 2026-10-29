@@ -1,0 +1,44 @@
+{
+  "slug": "date-add",
+  "title": "Add Days to a Date Calculator | Date After N Days",
+  "description": "Add or subtract days from a date to find the date and weekday N days later or earlier. Supports counting the start date as day 1.",
+  "h1": "Add days to a date",
+  "intro": "Find the date that falls a given number of days after or before a start date. Use it for deadlines, countdowns, medication schedules, or anniversaries like \"100 days since we met\".\n\nCounting the start date as day 1 gives a result one day earlier than plain addition. A checkbox lets you choose either way.",
+  "howTo": [
+    "Pick a start date.",
+    "Enter the number of days. Use a minus sign, such as -100, to go back in time.",
+    "Turn on \"Count the start date as day 1\" for anniversary-style counting.",
+    "Read the resulting date and weekday."
+  ],
+  "faq": [
+    {
+      "q": "How do I find a 100-day anniversary?",
+      "a": "If you count the first day as day 1, turn on the checkbox and enter 100. The calculator adds 99 days to the start date."
+    },
+    {
+      "q": "Can I find a date in the past?",
+      "a": "Yes. Enter a negative number such as -30 to get the date 30 days before the start date."
+    },
+    {
+      "q": "Are leap years handled?",
+      "a": "Yes. The calculation follows the real calendar, including February 29 in leap years."
+    }
+  ],
+  "labels": {
+    "startLabel": "Start date",
+    "daysLabel": "Days to add",
+    "unitDays": "days",
+    "includeStartLabel": "Count the start date as day 1",
+    "resultDateLabel": "Resulting date",
+    "weekdayLabel": "Weekday",
+    "errorInvalidDate": "Enter a valid date.",
+    "errorInvalidDays": "Enter a whole number of days between -100,000 and 100,000."
+  },
+  "formula": "The start date is set to midnight UTC, and the number of days is added one 24-hour day at a time. Time zones and daylight saving time do not affect the result, and leap years and month lengths follow the real calendar.\n\nWith \"Count the start date as day 1\" turned on, the start date itself is day 1, so the calculator adds one day fewer than you entered. For negative numbers it subtracts one day fewer.\n\nThe weekday is shown for the resulting date.",
+  "example": "Adding 100 days to January 1, 2026 gives Saturday, April 11, 2026. Counting January 1 as day 1, day 100 is one day earlier: Friday, April 10, 2026.\n\nEntering -100 from January 1, 2026 gives September 23, 2025. Adding one day to February 28, 2024 gives February 29, because 2024 is a leap year.",
+  "notes": [
+    "Legal and contract deadlines often have their own rules about whether the first day counts. Check the rules that apply to you.",
+    "To count the days between two dates, use the date difference calculator instead."
+  ],
+  "updated": "2026-10-29"
+}

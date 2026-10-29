@@ -8,15 +8,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
   <title>글자수 세기 | 공백 포함·제외 글자수와 단어수</title>
-  <meta name="description" content="문장이나 글을 붙여 넣으면 공백 포함과 제외 글자수, 단어수, 줄 수를 바로 셉니다.">
+  <meta name="description" content="글자수(공백 포함·제외), 단어수, 줄수와 바이트 수(한글 2바이트, UTF-8)를 입력과 동시에 세어 줍니다. 자기소개서, 문자 메시지 길이 확인에 쓰세요.">
   <link rel="canonical" href="https://moatool.com/ko/char-count/">
     <link rel="alternate" hreflang="ko" href="https://moatool.com/ko/char-count/">
     <link rel="alternate" hreflang="en" href="https://moatool.com/en/char-count/">
     <link rel="alternate" hreflang="x-default" href="https://moatool.com/ko/char-count/">
-  <link rel="stylesheet" href="/assets/style.css?v=44f1d74c">
-  <link rel="icon" href="/assets/favicon.svg?v=44f1d74c" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/style.css?v=21696b68">
+  <link rel="icon" href="/assets/favicon.svg?v=21696b68" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=44f1d74c">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=21696b68">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4375672351563367" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -51,6 +51,14 @@
   <span class="output-label">줄 수</span>
   <output id="lines"></output>
 </div>
+<div class="output">
+  <span class="output-label">바이트 (한글 2바이트)</span>
+  <output id="bytesKr"></output>
+</div>
+<div class="output">
+  <span class="output-label">바이트 (UTF-8)</span>
+  <output id="bytesUtf8"></output>
+</div>
     </div>
     
   </form>
@@ -62,14 +70,16 @@
   <section class="formula">
     <h2>계산·처리 방식</h2>
     <p>입력한 글을 문자 단위로 세어 공백 포함 글자수를 구하고, 공백, 탭, 줄바꿈을 모두 뺀 글자수를 따로 셉니다. 단어수는 공백을 기준으로 나눈 덩어리의 개수이고, 줄 수는 줄바꿈으로 나눈 줄의 개수입니다.</p>
+<p>바이트 수는 두 가지로 보여 드립니다. 한글 2바이트 기준은 영문, 숫자, 공백, 줄바꿈 같은 ASCII 문자를 1바이트, 한글과 그 밖의 문자를 2바이트로 셉니다. 문자 메시지나 오래된 시스템의 입력 칸이 흔히 쓰는 방식입니다. UTF-8 기준은 웹과 대부분의 파일이 쓰는 방식으로, ASCII는 1바이트, 한글은 3바이트, 이모지는 4바이트입니다.</p>
   </section>
   <section class="example">
     <h2>예시</h2>
     <p>&quot;안녕 hello&quot;를 넣으면 공백 포함 8자, 공백 제외 7자, 단어 2개, 1줄로 계산됩니다.</p>
+<p>&quot;가a&quot;와 줄바꿈, 이모지 하나를 넣으면 한글 2바이트 기준으로 6바이트(2 + 1 + 1 + 2), UTF-8 기준으로 9바이트(3 + 1 + 1 + 4)입니다.</p>
   </section>
   <section class="notes">
     <h2>알아 두세요</h2>
-    <ul><li>자기소개서나 지원서는 기관마다 글자 수 기준(공백 포함 여부)이 다릅니다. 제출처 안내를 확인한 뒤 맞는 쪽 숫자를 쓰세요.</li><li>이모지처럼 일부 기호는 한 글자가 두 글자로 세어질 수 있습니다.</li><li>바이트 수가 아니라 글자 수를 셉니다. 한글을 2바이트나 3바이트로 세는 시스템과는 결과가 다를 수 있습니다.</li></ul>
+    <ul><li>자기소개서나 지원서는 기관마다 글자 수 기준(공백 포함 여부)이 다릅니다. 제출처 안내를 확인한 뒤 맞는 쪽 숫자를 쓰세요.</li><li>이모지처럼 일부 기호는 한 글자가 두 글자로 세어질 수 있습니다.</li><li>바이트 수가 아니라 글자 수를 셉니다. 한글을 2바이트나 3바이트로 세는 시스템과는 결과가 다를 수 있습니다.</li><li>바이트 제한이 있는 입력 칸은 서비스마다 세는 방식이 다를 수 있습니다. 줄바꿈을 2바이트로 세는 곳도 있으니 제출 전에 해당 서비스의 기준을 확인하세요.</li></ul>
   </section>
   <section class="related-guide">
     <h2>관련 가이드</h2>
@@ -81,15 +91,15 @@
 <details><summary>이모지는 몇 글자로 세나요?</summary><p>문자 단위로 세므로 이모지 하나가 두 글자로 잡힐 수 있습니다.</p></details>
 <details><summary>입력한 글이 저장되나요?</summary><p>저장되지 않습니다. 모든 계산은 브라우저 안에서만 이뤄집니다.</p></details>
   </section>
-  <p class="updated">최종 수정일: 2026-10-19</p>
+  <p class="updated">최종 수정일: 2026-10-29</p>
 </main>
 <footer class="site-footer">
   <p>입력하신 값은 저장되거나 서버로 전송되지 않습니다. 광고 서비스는 쿠키를 사용할 수 있습니다.</p>
   <p><a href="/ko/guides/">가이드</a> · <a href="/ko/about/">사이트 소개</a> · <a href="/ko/privacy/">개인정보처리방침</a></p>
 </footer>
-<script type="application/json" id="tool-labels">{"inputLabel":"글 입력","charsLabel":"글자수 (공백 포함)","charsNoSpacesLabel":"글자수 (공백 제외)","wordsLabel":"단어수","linesLabel":"줄 수"}</script>
-<script src="/assets/logic/text.js?v=44f1d74c"></script>
-<script src="/assets/common.js?v=44f1d74c"></script>
-<script src="/assets/tools/char-count.js?v=44f1d74c" defer></script>
+<script type="application/json" id="tool-labels">{"inputLabel":"글 입력","charsLabel":"글자수 (공백 포함)","charsNoSpacesLabel":"글자수 (공백 제외)","wordsLabel":"단어수","linesLabel":"줄 수","bytesKrLabel":"바이트 (한글 2바이트)","bytesUtf8Label":"바이트 (UTF-8)"}</script>
+<script src="/assets/logic/text.js?v=21696b68"></script>
+<script src="/assets/common.js?v=21696b68"></script>
+<script src="/assets/tools/char-count.js?v=21696b68" defer></script>
 </body>
 </html>

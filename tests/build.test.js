@@ -58,9 +58,9 @@ test('계산기 페이지에 폼 입력 칸이 있다', () => {
   assert.match(page, /id="months"/);
 });
 
-test('페이지 수는 28 (루트 1, 언어 홈 2, 도구 16, 개인정보 2, 소개 2, 가이드 목록 1, 가이드 4)', () => {
+test('페이지 수는 30 (루트 1, 언어 홈 2, 도구 18, 개인정보 2, 소개 2, 가이드 목록 1, 가이드 4)', () => {
   const result = buildSite({ rootDir: ROOT, outDir: fs.mkdtempSync(path.join(os.tmpdir(), 'site-count-')) });
-  assert.equal(result.pages, 28);
+  assert.equal(result.pages, 30);
 });
 
 test('로직 파일이 site/assets/logic에 복사된다', () => {
@@ -403,4 +403,33 @@ test('대출 계산기에 상환 방식 선택과 월별 상환표가 있다', (
     assert.match(page, /<details class="schedule"/, lang);
     assert.match(page, /<tbody id="schedule-body">/, lang);
   }
+});
+
+test('날짜 더하기 페이지가 두 언어로 생성되고 홈과 사이트맵에 들어간다', () => {
+  for (const lang of ['ko', 'en']) {
+    const page = read(`${lang}/date-add/index.html`);
+    assert.match(page, /<input id="start"[^>]*type="date"/);
+    assert.match(page, /<input id="days"[^>]*inputmode="numeric"/);
+    assert.match(page, /<input id="includeStart"[^>]*type="checkbox"/);
+    assert.match(page, /<output id="resultDate">/);
+    assert.match(page, /\/assets\/logic\/date\.js/);
+    assert.match(read(`${lang}/index.html`), new RegExp(`href="/${lang}/date-add/"`));
+  }
+  assert.match(read('sitemap.xml'), /https:\/\/moatool\.com\/ko\/date-add\//);
+});
+
+test('글자수 세기 페이지에 바이트 결과 칸이 있다', () => {
+  const page = read('ko/char-count/index.html');
+  assert.match(page, /<output id="bytesKr">/);
+  assert.match(page, /<output id="bytesUtf8">/);
+});
+
+test('텍스트 변환 결과에는 복사 버튼이 있고 계산기에는 없다', () => {
+  for (const slug of ['case-convert', 'line-cleanup', 'dedupe-lines']) {
+    for (const lang of ['ko', 'en']) {
+      assert.match(read(`${lang}/${slug}/index.html`), /<button type="button" class="copy-btn" data-copy="output"[^>]*>/, `${lang}/${slug}`);
+    }
+  }
+  assert.match(read('ko/case-convert/index.html'), /data-copied="복사했습니다"/);
+  assert.doesNotMatch(read('ko/bmi/index.html'), /class="copy-btn"/);
 });

@@ -28,15 +28,18 @@
     "charsLabel": "Characters (with spaces)",
     "charsNoSpacesLabel": "Characters (without spaces)",
     "wordsLabel": "Words",
-    "linesLabel": "Lines"
+    "linesLabel": "Lines",
+    "bytesKrLabel": "Bytes (2 per non-ASCII)",
+    "bytesUtf8Label": "Bytes (UTF-8)"
   },
-  "formula": "The tool counts every character in the text to get the total with spaces. It then removes all spaces, tabs, and line breaks and counts again to get the total without spaces. The word count is the number of groups of characters separated by spaces or line breaks, and the line count is the number of lines separated by line breaks.",
-  "example": "The text \"hello world\" has 11 characters with spaces, 10 without spaces, 2 words, and 1 line. The text \"one two\" followed by a line break and \"three\" has 13 characters with spaces, 11 without spaces, 3 words, and 2 lines.",
+  "formula": "The tool counts every character in the text to get the total with spaces. It then removes all spaces, tabs, and line breaks and counts again to get the total without spaces. The word count is the number of groups of characters separated by spaces or line breaks, and the line count is the number of lines separated by line breaks.\n\nTwo byte counts are shown. UTF-8 is what the web and most files use: ASCII characters take 1 byte, most accented letters 2, Korean, Chinese, and Japanese characters 3, and emoji 4. The \"2 per non-ASCII\" count treats ASCII as 1 byte and every other character as 2, the convention used by older Korean systems and SMS limits.",
+  "example": "The text \"hello world\" has 11 characters with spaces, 10 without spaces, 2 words, and 1 line. The text \"one two\" followed by a line break and \"three\" has 13 characters with spaces, 11 without spaces, 3 words, and 2 lines.\n\nFor \"가a\", a line break, and one emoji, the UTF-8 count is 9 bytes (3 + 1 + 1 + 4) and the 2-per-non-ASCII count is 6 bytes (2 + 1 + 1 + 2).",
   "notes": [
     "In the total with spaces, each line break counts as one character.",
     "Some emoji and special characters are counted as two characters.",
     "The tool counts characters, not bytes. Systems that limit text by bytes will give different numbers, because many non-English characters use more than one byte.",
-    "If a form has its own character limit, compare with the number shown on that form, because systems differ in how they count line breaks and special characters."
+    "If a form has its own character limit, compare with the number shown on that form, because systems differ in how they count line breaks and special characters.",
+    "Services with byte limits may count differently, for example counting a line break as 2 bytes. Check the rules of the service you are writing for."
   ],
-  "updated": "2026-10-22"
+  "updated": "2026-10-29"
 }

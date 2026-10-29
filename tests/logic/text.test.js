@@ -3,11 +3,11 @@ const assert = require('node:assert/strict');
 const { charCount, convertCase, cleanupLines, dedupeLines } = require('../../src/logic/text');
 
 test('빈 문자열은 모두 0', () => {
-  assert.deepEqual(charCount(''), { chars: 0, charsNoSpaces: 0, words: 0, lines: 0 });
+  assert.deepEqual(charCount(''), { chars: 0, charsNoSpaces: 0, words: 0, lines: 0, bytesKr: 0, bytesUtf8: 0 });
 });
 
 test('글자수, 공백 제외 글자수, 단어수, 줄수를 센다', () => {
-  assert.deepEqual(charCount('a b\nc'), { chars: 5, charsNoSpaces: 3, words: 3, lines: 2 });
+  assert.deepEqual(charCount('a b\nc'), { chars: 5, charsNoSpaces: 3, words: 3, lines: 2, bytesKr: 5, bytesUtf8: 5 });
 });
 
 test('title은 각 단어의 첫 글자만 대문자', () => {
@@ -49,4 +49,16 @@ test('joinLines는 빈 입력과 줄바꿈만 있는 입력에서 빈 문자열�
 
 test('joinLines를 끄면 기존 동작과 같다', () => {
   assert.equal(cleanupLines('  a  \n\n\n  b \n', { joinLines: false }), 'a\n\nb');
+});
+
+test('바이트 수를 한글 2바이트 기준과 UTF-8 기준으로 센다', () => {
+  const r = charCount('가a\n😀');
+  assert.equal(r.bytesKr, 6);
+  assert.equal(r.bytesUtf8, 9);
+});
+
+test('빈 문자열의 바이트 수는 0', () => {
+  const r = charCount('');
+  assert.equal(r.bytesKr, 0);
+  assert.equal(r.bytesUtf8, 0);
 });

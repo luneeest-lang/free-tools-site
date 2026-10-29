@@ -21,6 +21,11 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/date-diff/"/>
   </url>
   <url>
+    <loc>https://moatool.com/ko/date-add/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/date-add/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/date-add/"/>
+  </url>
+  <url>
     <loc>https://moatool.com/ko/bmi/</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/bmi/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/bmi/"/>
@@ -59,6 +64,11 @@
     <loc>https://moatool.com/en/date-diff/</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/date-diff/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/date-diff/"/>
+  </url>
+  <url>
+    <loc>https://moatool.com/en/date-add/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://moatool.com/ko/date-add/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moatool.com/en/date-add/"/>
   </url>
   <url>
     <loc>https://moatool.com/en/bmi/</loc>

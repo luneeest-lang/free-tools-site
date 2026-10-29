@@ -8,6 +8,7 @@ const LOGIC_FILE = {
   'loan-calculator': 'finance',
   severance: 'finance',
   'date-diff': 'date',
+  'date-add': 'date',
   bmi: 'health',
   'char-count': 'text',
   'case-convert': 'text',
@@ -145,11 +146,14 @@ function renderField(field, labels) {
 </div>`;
 }
 
-function renderOutput(output, labels) {
+function renderOutput(output, labels, ui) {
   const cls = output.primary ? 'output output-primary' : 'output';
+  const copy = output.copy
+    ? `\n  <button type="button" class="copy-btn" data-copy="${output.id}" data-label="${escapeHtml(ui.copyLabel)}" data-copied="${escapeHtml(ui.copiedLabel)}">${escapeHtml(ui.copyLabel)}</button>`
+    : '';
   return `<div class="${cls}">
   <span class="output-label">${escapeHtml(labels[output.labelKey])}</span>
-  <output id="${output.id}"></output>
+  <output id="${output.id}"></output>${copy}
 </div>`;
 }
 
@@ -226,7 +230,7 @@ function renderToolPage({ lang, tool, ui, alternates, origin, relatedGuide }) {
   const form = TOOL_FORMS[tool.slug];
   const labels = tool.labels;
   const inputs = form.inputs.map((field) => renderField(field, labels)).join('\n');
-  const outputs = form.outputs.map((output) => renderOutput(output, labels)).join('\n');
+  const outputs = form.outputs.map((output) => renderOutput(output, labels, ui)).join('\n');
   return `${head({
     lang,
     title: tool.title,

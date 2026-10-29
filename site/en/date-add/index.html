@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="naver-site-verification" content="039452e4a2ed6ef92166e9a02eaa07735279ac95" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+  <title>Add Days to a Date Calculator | Date After N Days</title>
+  <meta name="description" content="Add or subtract days from a date to find the date and weekday N days later or earlier. Supports counting the start date as day 1.">
+  <link rel="canonical" href="https://moatool.com/en/date-add/">
+    <link rel="alternate" hreflang="ko" href="https://moatool.com/ko/date-add/">
+    <link rel="alternate" hreflang="en" href="https://moatool.com/en/date-add/">
+    <link rel="alternate" hreflang="x-default" href="https://moatool.com/ko/date-add/">
+  <link rel="stylesheet" href="/assets/style.css?v=21696b68">
+  <link rel="icon" href="/assets/favicon.svg?v=21696b68" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=21696b68">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4375672351563367" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/en/">Toolbox</a>
+  <nav class="site-nav" aria-label="Main menu"><a href="/en/">Tools</a><a href="/en/about/">About</a></nav>
+  <a class="lang-switch" href="/ko/date-add/" hreflang="ko" lang="ko">한국어</a>
+</header>
+<main class="tool" data-category="calc">
+  <h1>Add days to a date</h1>
+  <div class="intro"><p>Find the date that falls a given number of days after or before a start date. Use it for deadlines, countdowns, medication schedules, or anniversaries like &quot;100 days since we met&quot;.</p>
+<p>Counting the start date as day 1 gives a result one day earlier than plain addition. A checkbox lets you choose either way.</p></div>
+  <form class="tool-form" id="tool-form">
+    <div class="field">
+  <label for="start">Start date</label>
+  <div class="field-row">
+    <input id="start" name="start" type="date">
+    
+  </div>
+</div>
+<div class="field">
+  <label for="days">Days to add</label>
+  <div class="field-row">
+    <input id="days" name="days" type="text" inputmode="numeric">
+    <span class="unit">days</span>
+  </div>
+</div>
+<div class="field field-check">
+  <input id="includeStart" name="includeStart" type="checkbox">
+  <label for="includeStart">Count the start date as day 1</label>
+</div>
+    <div class="results" aria-live="polite">
+      <div class="output output-primary">
+  <span class="output-label">Resulting date</span>
+  <output id="resultDate"></output>
+</div>
+<div class="output">
+  <span class="output-label">Weekday</span>
+  <output id="weekday"></output>
+</div>
+    </div>
+    <p class="error" data-error="errorInvalidDate" role="alert" hidden>Enter a valid date.</p>
+<p class="error" data-error="errorInvalidDays" role="alert" hidden>Enter a whole number of days between -100,000 and 100,000.</p>
+  </form>
+  
+  <section class="howto">
+    <h2>How to use</h2>
+    <ol><li>Pick a start date.</li><li>Enter the number of days. Use a minus sign, such as -100, to go back in time.</li><li>Turn on &quot;Count the start date as day 1&quot; for anniversary-style counting.</li><li>Read the resulting date and weekday.</li></ol>
+  </section>
+  <section class="formula">
+    <h2>How it works</h2>
+    <p>The start date is set to midnight UTC, and the number of days is added one 24-hour day at a time. Time zones and daylight saving time do not affect the result, and leap years and month lengths follow the real calendar.</p>
+<p>With &quot;Count the start date as day 1&quot; turned on, the start date itself is day 1, so the calculator adds one day fewer than you entered. For negative numbers it subtracts one day fewer.</p>
+<p>The weekday is shown for the resulting date.</p>
+  </section>
+  <section class="example">
+    <h2>Example</h2>
+    <p>Adding 100 days to January 1, 2026 gives Saturday, April 11, 2026. Counting January 1 as day 1, day 100 is one day earlier: Friday, April 10, 2026.</p>
+<p>Entering -100 from January 1, 2026 gives September 23, 2025. Adding one day to February 28, 2024 gives February 29, because 2024 is a leap year.</p>
+  </section>
+  <section class="notes">
+    <h2>Good to know</h2>
+    <ul><li>Legal and contract deadlines often have their own rules about whether the first day counts. Check the rules that apply to you.</li><li>To count the days between two dates, use the date difference calculator instead.</li></ul>
+  </section>
+  
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>How do I find a 100-day anniversary?</summary><p>If you count the first day as day 1, turn on the checkbox and enter 100. The calculator adds 99 days to the start date.</p></details>
+<details><summary>Can I find a date in the past?</summary><p>Yes. Enter a negative number such as -30 to get the date 30 days before the start date.</p></details>
+<details><summary>Are leap years handled?</summary><p>Yes. The calculation follows the real calendar, including February 29 in leap years.</p></details>
+  </section>
+  <p class="updated">Last updated: 2026-10-29</p>
+</main>
+<footer class="site-footer">
+  <p>Values you enter are never stored or sent to a server. Advertising partners may use cookies.</p>
+  <p><a href="/en/about/">About this site</a> · <a href="/en/privacy/">Privacy policy</a></p>
+</footer>
+<script type="application/json" id="tool-labels">{"startLabel":"Start date","daysLabel":"Days to add","unitDays":"days","includeStartLabel":"Count the start date as day 1","resultDateLabel":"Resulting date","weekdayLabel":"Weekday","errorInvalidDate":"Enter a valid date.","errorInvalidDays":"Enter a whole number of days between -100,000 and 100,000."}</script>
+<script src="/assets/logic/date.js?v=21696b68"></script>
+<script src="/assets/common.js?v=21696b68"></script>
+<script src="/assets/tools/date-add.js?v=21696b68" defer></script>
+</body>
+</html>

@@ -36,6 +36,18 @@ const TOOL_FORMS = {
     ],
     errorKeys: ['errorEndBeforeStart', 'errorInvalidDate'],
   },
+  'date-add': {
+    inputs: [
+      { id: 'start', labelKey: 'startLabel', type: 'date' },
+      { id: 'days', labelKey: 'daysLabel', type: 'text', inputmode: 'numeric', unitKey: 'unitDays' },
+      { id: 'includeStart', labelKey: 'includeStartLabel', type: 'checkbox' },
+    ],
+    outputs: [
+      { id: 'resultDate', labelKey: 'resultDateLabel', primary: true },
+      { id: 'weekday', labelKey: 'weekdayLabel' },
+    ],
+    errorKeys: ['errorInvalidDate', 'errorInvalidDays'],
+  },
   bmi: {
     inputs: [
       { id: 'height', labelKey: 'heightLabel', type: 'text', inputmode: 'decimal', unitKey: 'unitCm' },
@@ -70,6 +82,8 @@ const TOOL_FORMS = {
       { id: 'charsNoSpaces', labelKey: 'charsNoSpacesLabel' },
       { id: 'words', labelKey: 'wordsLabel' },
       { id: 'lines', labelKey: 'linesLabel' },
+      { id: 'bytesKr', labelKey: 'bytesKrLabel' },
+      { id: 'bytesUtf8', labelKey: 'bytesUtf8Label' },
     ],
     errorKeys: [],
   },
@@ -88,7 +102,7 @@ const TOOL_FORMS = {
         ],
       },
     ],
-    outputs: [{ id: 'output', labelKey: 'outputLabel', primary: true }],
+    outputs: [{ id: 'output', labelKey: 'outputLabel', primary: true, copy: true }],
     errorKeys: [],
   },
   'line-cleanup': {
@@ -96,7 +110,7 @@ const TOOL_FORMS = {
       { id: 'text', labelKey: 'inputLabel', type: 'textarea' },
       { id: 'joinLines', labelKey: 'joinLinesLabel', type: 'checkbox' },
     ],
-    outputs: [{ id: 'output', labelKey: 'outputLabel', primary: true }],
+    outputs: [{ id: 'output', labelKey: 'outputLabel', primary: true, copy: true }],
     errorKeys: [],
   },
   'dedupe-lines': {
@@ -105,14 +119,14 @@ const TOOL_FORMS = {
       { id: 'ignoreCase', labelKey: 'ignoreCaseLabel', type: 'checkbox' },
     ],
     outputs: [
-      { id: 'output', labelKey: 'outputLabel', primary: true },
+      { id: 'output', labelKey: 'outputLabel', primary: true, copy: true },
       { id: 'removed', labelKey: 'removedLabel' },
     ],
     errorKeys: [],
   },
 };
 
-const CALC_SLUGS = ['loan-calculator', 'date-diff', 'bmi', 'severance'];
+const CALC_SLUGS = ['loan-calculator', 'date-diff', 'date-add', 'bmi', 'severance'];
 const TEXT_SLUGS = ['char-count', 'case-convert', 'line-cleanup', 'dedupe-lines'];
 
 module.exports = { TOOL_FORMS, CALC_SLUGS, TEXT_SLUGS };

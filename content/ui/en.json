@@ -25,5 +25,7 @@
   "navGuides": "Guides",
   "navAbout": "About",
   "aboutLink": "About this site",
-  "navLabel": "Main menu"
+  "navLabel": "Main menu",
+  "copyLabel": "Copy result",
+  "copiedLabel": "Copied"
 }

@@ -30,6 +30,26 @@ function dateDiff({ start, end }) {
   };
 }
 
-const api = { dateDiff };
+const MAX_DAYS = 100000;
+
+// includeStart counts the start date as day 1, so "100 days" lands one day earlier.
+function addDays({ start, days, includeStart = false }) {
+  const startTime = parseDate(start);
+  if (startTime === null) {
+    return { error: 'invalid_date' };
+  }
+  if (!Number.isInteger(days) || Math.abs(days) > MAX_DAYS) {
+    return { error: 'invalid_days' };
+  }
+  const offset = includeStart && days !== 0 ? days - Math.sign(days) : days;
+  const result = new Date(startTime + offset * DAY_MS);
+  return {
+    error: null,
+    date: result.toISOString().slice(0, 10),
+    weekday: result.getUTCDay(),
+  };
+}
+
+const api = { dateDiff, addDays };
 if (typeof module !== 'undefined') module.exports = api;
 if (typeof window !== 'undefined') window.ToolLogic = Object.assign(window.ToolLogic || {}, api);

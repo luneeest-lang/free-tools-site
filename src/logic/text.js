@@ -2,15 +2,29 @@ function splitLines(text) {
   return text.split(/\r\n|\r|\n/);
 }
 
+// bytesKr follows the common Korean convention (EUC-KR style): ASCII is 1 byte,
+// every other character, including Hangul, is 2 bytes.
+function byteCounts(text) {
+  let bytesKr = 0;
+  let bytesUtf8 = 0;
+  for (const char of text) {
+    const code = char.codePointAt(0);
+    bytesKr += code < 0x80 ? 1 : 2;
+    bytesUtf8 += code < 0x80 ? 1 : code < 0x800 ? 2 : code < 0x10000 ? 3 : 4;
+  }
+  return { bytesKr, bytesUtf8 };
+}
+
 function charCount(text) {
   if (text === '') {
-    return { chars: 0, charsNoSpaces: 0, words: 0, lines: 0 };
+    return { chars: 0, charsNoSpaces: 0, words: 0, lines: 0, bytesKr: 0, bytesUtf8: 0 };
   }
   return {
     chars: text.length,
     charsNoSpaces: text.replace(/\s/g, '').length,
     words: text.split(/\s+/).filter(Boolean).length,
     lines: splitLines(text).length,
+    ...byteCounts(text),
   };
 }
 

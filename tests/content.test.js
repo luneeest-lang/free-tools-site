@@ -7,6 +7,7 @@ const ROOT = path.join(__dirname, '..', 'content');
 const SLUGS = [
   'loan-calculator',
   'date-diff',
+  'date-add',
   'bmi',
   'severance',
   'char-count',
@@ -38,6 +39,8 @@ const UI_KEYS = [
   'navAbout',
   'aboutLink',
   'footerAds',
+  'copyLabel',
+  'copiedLabel',
 ];
 const SOURCE_SLUGS = ['loan-calculator', 'bmi', 'severance'];
 
@@ -45,7 +48,7 @@ function load(lang, slug) {
   return JSON.parse(fs.readFileSync(path.join(ROOT, lang, `${slug}.json`), 'utf8'));
 }
 
-test('8개 도구마다 한국어와 영어 파일이 있다', () => {
+test('9개 도구마다 한국어와 영어 파일이 있다', () => {
   for (const lang of LANGS) {
     for (const slug of SLUGS) {
       assert.ok(fs.existsSync(path.join(ROOT, lang, `${slug}.json`)), `${lang}/${slug}.json`);

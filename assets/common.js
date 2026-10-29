@@ -70,6 +70,39 @@
     });
   }
 
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(() => copyWithSelection(text));
+    }
+    return copyWithSelection(text);
+  }
+
+  function copyWithSelection(text) {
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand('copy');
+    area.remove();
+    return Promise.resolve();
+  }
+
+  document.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-copy]');
+    if (!button) return;
+    const text = document.getElementById(button.dataset.copy).textContent;
+    if (!text) return;
+    copyText(text).then(() => {
+      button.textContent = button.dataset.copied;
+      setTimeout(() => {
+        button.textContent = button.dataset.label;
+      }, 1500);
+    });
+  });
+
   window.ToolUI = {
     label,
     num,

@@ -19,6 +19,7 @@ const SITE_ORIGIN = 'https://moatool.com';
 const SLUGS = [
   'loan-calculator',
   'date-diff',
+  'date-add',
   'bmi',
   'severance',
   'char-count',

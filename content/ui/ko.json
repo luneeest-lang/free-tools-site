@@ -25,5 +25,7 @@
   "navGuides": "가이드",
   "navAbout": "소개",
   "aboutLink": "사이트 소개",
-  "navLabel": "주 메뉴"
+  "navLabel": "주 메뉴",
+  "copyLabel": "결과 복사",
+  "copiedLabel": "복사했습니다"
 }

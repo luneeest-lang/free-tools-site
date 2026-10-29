@@ -13,10 +13,10 @@
     <link rel="alternate" hreflang="ko" href="https://moatool.com/ko/char-count/">
     <link rel="alternate" hreflang="en" href="https://moatool.com/en/char-count/">
     <link rel="alternate" hreflang="x-default" href="https://moatool.com/ko/char-count/">
-  <link rel="stylesheet" href="/assets/style.css?v=44f1d74c">
-  <link rel="icon" href="/assets/favicon.svg?v=44f1d74c" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/style.css?v=21696b68">
+  <link rel="icon" href="/assets/favicon.svg?v=21696b68" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=44f1d74c">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=21696b68">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4375672351563367" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -51,6 +51,14 @@
   <span class="output-label">Lines</span>
   <output id="lines"></output>
 </div>
+<div class="output">
+  <span class="output-label">Bytes (2 per non-ASCII)</span>
+  <output id="bytesKr"></output>
+</div>
+<div class="output">
+  <span class="output-label">Bytes (UTF-8)</span>
+  <output id="bytesUtf8"></output>
+</div>
     </div>
     
   </form>
@@ -62,14 +70,16 @@
   <section class="formula">
     <h2>How it works</h2>
     <p>The tool counts every character in the text to get the total with spaces. It then removes all spaces, tabs, and line breaks and counts again to get the total without spaces. The word count is the number of groups of characters separated by spaces or line breaks, and the line count is the number of lines separated by line breaks.</p>
+<p>Two byte counts are shown. UTF-8 is what the web and most files use: ASCII characters take 1 byte, most accented letters 2, Korean, Chinese, and Japanese characters 3, and emoji 4. The &quot;2 per non-ASCII&quot; count treats ASCII as 1 byte and every other character as 2, the convention used by older Korean systems and SMS limits.</p>
   </section>
   <section class="example">
     <h2>Example</h2>
     <p>The text &quot;hello world&quot; has 11 characters with spaces, 10 without spaces, 2 words, and 1 line. The text &quot;one two&quot; followed by a line break and &quot;three&quot; has 13 characters with spaces, 11 without spaces, 3 words, and 2 lines.</p>
+<p>For &quot;가a&quot;, a line break, and one emoji, the UTF-8 count is 9 bytes (3 + 1 + 1 + 4) and the 2-per-non-ASCII count is 6 bytes (2 + 1 + 1 + 2).</p>
   </section>
   <section class="notes">
     <h2>Good to know</h2>
-    <ul><li>In the total with spaces, each line break counts as one character.</li><li>Some emoji and special characters are counted as two characters.</li><li>The tool counts characters, not bytes. Systems that limit text by bytes will give different numbers, because many non-English characters use more than one byte.</li><li>If a form has its own character limit, compare with the number shown on that form, because systems differ in how they count line breaks and special characters.</li></ul>
+    <ul><li>In the total with spaces, each line break counts as one character.</li><li>Some emoji and special characters are counted as two characters.</li><li>The tool counts characters, not bytes. Systems that limit text by bytes will give different numbers, because many non-English characters use more than one byte.</li><li>If a form has its own character limit, compare with the number shown on that form, because systems differ in how they count line breaks and special characters.</li><li>Services with byte limits may count differently, for example counting a line break as 2 bytes. Check the rules of the service you are writing for.</li></ul>
   </section>
   
   <section class="faq">
@@ -78,15 +88,15 @@
 <details><summary>How are emoji counted?</summary><p>Counts are per code unit, so one emoji may count as two characters.</p></details>
 <details><summary>Is my text saved anywhere?</summary><p>No. Everything runs in your browser only.</p></details>
   </section>
-  <p class="updated">Last updated: 2026-10-22</p>
+  <p class="updated">Last updated: 2026-10-29</p>
 </main>
 <footer class="site-footer">
   <p>Values you enter are never stored or sent to a server. Advertising partners may use cookies.</p>
   <p><a href="/en/about/">About this site</a> · <a href="/en/privacy/">Privacy policy</a></p>
 </footer>
-<script type="application/json" id="tool-labels">{"inputLabel":"Your text","charsLabel":"Characters (with spaces)","charsNoSpacesLabel":"Characters (without spaces)","wordsLabel":"Words","linesLabel":"Lines"}</script>
-<script src="/assets/logic/text.js?v=44f1d74c"></script>
-<script src="/assets/common.js?v=44f1d74c"></script>
-<script src="/assets/tools/char-count.js?v=44f1d74c" defer></script>
+<script type="application/json" id="tool-labels">{"inputLabel":"Your text","charsLabel":"Characters (with spaces)","charsNoSpacesLabel":"Characters (without spaces)","wordsLabel":"Words","linesLabel":"Lines","bytesKrLabel":"Bytes (2 per non-ASCII)","bytesUtf8Label":"Bytes (UTF-8)"}</script>
+<script src="/assets/logic/text.js?v=21696b68"></script>
+<script src="/assets/common.js?v=21696b68"></script>
+<script src="/assets/tools/char-count.js?v=21696b68" defer></script>
 </body>
 </html>
